@@ -44,8 +44,3 @@ typedef struct{
     //faltan punteros;
 
 }pracXingreso;
-
-
-
-
-
