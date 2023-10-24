@@ -1,6 +1,6 @@
 #ifndef PROTOTIPADOS_H_INCLUDED
 #define PROTOTIPADOS_H_INCLUDED
-#endif // PROTOTIPADOS_H_INCLUDED
+#endif  //PROTOTIPADOS_H_INCLUDED
 
 
 typedef struct{
@@ -9,7 +9,8 @@ typedef struct{
     char fechaRetiro[10];
     int dniPaciente;
     int matriculaProfesional;
-    int eliminado=0;//0 para no eliminado o 1 para eliminado
+    int eliminado;//0 para no eliminado o 1 para eliminado
+
 }ingresos;
 
 typedef struct{
@@ -24,9 +25,14 @@ typedef struct{
     int dni;
     char direccion[30];
     char telefono[15];
-    int eliminado=0;
-    //faltan punteros
+    int eliminado;
 }pacientes;
+
+typedef struct nodoArbol {
+pacientes persona;
+struct nodoArbol * izq;
+struct nodoArbol * der;
+} nodoArbol;
 
 typedef struct{
     int dni;
@@ -44,3 +50,4 @@ typedef struct{
     //faltan punteros;
 
 }pracXingreso;
+void cargaPaciente(char archivo[]);

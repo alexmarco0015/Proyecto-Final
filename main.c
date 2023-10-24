@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-///hola soy vale
+#include "prototipados.h"
 
 
 int main()
