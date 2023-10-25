@@ -16,7 +16,7 @@ typedef struct{
 typedef struct{
     int nroPractica;
     char nombrePractica[30];
-    int eliminado=0;
+    int eliminado;
 }practicas;
 
 typedef struct{
@@ -51,3 +51,5 @@ typedef struct{
 
 }pracXingreso;
 void cargaPaciente(char archivo[]);
+int buscaPaciente(char archivo[], int dniBuscado);
+int validarDni(char archivo[], int dniBuscado);

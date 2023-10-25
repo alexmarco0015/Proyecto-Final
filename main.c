@@ -5,7 +5,8 @@
 
 int main()
 {
-    printf("hola que tal");
-    printf("\neste es otro cambio");
+    cargaPaciente("miarchivo.bin");
+
+
     return 0;
 }
