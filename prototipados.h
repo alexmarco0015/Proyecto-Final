@@ -14,6 +14,15 @@ typedef struct{
 }ingresos;
 
 typedef struct{
+
+    ingresos ingreso;
+
+    struct nodoListaIngresos*siguiente;
+
+
+}nodoListaIngresos;
+
+typedef struct{
     int nroPractica;
     char nombrePractica[30];
     int eliminado;
@@ -32,6 +41,8 @@ typedef struct nodoArbol {
 pacientes persona;
 struct nodoArbol * izq;
 struct nodoArbol * der;
+
+
 } nodoArbol;
 
 typedef struct{
@@ -50,6 +61,9 @@ typedef struct{
     //faltan punteros;
 
 }pracXingreso;
+
 void cargaPaciente(char archivo[]);
 int buscaPaciente(char archivo[], int dniBuscado);
-int validarDni(char archivo[], int dniBuscado);
+int validarDni(int dniBuscado);
+int validarEdad(int edad);
+
