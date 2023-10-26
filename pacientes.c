@@ -4,12 +4,19 @@
 
 ///PROTOTIPADOS
 int validarDni(char archivo[], int dniBuscado){
-    int flag=0;
-    if(dniBuscado>10000000 && dniBuscado<99999999){
+    int contador = 0;
+    int temp = dniBuscado;
 
-        flag=1;
+    while (temp > 0) {
+        temp /= 10;
+        contador++;
     }
-    return flag;
+
+    if (contador == 8) {
+        return 0;  // DNI válido
+    } else {
+        return 1;  // DNI inválido
+    }
 }
 int buscaPaciente(char archivo[], int dniBuscado){
 
@@ -42,17 +49,24 @@ void cargaPaciente(char archivo[]){
 
         if(archi){
                 while(cont=='s'){
+                    int flag=0;
+                        while(!flag){
 
-            printf("ingrese el dni: \n");
-            scanf("%i", &persona.dni);
+                                printf("ingrese el dni: \n");
+                                scanf("%i", &persona.dni);
 
-            if(validarDni(archivo, persona.dni)==1){
+                                flag=validarDni(archivo, persona.dni);
 
-                printf("EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
+                                 if(flag==1){
 
-                  printf("ingrese el dni: \n");
-                  scanf("%i", &persona.dni);
-            }
+                                printf("EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
+
+                                  flag=0;
+
+                                    }
+                        }
+
+
             if(buscaPaciente(archivo, persona.dni)==1){
 
                 printf("El paciente ya existe en el sistema...\n");
@@ -61,11 +75,14 @@ void cargaPaciente(char archivo[]){
             printf("ingrese nombre del paciente:\n");
             fflush(stdin);
             gets(persona.apeYnombre);
+
             printf("ingrese edad: \n");
             scanf("%i", &persona.edad);
+
             printf("ingrese direccion del domicilio: \n");
             fflush(stdin);
             gets(persona.direccion);
+
             printf("ingrese numero de telefono/celular: \n");
             fflush(stdin);
             gets(persona.telefono);
