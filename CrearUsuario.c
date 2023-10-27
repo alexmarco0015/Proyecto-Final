@@ -1,13 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
-
 #include <string.h>
 #define digitosDNI 999
 #include "prototipados.h"
 
 ///prototipados:
-void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
+void nombreUsuario(char usuario[], int tamanio);
+void contraseniaUsuario(char contrasenia[], int tamanio);
+int dniUsuario(int dni);
+void nombreYapellidoUsuario(char nombre[], int tamanio);
+int crearPerfil(int perfil);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
+void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
+int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 
 void nombreUsuario(char usuario[], int tamanio)
@@ -151,6 +156,9 @@ void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos)
         verificacion=verificarEmpleado(usuario.dni, arreglo, validos);
         if(verificacion==0){
             fwrite(&usuario, sizeof(empleados_laboratorio), 1, buffer);
+            printf("\nCuenta creada con EXITO!!\n");
+            system("pause");
+            system("cls");
         }
         else{
             system("cls");
@@ -197,175 +205,4 @@ int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int vali
     }
 
     return flag;
-}
-
-void menuGeneral()
-{
-    int opcion=1000;
-
-
-   do{
-        printf("Bienvenidos a NOMBREEMPRESA\n");
-        printf("1-ingresar\n0-Salir\n");
-        printf("Ingrese la opcion a elegir.. ");
-        fflush(stdin);
-        scanf("%d", &opcion);
-
-        switch(opcion)
-        {
-            case 1:
-                system("cls");
-
-                system("pause");
-                system("cls");
-                break;
-            case 0:
-                system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
-                system("pause");
-                system("cls");
-                break;
-            default:
-                system("cls");
-                printf("Ha seleccionado un caracter o un numero incorrecto, por favor, vuelva a elegir correctamente..\n");
-                system("pause");
-                system("cls");
-                break;
-        }
-    } while(opcion!=0);
-
-}
-
-void menuADMIN()
-{
-    int opcion=1000;
-    do{
-
-        printf("Bienvenido/a USUARIO ADMIN\n");
-        printf("1-Registrar paciente\n2-Registrar orden\n3-Ver resultados\n4-Buscar pacientes\n5-Cargar resultados LAB\n6-Buscar Pacientes\n7-Eliminar Cuentas\n8-Ver historial Pacientes\n0-Salir");
-
-        printf("Ingrese la opcion a elegir.. ");
-        fflush(stdin);
-        scanf("%d", &opcion);
-
-        switch(opcion)
-        {
-            case 1:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 2:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 3:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 0:
-                system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
-                system("pause");
-                system("cls");
-                break;
-            default:
-                system("cls");
-                printf("Ha seleccionado un caracter o un numero incorrecto, por favor, vuelva a elegir correctamente..\n");
-                system("pause");
-                system("cls");
-                break;
-        }
-    }while(opcion!=0);
-}
-
-void menuAdministrativo()
-{
-    int opcion=1000;
-    do{
-
-        printf("Bienvenido al MENU USUARIO\n");
-        printf("1-Registrar Pacientes\n2-Registrar Orden\n3-Ver Resultados\n-4-Buscar Paciente\n0-Salir\n");
-
-        printf("Ingrese la opcion a elegir.. ");
-        fflush(stdin);
-        scanf("%d", &opcion);
-
-        switch(opcion)
-        {
-            case 1:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 2:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 3:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 0:
-                system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
-                system("pause");
-                system("cls");
-                break;
-            default:
-                system("cls");
-                printf("Ha seleccionado un caracter o un numero incorrecto, por favor, vuelva a elegir correctamente..\n");
-                system("pause");
-                system("cls");
-                break;
-        }
-    }while(opcion!=0);
-}
-
-void menuLaboratorio()
-{
-    int opcion;
-    do{
-        printf("  Menu INVITADO\n");
-        printf("1-Cargar Resultados\n2-Buscar pacientes\n3-\n0-Salir\n");
-
-        printf("Ingrese la opcion a elegir.. ");
-        fflush(stdin);
-        scanf("%d", &opcion);
-
-        switch(opcion)
-        {
-            case 1:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 2:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 3:
-                system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 0:
-                system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
-                system("pause");
-                system("cls");
-                break;
-            default:
-                system("cls");
-                printf("Ha seleccionado un caracter o un numero incorrecto, por favor, vuelva a elegir correctamente..\n");
-                system("pause");
-                system("cls");
-                break;
-        }
-    }while(opcion!=0);
 }
