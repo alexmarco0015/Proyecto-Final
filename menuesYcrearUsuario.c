@@ -1,12 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
+
 #include <string.h>
 #define digitosDNI 999
 #include "prototipados.h"
 
 ///prototipados:
-void crearusuario(char archivo[]);
+void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
+int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 
 void nombreUsuario(char usuario[], int tamanio)
 {
@@ -137,16 +139,25 @@ empleados_laboratorio crearCuenta(empleados_laboratorio usuario)
     return usuario;
 }
 
-void crearusuario(char archivo[])
+void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos)
 {
     FILE *buffer=fopen(archivo, "ab");
     empleados_laboratorio usuario;
-
+    int verificacion;
 
 
     if(buffer){
         usuario=crearCuenta(usuario);
-        fwrite(&usuario, sizeof(empleados_laboratorio), 1, buffer);
+        verificacion=verificarEmpleado(usuario.dni, arreglo, validos);
+        if(verificacion==0){
+            fwrite(&usuario, sizeof(empleados_laboratorio), 1, buffer);
+        }
+        else{
+            system("cls");
+            printf("\nUsted ya está registrado en el programa..\n");
+            system("pause");
+            system("cls");
+        }
 
         fclose(buffer);
     }
@@ -155,7 +166,38 @@ void crearusuario(char archivo[])
         system("pause");
     }
 }
+///ahora a verificar si existe el empleado ya en el sitema.
 
+int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos)
+{
+    int i=validos;
+    FILE *buffer=fopen(archivo, "rb");
+    empleados_laboratorio usuario;
+
+    if(buffer){
+        while(fread(&usuario, sizeof(empleados_laboratorio), 1, buffer)>0){
+            arreglo[i]=usuario;
+            i++;
+        }
+        fclose(buffer);
+    }
+
+   return validos;
+}
+
+int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos)
+{
+   int flag=0, i=0;
+
+    while(flag!=1 && i<validos){
+        if(dniEmpleado==arreglo[i].dni){
+            flag=1;
+        }
+        i++;
+    }
+
+    return flag;
+}
 
 void menuGeneral()
 {
