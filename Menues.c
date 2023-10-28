@@ -71,11 +71,13 @@ void menuAdministrativo()
         {
             case 1:
                 system("cls");
+                ///aca seria el registro o crear cuenta, ya tenemos esa funcion, solo falta conectar todo.
                 system("pause");
                 system("cls");
                 break;
             case 2:
                 system("cls");
+                ///aca tenemos que solicitar el ingreso, de eso me voy a encargar en otra librería
                 system("pause");
                 system("cls");
                 break;
@@ -150,8 +152,8 @@ void menuGeneral()
 
 
    do{
-        printf("Bienvenidos a NOMBREEMPRESA\n");
-        printf("1-ingresar\n0-Salir\n");
+        printf("           Laboratorio Central - Hospital de ninios\n");
+        printf("1-Registrarse\n2-Ingresar\n0-Salir\n");
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -159,6 +161,12 @@ void menuGeneral()
         switch(opcion)
         {
             case 1:
+                system("cls");
+
+                system("pause");
+                system("cls");
+                break;
+            case 2:
                 system("cls");
 
                 system("pause");

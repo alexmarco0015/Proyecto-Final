@@ -31,10 +31,16 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="main.c">
+		<Unit filename="CrearUsuario.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="menuesYcrearUsuario.c">
+		<Unit filename="Menues.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ingresoUsuario.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pacientes.c">
