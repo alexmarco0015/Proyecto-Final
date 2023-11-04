@@ -63,8 +63,31 @@ typedef struct{
 
 }pracXingreso;
 
-void cargaPaciente(char archivo[]);
-int buscaPaciente(char archivo[], int dniBuscado);
-int validarDni(int dniBuscado);
+///prototipados de librería "pacientes":
 int validarEdad(int edad);
-
+int validarDni(int dniBuscado);
+int buscaPaciente(char archivo[], int dniBuscado);
+int dniPaciente(int dni);
+void nombrePaciente(char nombre[40], int tamanio);
+int edadPaciente(int edad);
+void direccionPaciente(char direccion[30], int tamanio);
+void telPaciente(char celular[15], int tamanio);
+pacientes crearPaciente(pacientes paciente);
+void cargaPaciente(char archivo[]);
+
+///prototipados de librería "crearUsuario":
+void nombreUsuario(char usuario[], int tamanio);
+void contraseniaUsuario(char contrasenia[], int tamanio);
+int dniUsuario(int dni);
+void nombreYapellidoUsuario(char nombre[], int tamanio);
+int crearPerfil(int perfil);
+empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
+void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
+int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
+int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
+
+///prototipados de librería "Menues":
+void menuADMIN();
+void menuAdministrativo();
+void menuLaboratorio();
+void menuGeneral();

@@ -4,17 +4,6 @@
 #define digitosDNI 999
 #include "prototipados.h"
 
-///prototipados:
-void nombreUsuario(char usuario[], int tamanio);
-void contraseniaUsuario(char contrasenia[], int tamanio);
-int dniUsuario(int dni);
-void nombreYapellidoUsuario(char nombre[], int tamanio);
-int crearPerfil(int perfil);
-empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
-void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
-int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
-int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
-
 ///sacamos el nombre de usuario como puntero a través de un arreglo de tipo string para luego usarlo en el crear usuario
 void nombreUsuario(char usuario[], int tamanio)
 {

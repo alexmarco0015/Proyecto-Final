@@ -3,11 +3,6 @@
 #include <string.h>
 #include "prototipados.h"
 
-///prototipados:
-void menuADMIN();
-void menuAdministrativo();
-void menuLaboratorio();
-void menuGeneral();
 
 ///funciones:
 void menuADMIN()

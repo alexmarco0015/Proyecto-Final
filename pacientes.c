@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "prototipados.h"
 
-///PROTOTIPADOS
 int validarEdad(int edad)
 {
     int flag=0;
@@ -32,6 +32,7 @@ int validarDni(int dniBuscado)
         return 1;  // DNI inválido
     }
 }
+
 int buscaPaciente(char archivo[], int dniBuscado)
 {
 
@@ -45,10 +46,8 @@ int buscaPaciente(char archivo[], int dniBuscado)
     {
         while(fread(&persona, sizeof(pacientes), 1, archi)&& flag!=1)
         {
-
             if(persona.dni==dniBuscado)
             {
-
                 flag=1;
             }
         }
@@ -58,6 +57,136 @@ int buscaPaciente(char archivo[], int dniBuscado)
         printf("ERROR AL ABRIR EL ARCHIVO...");
     }
     return flag;
+}
+
+int dniPaciente(int dni)
+{
+    int flag=0;
+            while(!flag)
+            {
+                printf("ingrese el dni: sin puntos ni espacios...\n");
+                scanf("%i", &dni);
+
+                flag=validarDni(dni);
+
+                if(flag==1)
+                {
+                    printf("EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
+                    flag=0;
+                    system("pause");
+                    system("cls");
+                }
+                else
+                {
+                    system("cls");
+                    flag=1;
+                }
+            }
+            return dni;
+}
+
+void nombrePaciente(char nombre[40], int tamanio)
+{
+    char seguro;
+    do{
+            printf("Inserte nombre y apellido del Paciente:\n");
+            fflush(stdin);
+            gets(nombre);
+            printf("\nSeguro que desea ese nombre y apellido? 's' para si y 'n' para no\n");
+            fflush(stdin);
+            scanf("%c", &seguro);
+            system("cls");
+            if(strlen(nombre)>tamanio){//verificamos que no se exceda de la cantidad de caracteres
+                printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 40..\n");
+                seguro='n';
+                system("pause");
+                system("cls");
+            }
+        }while(seguro!='s' && seguro!='S');
+}
+
+int edadPaciente(int edad)
+{
+    do{
+        printf("ingrese edad: \n");
+        scanf("%i", &edad);
+
+        if(validarEdad(edad)==1)
+        {
+            printf("ERROR AL INGRESAR EDAD, INTENTE NUEVAMENTE...\n");
+
+            printf("ingrese edad: \n");
+            scanf("%i", &edad);
+        }
+    }while(validarEdad(edad)==1);
+
+    return edad;
+}
+
+void direccionPaciente(char direccion[30], int tamanio)
+{
+        char seguro;
+        do{
+            printf("ingrese la direccion del domicilio: \n");
+            fflush(stdin);
+            gets(direccion);
+            printf("\nSeguro que desea esa direccion? 's' para si y 'n' para no\n");
+            fflush(stdin);
+            scanf("%c", &seguro);
+            system("cls");
+            if(strlen(direccion)>tamanio){//verificamos que no se exceda de la cantidad de caracteres
+                printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de %d..\n", tamanio);
+                seguro='n';
+                system("pause");
+                system("cls");
+            }
+        }while(seguro!='s' && seguro!='S');
+}
+
+void telPaciente(char celular[15], int tamanio)
+{
+    ///falta validar que sean solo numeros lo que el usuario ingrese, de momento puede ingresar hasta letras...
+    char seguro;
+    do{
+        printf("ingrese su numero de telefono/celular: \n");
+        fflush(stdin);
+        gets(celular);
+        printf("\nSeguro que desea ese celular? 's' para si y 'n' para no\n");
+        fflush(stdin);
+        scanf("%c", &seguro);
+        system("cls");
+        if(strlen(celular)>tamanio){//verificamos que no se exceda de la cantidad de caracteres
+            printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de %d..\n", tamanio);
+            seguro='n';
+            system("pause");
+            system("cls");
+        }
+    }while(seguro!='s' && seguro!='S');
+}
+
+pacientes crearPaciente(pacientes paciente)
+{
+    int tamaniocel=sizeof(char)*15;
+    int tamanioNombre=sizeof(char)*40;
+    int tamanioDire=sizeof(char)*30;
+    char cel[15];
+    char direccion[30];
+    char nombre[40];
+
+    nombrePaciente(nombre, tamanioNombre);
+    strcpy(paciente.apeYnombre, nombre);
+
+    paciente.edad=edadPaciente(paciente.edad);
+
+    direccionPaciente(direccion, tamanioDire);
+    strcpy(paciente.direccion, direccion);
+
+    telPaciente(cel, tamaniocel);
+    strcpy(paciente.telefono, cel);
+
+    paciente.eliminado=0; ///es por defecto 0, nunca fue eliminado.
+
+    return paciente;
 }
 
 void cargaPaciente(char archivo[])
@@ -72,60 +201,15 @@ void cargaPaciente(char archivo[])
     {
         while(cont=='s')
         {
-            int flag=0;
-            while(!flag)
-            {
 
-                printf("ingrese el dni: sin puntos ni espacios...\n");
-                scanf("%i", &persona.dni);
-
-                flag=validarDni(persona.dni);
-
-                if(flag==1)
-                {
-
-                    printf("EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
-
-                    flag=0;
-
-
-                }
-                else
-                {
-                    flag=1;
-                }
-            }
-
+            persona.dni=dniPaciente(persona.dni);
 
             if(buscaPaciente(archivo, persona.dni)==1)
             {
-
                 printf("El paciente ya existe en el sistema...\n");
                 break;
             }
-            printf("ingrese nombre del paciente:\n");
-            fflush(stdin);
-            gets(persona.apeYnombre);
-
-            printf("ingrese edad: \n");
-            scanf("%i", &persona.edad);
-
-            if(validarEdad(persona.edad)==1)
-            {
-
-                printf("ERROR AL INGRESAR EDAD, INTENTE NUEVAMENTE...\n");
-
-                printf("ingrese edad: \n");
-                scanf("%i", &persona.edad);
-            }
-
-            printf("ingrese direccion del domicilio: \n");
-            fflush(stdin);
-            gets(persona.direccion);
-
-            printf("ingrese numero de telefono/celular: \n");
-            fflush(stdin);
-            gets(persona.telefono);
+            persona=crearPaciente(persona);
 
             fwrite(&persona, sizeof(pacientes), 1, archi);
 
@@ -133,13 +217,14 @@ void cargaPaciente(char archivo[])
             printf("¿Desea ingresar otro paciente? (s/n): ");
             fflush(stdin);
             scanf(" %c", &cont);
-
+            system("cls");
         }
-
     }
     else
     {
         printf("ERROR AL ABRIR EL ARCHIVO...");
+        system("pause");
+        system("cls");
     }
     fclose(archi);
 }
