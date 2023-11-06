@@ -74,6 +74,11 @@ void direccionPaciente(char direccion[30], int tamanio);
 void telPaciente(char celular[15], int tamanio);
 pacientes crearPaciente(pacientes paciente);
 void cargaPaciente(char archivo[]);
+nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
+nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro);
+nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
+void mostrarArbol(nodoArbol*arbol);
+
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
@@ -91,3 +96,4 @@ void menuADMIN();
 void menuAdministrativo();
 void menuLaboratorio();
 void menuGeneral();
+

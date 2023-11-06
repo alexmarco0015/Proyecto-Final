@@ -65,6 +65,7 @@ int dniPaciente(int dni)
             while(!flag)
             {
                 printf("ingrese el dni: sin puntos ni espacios...\n");
+                fflush(stdin);
                 scanf("%i", &dni);
 
                 flag=validarDni(dni);
@@ -72,7 +73,9 @@ int dniPaciente(int dni)
                 if(flag==1)
                 {
                     printf("EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
+
                     flag=0;
+
                     system("pause");
                     system("cls");
                 }
@@ -227,5 +230,81 @@ void cargaPaciente(char archivo[])
         system("cls");
     }
     fclose(archi);
+}
+nodoArbol*inicArbol(){
+
+    return NULL;
+}
+
+nodoArbol*crearNodo(pacientes registro){
+
+    nodoArbol *nuevo=(nodoArbol*)malloc(sizeof(nodoArbol));
+
+    nuevo->persona.dni=registro.dni;
+    strcpy(nuevo->persona.apeYnombre, registro.apeYnombre);
+    nuevo->persona.edad=registro.edad;
+    strcpy(nuevo->persona.direccion, registro.direccion);
+    strcpy(nuevo->persona.telefono, registro.telefono);
+
+
+    nuevo->izq=NULL;
+    nuevo->der=NULL;
+
+    return nuevo;
+
+}
+nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro){
+
+    if(arbolPaciente==NULL){
+
+        arbolPaciente=crearNodo(registro);
+    } else{
+            int comparar=strcmp(registro.apeYnombre, arbolPaciente->persona.apeYnombre);
+    if(comparar<0){
+        arbolPaciente->izq=insertarNodoPaciente(arbolPaciente->izq, registro);
+    }else{
+
+        arbolPaciente->der=insertarNodoPaciente(arbolPaciente->der, registro);
+    }
+
+}
+return arbolPaciente;
+
+}
+nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
+
+    FILE *archi=fopen(archivo, "rb");
+
+    pacientes registro;
+
+    if(archi){
+
+        while(fread(&registro, sizeof(pacientes), 1, archi)>0){
+
+                arbol=insertarNodoPaciente(arbol, registro);
+        }
+    }else{
+        printf("ERROR AL ABRIR EL ARCHIVO\n");
+    }
+
+    fclose(archi);
+
+    return arbol;
+}
+void mostrarArbol(nodoArbol*arbol){
+
+    if(arbol){
+
+        mostrarArbol(arbol->izq);
+
+        printf("\n");
+        printf("DNI: %i \n",arbol->persona.dni);
+        printf("NOMBRE Y APELLIDO: %s \n",arbol->persona.apeYnombre);
+        printf("EDAD: %i \n",arbol->persona.edad);
+        printf("DIRECCION: %s \n",arbol->persona.direccion);
+        printf("TELEFONO: %s \n",arbol->persona.telefono);
+
+        mostrarArbol(arbol->der);
+    }
 }
 
