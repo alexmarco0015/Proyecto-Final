@@ -17,6 +17,7 @@ void nombreUsuario(char usuario[], int tamanio)
             scanf("%c", &seguro);
             system("cls");
             if(strlen(usuario)>tamanio){
+                system("cls");
                 printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 20..\n");
                 seguro='n';
                 system("pause");
@@ -39,11 +40,13 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
             fflush(stdin);
             gets(contra);
             if(strcmp(contra, contrasenia)<0){
+                system("cls");
                 printf("La contrasenia que usted ha ingresado no es la misma");
                 system("pause");
                 system("cls");
             }
             if(strlen(contra)>tamanio && strlen(contrasenia)>tamanio){
+                system("cls");
                 printf("La contrasenia ha excedido la cantidad de caracteres..\n");
                 system("pause");
                 system("cls");
@@ -62,11 +65,13 @@ int dniUsuario(int dni)
         scanf("%d", &dni);
 
         if(dni>digitosDNI){
+            system("cls");
             printf("Ha seleccionado una cantidad de digitos demasiado alta..\n");
             system("pause");
             system("cls");
         }
         if(dni<1){
+            system("cls");
             printf("Ha ingresado un dni invalido\n");
             system("pause");
             system("cls");
@@ -90,6 +95,7 @@ void nombreYapellidoUsuario(char nombre[], int tamanio)
             scanf("%c", &seguro);
             system("cls");
             if(strlen(nombre)>tamanio){//verificamos que no se exceda de la cantidad de caracteres
+                system("cls");
                 printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 40..\n");
                 seguro='n';
                 system("pause");
@@ -105,6 +111,7 @@ int crearPerfil(int perfil)
             fflush(stdin);
             scanf("%d", &perfil);
             if(perfil!=1 && perfil!=2 && perfil!=3){
+                system("cls");
                 printf("Ha ingresado un dato incorrecto, intentelo nuevamente.\n");
                 system("pause");
                 system("cls");
@@ -163,8 +170,10 @@ void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos)
         fclose(buffer);
     }
     else{
+        system("cls");
         printf("Error al abrir el archivo..\n");
         system("pause");
+        system("cls");
     }
 }
 ///ahora a verificar si existe el empleado ya en el sitema.
@@ -182,6 +191,12 @@ int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int valido
         }
         fclose(buffer);
     }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo...\n");
+        system("pause");
+        system("cls");
+    }
 
    return validos;
 }
@@ -198,4 +213,181 @@ int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int vali
     }
 
     return flag;
+}
+
+///funciones de modificación:
+
+//modificar dni  ***Admij
+//modificar apell y nombre  ***Admin
+//modificar usuario   ***Admin y Usuario
+//modificar contraseña  ***Admin y Usuario
+//modificar perfil.   ****Admin
+//modificar si se elimina o no(dar de baja)
+void modDni(char archivo[], int dni)
+{
+    FILE *buffer=fopen(archivo, "a+b");
+    empleados_laboratorio persona;
+    int pos;
+
+    if (buffer){
+
+        while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
+
+            if(dni==persona.dni){
+                printf("\nDNI actual del usuario: %d\n", persona.dni);
+                printf("Pasando a ingresar un dni nuevo: \n");
+                system("pause");
+                system("cls");
+                persona.dni=dniUsuario(persona.dni);
+                pos=ftell(buffer)-sizeof(empleados_laboratorio);
+                fseek(buffer, pos, SEEK_SET);
+                fwrite(&persona, sizeof(empleados_laboratorio), 1, buffer);
+                break;
+            }
+        }
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("\nError al ingresar al archivo...\n");
+        system("pause");
+        system("cls");
+    }
+}
+
+void modApeYnombre(char archivo[], int dni)
+{
+    FILE * buffer=fopen(archivo, "a+b");
+    empleados_laboratorio persona;
+    int pos;
+    int tamanio=sizeof(char)*40;
+
+    if(buffer){
+
+        while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
+            if(persona.dni==dni){
+                printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
+                printf("Pasamos a modificar su nombre...\n");
+                system("pause");
+                system("cls");
+                nombreYapellidoUsuario(persona.apeYnombre, tamanio);
+                pos=ftell(buffer)-sizeof(empleados_laboratorio);
+                fseek(buffer, pos, SEEK_SET);
+                fwrite(&persona, sizeof(empleados_laboratorio), 1, buffer);
+                break;
+            }
+        }
+
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n");
+        system("pause");
+        system("cls");
+    }
+}
+
+void modUsername(char archivo[], int dni)
+{
+    FILE * buffer=fopen(archivo, "a+b");
+    empleados_laboratorio persona;
+    int pos;
+    int tamanio=sizeof(char)*20;
+
+    if(buffer){
+
+        while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
+            if(persona.dni==dni){
+                printf("Este es el nombre de usuario actual: %s", persona.usuario);
+                printf("Pasamos a modificar su nombre de usuario..\n");
+                system("pause");
+                system("cls");
+                nombreUsuario(persona.usuario, tamanio);
+                pos=ftell(buffer)-sizeof(empleados_laboratorio);
+                fseek(buffer, pos, SEEK_SET);
+                fwrite(&persona, sizeof(empleados_laboratorio), 1, buffer);
+                break;
+            }
+        }
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n");
+        system("pause");
+        system("cls");
+    }
+}
+
+void modContrasenia(char archivo[], int dni)
+{
+    FILE * buffer=fopen(archivo, "a+b");
+    empleados_laboratorio persona;
+    int pos;
+    int tamanio=sizeof(char)*20;
+
+    if(buffer){
+
+        while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
+            if(persona.dni==dni){
+                printf("Este es la contrasenia actual: %s", persona.contrasenia);
+                printf("Pasamos a modificar su contrasenia..\n");
+                system("pause");
+                system("cls");
+                contraseniaUsuario(persona.contrasenia, tamanio);
+                pos=ftell(buffer)-sizeof(empleados_laboratorio);
+                fseek(buffer, pos, SEEK_SET);
+                fwrite(&persona, sizeof(empleados_laboratorio), 1, buffer);
+                break;
+            }
+        }
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n");
+        system("pause");
+        system("cls");
+    }
+}
+
+void modTipoPerfil(char archivo[], int dni)
+{
+    FILE * buffer=fopen(archivo, "a+b");
+    empleados_laboratorio persona;
+    int pos;
+
+    if(buffer){
+
+        while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
+            if(persona.dni==dni){
+                printf("Este es el perfil actual: %d  (1:ADMIN 2:Laboratorio 3:Administrativo\n)", persona.perfil);
+                printf("Pasamos a modificar su perfil..\n");
+                system("pause");
+                system("cls");
+                persona.perfil=crearPerfil(persona.perfil);
+                pos=ftell(buffer)-sizeof(empleados_laboratorio);
+                fseek(buffer, pos, SEEK_SET);
+                fwrite(&persona, sizeof(empleados_laboratorio), 1, buffer);
+                break;
+            }
+        }
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n");
+        system("pause");
+        system("cls");
+    }
+}
+verificarEmpleado(dni, arreglo, validos/)
+int verificarEliminado()
+void eliminarEmpleado(char archivo)
+{
+
+
+
+
 }
