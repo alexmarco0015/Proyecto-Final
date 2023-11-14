@@ -307,4 +307,64 @@ void mostrarArbol(nodoArbol*arbol){
         mostrarArbol(arbol->der);
     }
 }
+pacientes* pasarArchiToArregloDinamico(char archivo[], int *cant){
+
+     FILE *archi = fopen(archivo, "rb");
+
+    if (!archi) {
+        printf("Error al abrir el archivo.\n");
+        return NULL;
+    }
+    pacientes* arreglo = NULL;
+
+
+    *cant = 0;
+
+    pacientes persona;
+    while(fread(&persona, sizeof(pacientes), 1,archi)>0){
+            *cant++;
+        arreglo[*cant]=persona;
+    }
+        arreglo=(pacientes*)malloc(sizeof(pacientes)*(*cant));
+    fclose(archi);
+///otra funcion para contar personas
+///arreglar arreglo dinamico
+
+    return arreglo;
+
+}
+void ordenarPacientesPorDNI(pacientes *arreglo, int cant) {
+    int i, j;
+    pacientes temp;
+
+    for (i = 0; i < cant - 1; i++) {
+
+        for (j = i + 1; j < cant; j++) {
+
+            if (arreglo[i].dni > arreglo[j].dni) {
+
+                temp = arreglo[i];
+                arreglo[i] = arreglo[j];
+                arreglo[j] = temp;
+            }
+        }
+    }
+}
+nodoArbol*buscarDatoArbol(nodoArbol*arbol, char nombre[]){
+
+    if (arbol == NULL || arbol->persona.apeYnombre == nombre)
+    {
+        return arbol;
+    }
+
+    if (nombre < arbol->persona.apeYnombre)
+    {
+        return buscarDatoArbol(arbol->izq, nombre);
+    }
+    else
+    {
+        return buscarDatoArbol(arbol->der, nombre);
+    }
+}
+
 

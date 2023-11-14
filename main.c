@@ -5,7 +5,10 @@
 
 int main()
 {
-    cargaPaciente("miarchivo.bin");
+    cargaPaciente("miarchivo2.bin");
+    nodoArbol*arbol = inicArbol();
+    arbol=pasarArchiToArbol(arbol, "miarchivo2.bin");
+    mostrarArbol(arbol);
 
 
     return 0;

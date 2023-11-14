@@ -19,7 +19,6 @@ typedef struct{
 
     struct nodoListaIngresos*siguiente;
 
-
 }nodoListaIngresos;
 
 typedef struct{
@@ -38,10 +37,11 @@ typedef struct{
 }pacientes;
 
 typedef struct nodoArbol {
+
 pacientes persona;
+
 struct nodoArbol * izq;
 struct nodoArbol * der;
-
 
 } nodoArbol;
 
@@ -78,6 +78,7 @@ nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro);
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
 void mostrarArbol(nodoArbol*arbol);
+return buscarDatoArbol(arbol->izq, nombre);
 
 
 ///prototipados de librería "crearUsuario":
