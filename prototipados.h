@@ -2,8 +2,15 @@
 #define PROTOTIPADOS_H_INCLUDED
 #endif  //PROTOTIPADOS_H_INCLUDED
 
-
 typedef struct{
+    int nroIngreso;
+    int nroPractica;
+    char resultado[40];
+    //faltan punteros;
+
+}pracXingreso;
+
+typedef struct ingresos{
     int nroIngreso;
     char fechaIngreso[10];
     char fechaRetiro[10];
@@ -13,12 +20,18 @@ typedef struct{
 
 }ingresos;
 
-typedef struct{
+typedef struct nodoPractXingreso{
+
+     pracXingreso ingreso;
+    struct nodoPractXingreso*siguiente;
+
+}nodoPractXingreso;
+
+typedef struct nodoListaIngresos{
 
     ingresos ingreso;
-
+    nodoPractXingreso * lista;
     struct nodoListaIngresos*siguiente;
-
 
 }nodoListaIngresos;
 
@@ -38,11 +51,10 @@ typedef struct{
 }pacientes;
 
 typedef struct nodoArbol {
-pacientes persona;
-struct nodoArbol * izq;
-struct nodoArbol * der;
-
-
+    pacientes persona;
+    struct nodoArbol * izq;
+    struct nodoArbol * der;
+    nodoListaIngresos * lista;
 } nodoArbol;
 
 typedef struct{
@@ -52,16 +64,9 @@ typedef struct{
     char contrasenia[20];
     int perfil;//preguntar si se puede cambiar por enteros;
     int eliminado;//preguntar si se puede hacer un apartado de eliminados para dar de vaja empleados y que queden en el registro
-
 }empleados_laboratorio;
 
-typedef struct{
-    int nroIngreso;
-    int nroPractica;
-    char resultado[40];
-    //faltan punteros;
 
-}pracXingreso;
 
 ///prototipados de librería "pacientes":
 int validarEdad(int edad);

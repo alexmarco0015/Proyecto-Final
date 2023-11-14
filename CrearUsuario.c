@@ -382,12 +382,12 @@ void modTipoPerfil(char archivo[], int dni)
         system("cls");
     }
 }
-verificarEmpleado(dni, arreglo, validos/)
-int verificarEliminado()
-void eliminarEmpleado(char archivo)
-{
-
-
-
-
-}
+//verificarEmpleado(dni, arreglo, validos/)
+//int verificarEliminado()
+//void eliminarEmpleado(char archivo)
+//{
+//
+//
+//
+//
+//}
