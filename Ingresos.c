@@ -66,10 +66,42 @@ nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivo[])
     {
         while(fread(&ingreso, sizeof(ingreso), 1, archi)>0)
         {
-            lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista);
+            if(ingreso.eliminado!=0){///si es distinto de 0 es agregado a la lista, sino no se agrega.
+                lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista);
+            }
         }
+        fclose(archi);
     }
-
-    fclose(archi);
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n");
+        system("pause");
+        system("cls");
+    }
     return lista;
+}
+//este arreglo es para ver todos los registros, tanto los eliminados como los que no lo fueron.
+int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
+{
+    FILE * buffer=fopen(archivo, "rb");
+    int i=0;
+    ingresos ingreso;
+
+    if(buffer){
+
+        while(fread(&ingreso, sizeof(ingresos), 1, buffer)>0){
+            arreglo[i]=ingreso;
+            i++;
+        }
+
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n");
+        system("pause");
+        system("cls");
+    }
+    validos=i;
+    return validos;
 }

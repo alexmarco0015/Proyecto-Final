@@ -62,7 +62,7 @@ typedef struct{
     char apeYnombre[40];
     char usuario[20];
     char contrasenia[20];
-    int perfil;//preguntar si se puede cambiar por enteros;
+    int perfil;//0 para Adimin, 1 para Administrativo, 2 para bioquímico, 3 para técnico.
     int eliminado;//preguntar si se puede hacer un apartado de eliminados para dar de vaja empleados y que queden en el registro
 }empleados_laboratorio;
 
