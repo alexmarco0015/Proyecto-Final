@@ -62,7 +62,7 @@ typedef struct{
     char apeYnombre[40];
     char usuario[20];
     char contrasenia[20];
-    int perfil;//0 para Adimin, 1 para Administrativo, 2 para bioquímico, 3 para técnico.
+    int perfil;// 1 para profesional laboratorio, 2 para adminis.
     int eliminado;//preguntar si se puede hacer un apartado de eliminados para dar de vaja empleados y que queden en el registro
 }empleados_laboratorio;
 
@@ -92,7 +92,7 @@ int dniUsuario(int dni);
 void nombreYapellidoUsuario(char nombre[], int tamanio);
 int crearPerfil(int perfil);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
-void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
+void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos);
 int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 
@@ -100,5 +100,4 @@ int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int vali
 void menuADMIN();
 void menuAdministrativo();
 void menuLaboratorio();
-void menuGeneral();
 

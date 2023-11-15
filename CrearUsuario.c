@@ -39,7 +39,7 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
             printf("Ingrese de nuevo su contrasenia para continuar..\n");
             fflush(stdin);
             gets(contra);
-            if(strcmp(contra, contrasenia)<0){
+            if(strcmp(contra, contrasenia)!=0){
                 system("cls");
                 printf("La contrasenia que usted ha ingresado no es la misma");
                 system("pause");
@@ -52,7 +52,7 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
                 system("cls");
             }
 
-        }while(strcmp(contra, contrasenia)<0 || strlen(contra)>tamanio);
+        }while(strcmp(contra, contrasenia)!=0 || strlen(contra)>tamanio);
 
 }
 
@@ -107,16 +107,16 @@ void nombreYapellidoUsuario(char nombre[], int tamanio)
 int crearPerfil(int perfil)
 {
     do{
-            printf("Es de tipo 1:ADMIN, 2:ADMINISTRATIVO, 3:LABORATORIO\n");
+            printf("Es de tipo 1:ADMINISTRATIVO, 2:LABORATORIO\n");
             fflush(stdin);
             scanf("%d", &perfil);
-            if(perfil!=1 && perfil!=2 && perfil!=3){
+            if(perfil!=1 && perfil!=2){
                 system("cls");
                 printf("Ha ingresado un dato incorrecto, intentelo nuevamente.\n");
                 system("pause");
                 system("cls");
             }
-        }while(perfil!=1 && perfil!=2 && perfil!=3);
+        }while(perfil!=1 && perfil!=2);
 
     return perfil;
 }
@@ -144,7 +144,7 @@ empleados_laboratorio crearCuenta(empleados_laboratorio usuario)
     return usuario;
 }
 ///funcion que crea el usuario y si no existía antes de crear el perfil. Si existe no permite crearte un perfil, si no, lo crea e inserta en el archivo
-void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos)
+void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos)
 {
     FILE *buffer=fopen(archivo, "ab");
     empleados_laboratorio usuario;
