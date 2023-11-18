@@ -57,19 +57,18 @@ int main()
                         break;
                     case -1:
                         system("cls");
-                        printf("Ingresaste mal los datos, volviendo al menu");
-                        system("pause");
-                        system("cls");
                         break;
                 }
-                system("pause");
                 system("cls");
                 break;
             case 0:
                 system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
+                printf("Ha seleccionado salir del programa..\n NOS VEMOS!!\n");
                 system("pause");
                 system("cls");
+                break;
+            case 4:
+                mostrarArregloEmpleados(arregloEmpleados, validosEmpleados);
                 break;
             default:
                 system("cls");

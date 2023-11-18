@@ -39,6 +39,7 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
             printf("Ingrese de nuevo su contrasenia para continuar..\n");
             fflush(stdin);
             gets(contra);
+            system("cls");
             if(strcmp(contra, contrasenia)!=0){
                 system("cls");
                 printf("La contrasenia que usted ha ingresado no es la misma");
@@ -131,15 +132,15 @@ empleados_laboratorio crearCuenta(empleados_laboratorio usuario)
 
     nombreUsuario(nickName, tamanio);
     strcpy(usuario.usuario, nickName);
-
+    system("cls");
     contraseniaUsuario(contrasenia, tamanio);
     strcpy(usuario.contrasenia, contrasenia);
-
+    system("cls");
     usuario.dni=dniUsuario(usuario.dni);
-
+    system("cls");
     nombreYapellidoUsuario(nombre, tamanioNombre);
     strcpy(usuario.apeYnombre, nombre);
-
+    system("cls");
     usuario.perfil=crearPerfil(usuario.perfil);
     return usuario;
 }
@@ -178,7 +179,7 @@ void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int val
 }
 ///ahora a verificar si existe el empleado ya en el sitema.
 
-int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos)
+int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int validos)
 {
     int i=validos;
     FILE *buffer=fopen(archivo, "rb");
@@ -198,7 +199,23 @@ int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int valido
         system("cls");
     }
 
-   return validos;
+
+   return i;
+}
+
+void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos)
+{
+    int i=0;
+
+    while(i<validos){
+        printf("%s\n", arreglo[i].usuario);
+        printf("%s\n", arreglo[i].contrasenia);
+        printf("%d\n", arreglo[i].perfil);
+        i++;
+    }
+
+
+
 }
 ///funcion que devuelve 0 si no existe el empleado en el sistema, 1 si existe. La verificacion se hace a traves del documento, puede modificarse luego
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos)

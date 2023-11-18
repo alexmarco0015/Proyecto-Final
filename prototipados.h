@@ -93,7 +93,7 @@ void nombreYapellidoUsuario(char nombre[], int tamanio);
 int crearPerfil(int perfil);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
 void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos);
-int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
+int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int validos);
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 
 ///prototipados de librería "Menues":
@@ -101,3 +101,9 @@ void menuADMIN();
 void menuAdministrativo();
 void menuLaboratorio();
 
+///prototipados librería ingresoUsuario
+int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[]);
+int analizaPerfil(char usuario[], char contrasenia[], empleados_laboratorio arreglo[], int validos);
+void ingresoUsuario(char usuario[], char contrasenia[]);
+int analizasiEsAdmin(char usuario[], char contrasenia[], int perfil);
+int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archivo[]);

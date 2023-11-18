@@ -36,7 +36,7 @@ void menuADMIN()
                 break;
             case 0:
                 system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
+                printf("\nHa seleccionado salir del Menu actual..\n volviendo al menu anterior!!\n");
                 system("pause");
                 system("cls");
                 break;
@@ -55,7 +55,7 @@ void menuAdministrativo()
     int opcion=1000;
     do{
 
-        printf("Bienvenido al MENU USUARIO\n");
+        printf("¡Bienvenido al MENU Administrativo!\n");
         printf("1-Registrar Pacientes\n2-Registrar Orden\n3-Ver Resultados\n-4-Buscar Paciente\n0-Salir\n");
 
         printf("Ingrese la opcion a elegir.. ");
@@ -83,7 +83,7 @@ void menuAdministrativo()
                 break;
             case 0:
                 system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
+                printf("\nHa seleccionado salir del Menu..\n volviendo al Menu principal\n");
                 system("pause");
                 system("cls");
                 break;
@@ -101,7 +101,7 @@ void menuLaboratorio()
 {
     int opcion;
     do{
-        printf("  Menu INVITADO\n");
+        printf("  Menu Laboratorio\n");
         printf("1-Cargar Resultados\n2-Buscar pacientes\n3-\n0-Salir\n");
 
         printf("Ingrese la opcion a elegir.. ");
@@ -127,7 +127,7 @@ void menuLaboratorio()
                 break;
             case 0:
                 system("cls");
-                printf("\nHa seleccionado salir del programa..\n NOS VEMOS!!\n");
+                printf("\nHa seleccionado salir del Menu actual..\n volviendo al menu anterior!!\n");
                 system("pause");
                 system("cls");
                 break;

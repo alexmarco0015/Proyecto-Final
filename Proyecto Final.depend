@@ -16,12 +16,12 @@
 	<string.h>
 	"prototipados.h"
 
-1700071745 source:c:\users\alex\documents\github\proyecto-final\main.c
+1700250612 source:c:\users\alex\documents\github\proyecto-final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
 
-1700071533 c:\users\alex\documents\github\proyecto-final\prototipados.h
+1700250778 c:\users\alex\documents\github\proyecto-final\prototipados.h
 
 1699308320 source:c:\users\alex\documents\github\proyecto-final\pacientes.c
 	<stdio.h>
@@ -35,19 +35,19 @@
 	<string.h>
 	"prototipados.h"
 
-1700069506 source:c:\users\alex\documents\github\proyecto-final\menues.c
+1700251444 source:c:\users\alex\documents\github\proyecto-final\menues.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1700071995 source:c:\users\alex\documents\github\proyecto-final\crearusuario.c
+1700249280 source:c:\users\alex\documents\github\proyecto-final\crearusuario.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"prototipados.h"
 
-1700071995 source:c:\users\alex\documents\github\proyecto-final\ingresousuario.c
+1700250778 source:c:\users\alex\documents\github\proyecto-final\ingresousuario.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -71,7 +71,7 @@
 	<string.h>
 	"prototipados.h"
 
-1699989657 source:c:\users\alex\documents\github\proyecto-final\ingresos.c
+1700072460 source:c:\users\alex\documents\github\proyecto-final\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
