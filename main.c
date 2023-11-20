@@ -7,7 +7,7 @@ int main()
 {
     empleados_laboratorio arregloEmpleados[100];
     int validosEmpleados=0;
-    int opcion;
+    int opcion=1000;
 //    cargaPaciente("miarchivo2.bin");
 //    nodoArbol*arbol = inicArbol();
 //    arbol=pasarArchiToArbol(arbol, "miarchivo2.bin");
@@ -28,7 +28,6 @@ int main()
             case 1:
                 system("cls");
                 crearusuario(archivoEmpleados, arregloEmpleados, validosEmpleados);
-                system("pause");
                 system("cls");
                 break;
             case 2:
@@ -40,19 +39,16 @@ int main()
                     case 1://perfil de uso administrativo
                         system("cls");
                         menuAdministrativo();
-                        system("pause");
                         system("cls");
                         break;
                     case 2://perfil de uso prof laboratorio
                         system("cls");
                         menuLaboratorio();
-                        system("pause");
                         system("cls");
                         break;
                     case 3://administrativo
                         system("cls");
-                        menuADMIN();
-                        system("pause");
+                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados);
                         system("cls");
                         break;
                     case -1:

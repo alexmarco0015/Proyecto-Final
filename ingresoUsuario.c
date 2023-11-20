@@ -77,11 +77,18 @@ int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archiv
     int i=0;
 
     do{
+        if(i==3)
+        {
+            system("cls");
+            printf("Ha ingresado incorrectamente los datos mas de 3 veces, volviendo al menu....\n");
+            system("pause");
+            system("cls");
+            break;
+        }
         ingresoUsuario(usuario, contrasenia);
         perfil=analizasiEsAdmin(usuario, contrasenia, perfil);
         if(perfil!=3){
             perfil=analizaPerfil(usuario, contrasenia, arreglo, validos);
-            system("pause");
         }
 
         i++;
@@ -92,14 +99,7 @@ int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archiv
             system("pause");
             system("cls");
         }
-        if(i==3)
-        {
-            system("cls");
-            printf("Ha ingresado incorrectamente los datos mas de 3 veces, volviendo al menu....\n");
-            system("pause");
-            system("cls");
-        }
-    }while(perfil==-1 && i!=3);
+    }while(perfil==-1 && i!=4);
 
     return perfil;
 }

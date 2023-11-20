@@ -42,7 +42,7 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
             system("cls");
             if(strcmp(contra, contrasenia)!=0){
                 system("cls");
-                printf("La contrasenia que usted ha ingresado no es la misma");
+                printf("La contrasenia que usted ha ingresado no es la misma...\n");
                 system("pause");
                 system("cls");
             }
@@ -95,9 +95,9 @@ void nombreYapellidoUsuario(char nombre[], int tamanio)
             fflush(stdin);
             scanf("%c", &seguro);
             system("cls");
-            if(strlen(nombre)>tamanio){//verificamos que no se exceda de la cantidad de caracteres
+            if(strlen(nombre)>tamanio && strlen(nombre)<7){//verificamos que no se exceda de la cantidad de caracteres
                 system("cls");
-                printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 40..\n");
+                printf("se ha excedido en la cantidad de caracteres que puede ocupar o no ha puesto su nombre completo, por favor, ingrese menos de 40..\n");
                 seguro='n';
                 system("pause");
                 system("cls");
@@ -136,8 +136,6 @@ empleados_laboratorio crearCuenta(empleados_laboratorio usuario)
     contraseniaUsuario(contrasenia, tamanio);
     strcpy(usuario.contrasenia, contrasenia);
     system("cls");
-    usuario.dni=dniUsuario(usuario.dni);
-    system("cls");
     nombreYapellidoUsuario(nombre, tamanioNombre);
     strcpy(usuario.apeYnombre, nombre);
     system("cls");
@@ -153,9 +151,10 @@ void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int val
 
 
     if(buffer){
-        usuario=crearCuenta(usuario);
+        usuario.dni=dniUsuario(usuario.dni);
         verificacion=verificarEmpleado(usuario.dni, arreglo, validos);
         if(verificacion==0){
+            usuario=crearCuenta(usuario);
             fwrite(&usuario, sizeof(empleados_laboratorio), 1, buffer);
             printf("\nCuenta creada con EXITO!!\n");
             system("pause");
@@ -163,7 +162,7 @@ void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int val
         }
         else{
             system("cls");
-            printf("\nUsted ya está registrado en el programa..\n");
+            printf("\nLa cuenta ya esta registrada en el programa..\n");
             system("pause");
             system("cls");
         }
@@ -234,13 +233,13 @@ int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int vali
 
 ///funciones de modificación:
 
-//modificar dni  ***Admij
+//modificar dni  ***Admin
 //modificar apell y nombre  ***Admin
 //modificar usuario   ***Admin y Usuario
 //modificar contraseña  ***Admin y Usuario
 //modificar perfil.   ****Admin
 //modificar si se elimina o no(dar de baja)
-void modDni(char archivo[], int dni)
+void modDni(const char archivo[], int dni, int dniNuevo)
 {
     FILE *buffer=fopen(archivo, "a+b");
     empleados_laboratorio persona;
@@ -251,11 +250,10 @@ void modDni(char archivo[], int dni)
         while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
 
             if(dni==persona.dni){
-                printf("\nDNI actual del usuario: %d\n", persona.dni);
                 printf("Pasando a ingresar un dni nuevo: \n");
                 system("pause");
                 system("cls");
-                persona.dni=dniUsuario(persona.dni);
+                persona.dni=dniNuevo;
                 pos=ftell(buffer)-sizeof(empleados_laboratorio);
                 fseek(buffer, pos, SEEK_SET);
                 fwrite(&persona, sizeof(empleados_laboratorio), 1, buffer);
@@ -272,7 +270,7 @@ void modDni(char archivo[], int dni)
     }
 }
 
-void modApeYnombre(char archivo[], int dni)
+void modApeYnombre(const char archivo[], int dni)
 {
     FILE * buffer=fopen(archivo, "a+b");
     empleados_laboratorio persona;
@@ -305,7 +303,7 @@ void modApeYnombre(char archivo[], int dni)
     }
 }
 
-void modUsername(char archivo[], int dni)
+void modUsername(const char archivo[], int dni)
 {
     FILE * buffer=fopen(archivo, "a+b");
     empleados_laboratorio persona;
@@ -337,7 +335,7 @@ void modUsername(char archivo[], int dni)
     }
 }
 
-void modContrasenia(char archivo[], int dni)
+void modContrasenia(const char archivo[], int dni)
 {
     FILE * buffer=fopen(archivo, "a+b");
     empleados_laboratorio persona;
@@ -369,7 +367,7 @@ void modContrasenia(char archivo[], int dni)
     }
 }
 
-void modTipoPerfil(char archivo[], int dni)
+void modTipoPerfil(const char archivo[], int dni)
 {
     FILE * buffer=fopen(archivo, "a+b");
     empleados_laboratorio persona;

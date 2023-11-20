@@ -77,3 +77,40 @@
 	<string.h>
 	"prototipados.h"
 
+1700498068 source:d:\documentos\github\proyecto-final\crearusuario.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"prototipados.h"
+
+1700502388 d:\documentos\github\proyecto-final\prototipados.h
+
+1700495759 source:d:\documentos\github\proyecto-final\ingresousuario.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1700498068 source:d:\documentos\github\proyecto-final\menues.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1700427537 source:d:\documentos\github\proyecto-final\pacientes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1700427537 source:d:\documentos\github\proyecto-final\ingresos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1700496081 source:d:\documentos\github\proyecto-final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"prototipados.h"
+

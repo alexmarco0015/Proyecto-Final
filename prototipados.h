@@ -95,9 +95,17 @@ empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
 void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos);
 int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int validos);
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
+void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos);
+void modDni(const char archivo[], int dni, int dniNuevo);
+void modApeYnombre(const char archivo[], int dni);
+void modUsername(const char archivo[], int dni);
+void modContrasenia(const char archivo[], int dni);
+void modTipoPerfil(const char archivo[], int dni);
 
 ///prototipados de librería "Menues":
-void menuADMIN();
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[]);
+void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
+void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void menuAdministrativo();
 void menuLaboratorio();
 
