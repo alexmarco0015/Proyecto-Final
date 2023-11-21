@@ -258,19 +258,18 @@ nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro){
     if(arbolPaciente==NULL){
 
         arbolPaciente=crearNodo(registro);
-    } else{
-            int comparar=strcmp(registro.apeYnombre, arbolPaciente->persona.apeYnombre);
-    if(comparar<0){
-        arbolPaciente->izq=insertarNodoPaciente(arbolPaciente->izq, registro);
-    }else{
-
-        arbolPaciente->der=insertarNodoPaciente(arbolPaciente->der, registro);
     }
+        if(registro.dni<arbolPaciente->persona.dni){
+            arbolPaciente->izq=insertarNodoPaciente(arbolPaciente->izq, registro);
+            }else if(registro.dni>arbolPaciente->persona.dni){
+                arbolPaciente->der=insertarNodoPaciente(arbolPaciente->der, registro);
+        }
 
-}
+
 return arbolPaciente;
-
 }
+
+
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
 
     FILE *archi=fopen(archivo, "rb");
@@ -297,74 +296,113 @@ void mostrarArbol(nodoArbol*arbol){
 
         mostrarArbol(arbol->izq);
 
-        printf("\n");
-        printf("DNI: %i \n",arbol->persona.dni);
-        printf("NOMBRE Y APELLIDO: %s \n",arbol->persona.apeYnombre);
-        printf("EDAD: %i \n",arbol->persona.edad);
-        printf("DIRECCION: %s \n",arbol->persona.direccion);
-        printf("TELEFONO: %s \n",arbol->persona.telefono);
+        mostrarNodo(arbol->persona);
 
         mostrarArbol(arbol->der);
     }
 }
-pacientes* pasarArchiToArregloDinamico(char archivo[], int *cant){
 
-     FILE *archi = fopen(archivo, "rb");
-
-    if (!archi) {
-        printf("Error al abrir el archivo.\n");
-        return NULL;
-    }
-    pacientes* arreglo = NULL;
-
-
-    *cant = 0;
-
-    pacientes persona;
-    while(fread(&persona, sizeof(pacientes), 1,archi)>0){
-            *cant++;
-        arreglo[*cant]=persona;
-    }
-        arreglo=(pacientes*)malloc(sizeof(pacientes)*(*cant));
-    fclose(archi);
-///otra funcion para contar personas
-///arreglar arreglo dinamico
-
-    return arreglo;
-
-}
-void ordenarPacientesPorDNI(pacientes *arreglo, int cant) {
+///CAMBIAR Y ORDENAR POR NOMBRE
+void ordenarPacientesPorName(pacientes arreglo[], int tamano) {
     int i, j;
     pacientes temp;
 
-    for (i = 0; i < cant - 1; i++) {
+   for (i = 0; i < tamano; i++) {
+        for (j = 0; j < tamano - i-1 ; j++) {
 
-        for (j = i + 1; j < cant; j++) {
+            if (strcmp(arreglo[j].apeYnombre, arreglo[j + 1].apeYnombre) > 0) {
 
-            if (arreglo[i].dni > arreglo[j].dni) {
-
-                temp = arreglo[i];
-                arreglo[i] = arreglo[j];
-                arreglo[j] = temp;
+                temp=arreglo[j];
+                arreglo[j]=arreglo[j + 1];
+                arreglo[j + 1]=temp;
             }
         }
     }
 }
-nodoArbol*buscarDatoArbol(nodoArbol*arbol, char nombre[]){
+void mostrarArreglo(pacientes arreglo[], int val) {
 
-    if (arbol == NULL || arbol->persona.apeYnombre == nombre)
-    {
-        return arbol;
-    }
-
-    if (nombre < arbol->persona.apeYnombre)
-    {
-        return buscarDatoArbol(arbol->izq, nombre);
-    }
-    else
-    {
-        return buscarDatoArbol(arbol->der, nombre);
+    for (int i = 0; i < val; i++) {
+        printf("-----------------------------\n");
+        printf("Nombre: %s\n", arreglo[i].apeYnombre);
+        printf("Edad: %d\n", arreglo[i].edad);
+        printf("DNI: %d\n", arreglo[i].dni);
+        printf("Direccion: %s\n", arreglo[i].direccion);
+        printf("Teléfono: %s\n", arreglo[i].telefono);
+        printf("\n");
     }
 }
+int existeEnElArbol(nodoArbol*raiz, int dni){
+
+    if (raiz == NULL) {
+        return 0;
+    }
+
+    if (dni == raiz->persona.dni) {
+        return 1;
+    }
+
+    if (dni < raiz->persona.dni) {
+        return buscarPorDNI(raiz->izq, dni);
+    }
+
+    return buscarPorDNI(raiz->der, dni);
+}
+nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
+
+    if (raiz == NULL ) {
+        return NULL;
+    }
+    if(raiz->persona.dni == dni){
+        return raiz;
+    }
+
+    if (dni < raiz->persona.dni) {
+        return buscarPorDNI(raiz->izq, dni);
+    }
+
+    return buscarPorDNI(raiz->der, dni);
+}
+
+void mostrarNodo(pacientes persona){
+
+        printf("\n");
+        printf("DNI: %i \n",persona.dni);
+        printf("NOMBRE Y APELLIDO: %s \n",persona.apeYnombre);
+        printf("EDAD: %i \n",persona.edad);
+        printf("DIRECCION: %s \n",persona.direccion);
+        printf("TELEFONO: %s \n",persona.telefono);
+
+}
+int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
+
+    FILE*archi=fopen(archivo, "rb");
+
+    int i=0;
+
+    pacientes persona;
+
+    if(archi){
+        while(fread(&persona, sizeof(pacientes), 1, archi)>0 && i<dim){
+
+            arreglo[i]=persona;
+
+            i++;
+        }
+
+        fclose(archi);
+    }else{
+            printf("ERROR AL ABRIR EL ARCHIVO...\n");
+    }
+        return i;
+}
+
+
+///REVISAR FUNCION DE CARGA Y BUSCAR DNI EN ARBOL
+///BUSCAR PACIENTE POR NOMBRE EN ARREGLO
+///BUSCAR POR DNI EN ARCHIVO
+///MODIFICAR PACIENTE BUSCADO-->VER FUNCIONES Y RETORNOS DE BUSCAR POR DNI
+///DAR DE BAJA EN ARBOL Y MODIFICAR SU INT ELIMINADO EN EL ARCHIVO.
+
+
 
 

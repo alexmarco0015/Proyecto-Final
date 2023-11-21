@@ -73,12 +73,17 @@ int edadPaciente(int edad);
 void direccionPaciente(char direccion[30], int tamanio);
 void telPaciente(char celular[15], int tamanio);
 pacientes crearPaciente(pacientes paciente);
-void cargaPaciente(char archivo[]);
+void cargaPaciente(char archivo[], nodoArbol*arbol);
 nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro);
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
 void mostrarArbol(nodoArbol*arbol);
-return buscarDatoArbol(arbol->izq, nombre);
+void mostrarNodo(pacientes persona);
+int existeEnElArbol(nodoArbol*raiz, int dni);
+nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni);
+void mostrarArreglo(pacientes arreglo[], int val);
+int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
+void ordenarPacientesPorName(pacientes arreglo[], int tamano);
 
 
 ///prototipados de librería "crearUsuario":
