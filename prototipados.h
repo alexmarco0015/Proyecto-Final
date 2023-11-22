@@ -2,15 +2,8 @@
 #define PROTOTIPADOS_H_INCLUDED
 #endif  //PROTOTIPADOS_H_INCLUDED
 
+
 typedef struct{
-    int nroIngreso;
-    int nroPractica;
-    char resultado[40];
-    //faltan punteros;
-
-}pracXingreso;
-
-typedef struct ingresos{
     int nroIngreso;
     char fechaIngreso[10];
     char fechaRetiro[10];
@@ -20,17 +13,10 @@ typedef struct ingresos{
 
 }ingresos;
 
-typedef struct nodoPractXingreso{
-
-     pracXingreso ingreso;
-    struct nodoPractXingreso*siguiente;
-
-}nodoPractXingreso;
-
-typedef struct nodoListaIngresos{
+typedef struct{
 
     ingresos ingreso;
-    nodoPractXingreso * lista;
+
     struct nodoListaIngresos*siguiente;
 
 }nodoListaIngresos;
@@ -51,10 +37,12 @@ typedef struct{
 }pacientes;
 
 typedef struct nodoArbol {
-    pacientes persona;
-    struct nodoArbol * izq;
-    struct nodoArbol * der;
-    nodoListaIngresos * lista;
+
+pacientes persona;
+
+struct nodoArbol * izq;
+struct nodoArbol * der;
+
 } nodoArbol;
 
 typedef struct{
@@ -62,11 +50,18 @@ typedef struct{
     char apeYnombre[40];
     char usuario[20];
     char contrasenia[20];
-    int perfil;// 1 para profesional laboratorio, 2 para adminis.
+    int perfil;//preguntar si se puede cambiar por enteros;
     int eliminado;//preguntar si se puede hacer un apartado de eliminados para dar de vaja empleados y que queden en el registro
+
 }empleados_laboratorio;
 
+typedef struct{
+    int nroIngreso;
+    int nroPractica;
+    char resultado[40];
+    //faltan punteros;
 
+}pracXingreso;
 
 ///prototipados de librería "pacientes":
 int validarEdad(int edad);
@@ -78,11 +73,17 @@ int edadPaciente(int edad);
 void direccionPaciente(char direccion[30], int tamanio);
 void telPaciente(char celular[15], int tamanio);
 pacientes crearPaciente(pacientes paciente);
-void cargaPaciente(char archivo[]);
+void cargaPaciente(char archivo[], nodoArbol*arbol);
 nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro);
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
 void mostrarArbol(nodoArbol*arbol);
+void mostrarNodo(pacientes persona);
+int existeEnElArbol(nodoArbol*raiz, int dni);
+nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni);
+void mostrarArreglo(pacientes arreglo[], int val);
+int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
+void ordenarPacientesPorName(pacientes arreglo[], int tamano);
 
 
 ///prototipados de librería "crearUsuario":
@@ -92,26 +93,13 @@ int dniUsuario(int dni);
 void nombreYapellidoUsuario(char nombre[], int tamanio);
 int crearPerfil(int perfil);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
-void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos);
-int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int validos);
+void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
+int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
-void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos);
-void modDni(const char archivo[], int dni, int dniNuevo);
-void modApeYnombre(const char archivo[], int dni);
-void modUsername(const char archivo[], int dni);
-void modContrasenia(const char archivo[], int dni);
-void modTipoPerfil(const char archivo[], int dni);
 
 ///prototipados de librería "Menues":
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[]);
-void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
-void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
+void menuADMIN();
 void menuAdministrativo();
 void menuLaboratorio();
+void menuGeneral();
 
-///prototipados librería ingresoUsuario
-int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[]);
-int analizaPerfil(char usuario[], char contrasenia[], empleados_laboratorio arreglo[], int validos);
-void ingresoUsuario(char usuario[], char contrasenia[]);
-int analizasiEsAdmin(char usuario[], char contrasenia[], int perfil);
-int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archivo[]);
