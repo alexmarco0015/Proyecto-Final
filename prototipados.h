@@ -103,10 +103,10 @@ void modContrasenia(const char archivo[], int dni);
 void modTipoPerfil(const char archivo[], int dni);
 
 ///prototipados de librería "Menues":
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[]);
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[]);
 void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
-void menuAdministrativo();
+void menuAdministrativo(char archivoPacientes[]);
 void menuLaboratorio();
 
 ///prototipados librería ingresoUsuario

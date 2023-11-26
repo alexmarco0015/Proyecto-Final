@@ -5,7 +5,7 @@
 
 
 ///funciones:
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[])
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[])
 {
     int opcion=1000;
     do{
@@ -20,20 +20,20 @@ void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, c
         {
             case 1:
                 system("cls");
-                menuAdministrativo();
-                system("pause");
+                menuAdministrativo(archivoPacientes);
+
                 system("cls");
                 break;
             case 2:
                 system("cls");
                 menuLaboratorio();
-                system("pause");
+
                 system("cls");
                 break;
             case 3:
                 system("cls");
                 menuAdminEmpleados(arregloEmpleados, validosEmpleados, archivoEmpleados);
-                system("pause");
+
                 system("cls");
                 break;
             case 0:
@@ -201,13 +201,13 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
     }while(opcion!=0);
 }
 
-void menuAdministrativo()
+void menuAdministrativo(char archivoPacientes[])
 {
     int opcion=1000;
     do{
 
         printf("Bienvenido al MENU Administrativo\n");
-        printf("1-Registrar Pacientes\n2-Registrar Orden\n3-Ver Resultados\n-4-Buscar Paciente\n0-Salir\n");
+        printf("1-Registrar Pacientes\n2-Registrar Orden\n3-Ver Resultados\n-4-Buscar Paciente y modificar\n0-Salir del Menu\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -217,7 +217,7 @@ void menuAdministrativo()
         {
             case 1:
                 system("cls");
-                ///aca seria el registro o crear cuenta, ya tenemos esa funcion, solo falta conectar todo.
+                cargaPaciente(archivoPacientes);
                 system("pause");
                 system("cls");
                 break;
@@ -229,6 +229,12 @@ void menuAdministrativo()
                 break;
             case 3:
                 system("cls");
+                system("pause");
+                system("cls");
+                break;
+            case 4:
+                system("cls");
+
                 system("pause");
                 system("cls");
                 break;

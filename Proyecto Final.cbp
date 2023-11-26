@@ -49,6 +49,12 @@
 		<Unit filename="pacientes.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pracXingresos.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="practicas.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="prototipados.h" />
 		<Extensions>
 			<code_completion />
