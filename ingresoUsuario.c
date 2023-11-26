@@ -3,21 +3,18 @@
 #include <string.h>
 #include "prototipados.h"
 
-///prototipados:
-int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[], int validos);
-
-
 ///funciones:
-int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[], int validos)
+int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[])
 {
     FILE * buffer=fopen(archivo, "rb");
     empleados_laboratorio usuario;
+    int i=0;
 
     if(buffer!=NULL){
         while(fread(&usuario, sizeof(empleados_laboratorio), 1, buffer)>0){
-            arreglo[validos]=usuario;
+            arreglo[i]=usuario;
 
-            validos++;
+            i++;
         }
         fclose(buffer);
     }
@@ -28,15 +25,15 @@ int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[],
         system("cls");
     }
 
-    return validos;
+    return i;
 }
 
 int analizaPerfil(char usuario[], char contrasenia[], empleados_laboratorio arreglo[], int validos)
 {
     int perfil=-1, i=0;
     while(i<validos && perfil==-1){
-        if(strcmp(usuario, arreglo[i].usuario)>0){
-            if(strcmp(contrasenia, arreglo[i].contrasenia)>0){
+        if(strcmp(usuario, arreglo[i].usuario)==0){
+            if(strcmp(contrasenia, arreglo[i].contrasenia)==0){
                 perfil=arreglo[i].perfil;
             }
         }
@@ -74,32 +71,35 @@ int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archiv
     int perfil;
     char usuario[20];
     char contrasenia[20];
-    validos=cargarArregloUsuarios(archivo, arreglo, validos);
+
+    validos=cargarArregloUsuarios(archivo, arreglo);
+
     int i=0;
 
     do{
-        ingresoUsuario(usuario, contrasenia);
-        perfil=analizasiEsAdmin(usuario, contrasenia, perfil);
-        if(perfil!=3){
-            perfil=analizaPerfil(usuario, contrasenia, arreglo, validos);
-        }
-
-        if(perfil==-1)
-        {
-            system("cls");
-            printf("Ha ingresado mal los datos o su cuenta no existe, por favor, vuelva a ingresar..\n");
-            system("pause");
-            system("cls");
-        }
-        i++;
         if(i==3)
         {
             system("cls");
             printf("Ha ingresado incorrectamente los datos mas de 3 veces, volviendo al menu....\n");
             system("pause");
             system("cls");
+            break;
         }
-    }while(perfil==-1 && i!=3);
+        ingresoUsuario(usuario, contrasenia);
+        perfil=analizasiEsAdmin(usuario, contrasenia, perfil);
+        if(perfil!=3){
+            perfil=analizaPerfil(usuario, contrasenia, arreglo, validos);
+        }
+
+        i++;
+        if(perfil==-1 && i<3)
+        {
+            system("cls");
+            printf("Ha ingresado mal los datos o su cuenta no existe, por favor, vuelva a ingresar..\n");
+            system("pause");
+            system("cls");
+        }
+    }while(perfil==-1 && i!=4);
 
     return perfil;
 }
