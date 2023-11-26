@@ -26,10 +26,16 @@ nodoListaIngresos * inicListaIngresos()
 {
     return NULL;
 }
+nodoPractXingreso * inicListaPract()
+{
+    return NULL;
+}
 
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
 
     nodoListaIngresos *nuevo=(nodoListaIngresos*)malloc(sizeof(nodoListaIngresos));
+
+    nuevo->lista=inicListaPract();
 
     nuevo->ingreso.dniPaciente=ingreso.dniPaciente;
     strcpy(nuevo->ingreso.fechaIngreso, ingreso.fechaIngreso);
@@ -105,3 +111,4 @@ int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
     validos=i;
     return validos;
 }
+

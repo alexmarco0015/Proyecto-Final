@@ -103,3 +103,5 @@ void menuAdministrativo();
 void menuLaboratorio();
 void menuGeneral();
 
+///Prototipado ingresos
+nodoPractXingreso * inicListaPract();

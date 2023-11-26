@@ -50,6 +50,7 @@ int buscaPaciente(char archivo[], int dniBuscado)
             {
                 flag=1;
             }
+            fclose(archi);
         }
     }
     else
@@ -396,10 +397,15 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
         return i;
 }
 
+void modificarPaciente(char archivo[], int dni){
 
-///REVISAR FUNCION DE CARGA Y BUSCAR DNI EN ARBOL
-///BUSCAR PACIENTE POR NOMBRE EN ARREGLO
-///BUSCAR POR DNI EN ARCHIVO
+    FILE*archi=fopen(archivo, "ab");
+
+    if(archi){
+
+
+    }
+}
 ///MODIFICAR PACIENTE BUSCADO-->VER FUNCIONES Y RETORNOS DE BUSCAR POR DNI
 ///DAR DE BAJA EN ARBOL Y MODIFICAR SU INT ELIMINADO EN EL ARCHIVO.
 

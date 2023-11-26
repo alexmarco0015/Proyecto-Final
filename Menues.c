@@ -56,7 +56,7 @@ void menuAdministrativo()
     do{
 
         printf("Bienvenido al MENU USUARIO\n");
-        printf("1-Registrar Pacientes\n2-Registrar Orden\n3-Ver Resultados\n-4-Buscar Paciente\n0-Salir\n");
+        printf("1-Registrar Pacientes\n2-autorizar ordenes\n3-Pacientes(hacerMenu)\n0-Salir\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -96,6 +96,7 @@ void menuAdministrativo()
         }
     }while(opcion!=0);
 }
+///hacer un Menu de pacientes con todas las opciones para ver, registrar y dar de baja pacientes.
 
 void menuLaboratorio()
 {

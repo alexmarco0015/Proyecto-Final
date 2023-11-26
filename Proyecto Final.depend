@@ -3,14 +3,24 @@
 	<stdio.h>
 	<stdlib.h>
 
+<<<<<<< Updated upstream
 1700528265 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
+=======
+1700589217 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
 
+<<<<<<< Updated upstream
 1700588009 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
 
 1700517401 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
+=======
+1700590240 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
+
+1700589346 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -53,25 +63,43 @@
 	<string.h>
 	"prototipados.h"
 
+<<<<<<< Updated upstream
 1700351022 source:c:\users\valen\onedrive\documentos\github\proyecto-final\crearusuario.c
+=======
+1700588963 source:c:\users\valen\onedrive\documentos\github\proyecto-final\crearusuario.c
+>>>>>>> Stashed changes
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"prototipados.h"
 
+<<<<<<< Updated upstream
 1700351022 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresousuario.c
+=======
+1700588963 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresousuario.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
+<<<<<<< Updated upstream
 1700351022 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
+=======
+1700592543 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
 1699989657 source:c:\users\alex\documents\github\proyecto-final\ingresos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1700592543 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
