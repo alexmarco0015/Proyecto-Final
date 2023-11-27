@@ -3,8 +3,10 @@
 #include "prototipados.h"
 
 const char archivoEmpleados[]="empleados.bin";
+
 int main()
 {
+    char archivoPacientes[]="pacientes.bin";
     empleados_laboratorio arregloEmpleados[100];
     int validosEmpleados=0;
     int opcion=1000;
@@ -38,7 +40,7 @@ int main()
                 {
                     case 1://perfil de uso administrativo
                         system("cls");
-                        menuAdministrativo();
+                        menuAdministrativo(archivoPacientes);
                         system("cls");
                         break;
                     case 2://perfil de uso prof laboratorio
@@ -48,7 +50,7 @@ int main()
                         break;
                     case 3://administrativo
                         system("cls");
-                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados);
+                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados, archivoPacientes);
                         system("cls");
                         break;
                     case -1:

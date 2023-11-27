@@ -45,18 +45,19 @@ void leer_arch_practicas(practicas arreglo[], int* validos)
 {
     FILE * arch=fopen("lasPracticas.bin","rb");
     int contador=0;
+    practicas registro;
 
     if(arch!=NULL)
         {
             while (!feof(arch))
             {
-                if(fread(contador,sizeof(practicas),1,arch)>0)
+                if(fread(&registro,sizeof(practicas),1,arch)>0)
                 {
-                    fwrite(&arreglo[contador],sizeof(practicas),1,arch);
+                    arreglo[contador]=registro;
                 }
                 contador++;
             }
-
+            fclose(arch);
         }
     else
         {
@@ -66,7 +67,6 @@ void leer_arch_practicas(practicas arreglo[], int* validos)
         }
 
     (*validos)=contador;
-    fclose(arch);
 
 }
 
@@ -118,7 +118,7 @@ void sobreescribir_arch_practicas(practicas arreglo[], int* validos)
 
     if(arch!=NULL)
         {
-            for(int i=0;i<validos;i++)
+            for(int i=0;i<*validos;i++)
             {
                 fwrite(&arreglo[i],sizeof(practicas),1,arch);
             }
@@ -131,87 +131,3 @@ void sobreescribir_arch_practicas(practicas arreglo[], int* validos)
         system("cls");
         }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
