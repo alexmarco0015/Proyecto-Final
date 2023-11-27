@@ -332,6 +332,7 @@ void mostrarArreglo(pacientes arreglo[], int val) {
         printf("\n");
     }
 }
+
 int existeEnElArbol(nodoArbol*raiz, int dni){
 
     if (raiz == NULL) {
@@ -397,17 +398,43 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
         return i;
 }
 
-void modificarPaciente(char archivo[], int dni){
+void modificarPacienteDni(char archivo[], int dniNuevo){
 
-    FILE*archi=fopen(archivo, "ab");
+    FILE*archi=fopen(archivo, "a+b");
+
+        pacientes persona;
+        int pos;
 
     if(archi){
 
+            while(fread(&persona, sizeof(pacientes), 1, archi)>0){
+
+                if(persona.dni==dniNuevo){
+
+                printf("Pasando a ingresar un DNI nuevo: \n");
+                system("pause");
+                system("cls");
+
+                persona.dni=dniNuevo;
+                pos=ftell(archi)-sizeof(pacientes);
+                fseek(archi, pos, SEEK_SET);
+                fwrite(&persona, sizeof(pacientes), 1, archi);
+                break;
+
+                }
+                 else{
+        system("cls");
+        printf("\n ERROR AL ABRIR EL ARCHIVO\n");
+        system("pause");
+        system("cls");
+    }
+            }
 
     }
 }
 ///MODIFICAR PACIENTE BUSCADO-->VER FUNCIONES Y RETORNOS DE BUSCAR POR DNI
 ///DAR DE BAJA EN ARBOL Y MODIFICAR SU INT ELIMINADO EN EL ARCHIVO.
+
 
 
 

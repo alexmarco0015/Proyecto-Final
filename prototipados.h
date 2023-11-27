@@ -73,7 +73,7 @@ int edadPaciente(int edad);
 void direccionPaciente(char direccion[30], int tamanio);
 void telPaciente(char celular[15], int tamanio);
 pacientes crearPaciente(pacientes paciente);
-void cargaPaciente(char archivo[], nodoArbol*arbol);
+void cargaPaciente(char archivo[]);
 nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro);
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
@@ -93,8 +93,8 @@ int dniUsuario(int dni);
 void nombreYapellidoUsuario(char nombre[], int tamanio);
 int crearPerfil(int perfil);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
-void crearusuario(char archivo[], empleados_laboratorio arreglo[], int validos);
-int plasmarEnArreglo(char archivo[], empleados_laboratorio arreglo[], int validos);
+void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos);
+int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int validos);
 int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 
 ///prototipados de librería "Menues":
@@ -104,4 +104,4 @@ void menuLaboratorio();
 void menuGeneral();
 
 ///Prototipado ingresos
-nodoPractXingreso * inicListaPract();
+
