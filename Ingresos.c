@@ -236,5 +236,12 @@ nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngr
     return lista;
 }
 
-
-
+void muestraIngreso(ingresos dato)
+{
+    printf("\n///////////////////////////////\n");
+    printf("Fecha de Ingreso: %s\n", dato.fechaIngreso);
+    printf("Fecha de Retiro: %s\n", dato.fechaRetiro);
+    printf("Matricula del profesional: %d\n", dato.matriculaProfesional);
+    printf("Numero de Ingreso: %d\n", dato.nroIngreso);
+    printf("///////////////////////////////\n");
+}

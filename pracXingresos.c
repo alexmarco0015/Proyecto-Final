@@ -121,3 +121,11 @@ nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, cha
     }
     return lista;
 }
+
+void muestraPracXingreso(pracXingreso dato)
+{
+    printf("\n******************\n");
+    printf("Numero de Practica: %d\n", dato.nroPractica);
+    printf("Resultado: \n%s\n", dato.resultado);
+    printf("*******************\n");
+}
