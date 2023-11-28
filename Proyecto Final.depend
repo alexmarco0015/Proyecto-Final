@@ -21,9 +21,9 @@
 	<stdlib.h>
 	"prototipados.h"
 
-1700672007 c:\users\alex\documents\github\proyecto-final\prototipados.h
+1701189319 c:\users\alex\documents\github\proyecto-final\prototipados.h
 
-1701014223 source:c:\users\alex\documents\github\proyecto-final\pacientes.c
+1701188757 source:c:\users\alex\documents\github\proyecto-final\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -71,7 +71,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701025017 source:c:\users\alex\documents\github\proyecto-final\ingresos.c
+1701131990 source:c:\users\alex\documents\github\proyecto-final\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

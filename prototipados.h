@@ -91,7 +91,7 @@ void mostrarNodo(pacientes persona);
 int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
-nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
+nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, char archivoIngresos[], char archivoPracticas[]);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);

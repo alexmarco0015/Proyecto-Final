@@ -526,22 +526,7 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo){
 
 ///funciones de arboles de listas:
 
-nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
-{
-    nodoArbol * aux=buscarPorDNI(arbol, persona.dni);
-    nodoListaIngresos * nuevoNodo=inicListaIngresos();
 
-    if(aux==NULL)
-    {
-        arbol=insertarNodoPaciente(arbol, persona);
-        aux=buscarPorDNI(arbol, persona.dni);
-    }
-
-    nuevoNodo=crearNodoListaIngresos(ingreso);
-    aux->lista=agregarPrincipio(nuevoNodo,aux->lista);
-
-    return arbol;
-}
 
 
 
