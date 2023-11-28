@@ -235,3 +235,6 @@ nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngr
     }
     return lista;
 }
+
+
+
