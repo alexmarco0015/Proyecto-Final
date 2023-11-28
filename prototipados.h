@@ -83,7 +83,15 @@ nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro);
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
 void mostrarArbol(nodoArbol*arbol);
-
+void ordenarPacientesPorName(pacientes arreglo[], int tamano);
+void mostrarArreglo(pacientes arreglo[], int val);
+int existeEnElArbol(nodoArbol*raiz, int dni);
+nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni);
+void mostrarNodo(pacientes persona);
+int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
+void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
+void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
+nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
@@ -115,3 +123,26 @@ int analizaPerfil(char usuario[], char contrasenia[], empleados_laboratorio arre
 void ingresoUsuario(char usuario[], char contrasenia[]);
 int analizasiEsAdmin(char usuario[], char contrasenia[], int perfil);
 int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archivo[]);
+
+
+///prototipados ingresos.c:
+int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos);
+int ultimoIngreso(char archivoIngresos[], int dni);
+void fechaIngreso(char fecha[]);
+void fechaRetiro(char fecha[]);
+int matriculaSolicitante(int matri);
+ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni);
+void cargaIngreso(char archivoIngresos[], char archivoPacientes[], int dni);
+nodoListaIngresos * inicListaIngresos();
+nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista);
+nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
+
+///prototipados pracXingresos.c:
+void crearResultado(char resultado[]);
+int nroPractica(char archivoPracticas[], int numeroIngreso);
+pracXingreso crearPractica(char archivoPracticas[], pracXingreso pXi, int numeroIngreso);
+nodoPractXingreso * inicListapracXingresos();
+nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
+nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
+nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);

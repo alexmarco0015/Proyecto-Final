@@ -344,10 +344,10 @@ int existeEnElArbol(nodoArbol*raiz, int dni){
     }
 
     if (dni < raiz->persona.dni) {
-        return buscarPorDNI(raiz->izq, dni);
+        return existeEnElArbol(raiz->izq, dni);
     }
 
-    return buscarPorDNI(raiz->der, dni);
+    return existeEnElArbol(raiz->der, dni);
 }
 nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
 
@@ -397,8 +397,96 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
     }
         return i;
 }
+void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
+    int opcion=1000;
+    int verificado;
+    char seguro='n';
+    int dniNuevo;
+    do{
+        printf("Menu de modificaciones del paciente\n");
+        printf("1-Modificar dni\n2-Modificar nombre y apellido\n3-Modoficar edad\n4-Modificar direccion\n5-Telefono\n0-salir del menu\n");
+        printf("Elija una opcion.. \n");
+        fflush(stdin);
+        scanf("%d", &opcion);
+        seguro='n';
 
-void modificarPacienteDni(char archivo[], int dniNuevo){
+        switch(opcion){
+
+        case 1:
+                system("cls");
+                printf("Seguro que desea cambiar el dni? NO PODRA VOLVER ATRAS... (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+
+                        do{
+                        dniNuevo=dniPaciente(dniNuevo);
+                        verificado=existeEnElArbol(arbol,dniNuevo);
+                        if(verificado!=0){
+                            printf("Ha ingresado un dni que ya existe en el sistema, NO SE PUEDEN REPETIR DNI.\n");
+                        }
+                    }while(verificado!=0);
+
+                }
+            break;
+        case 2:
+                system("cls");
+                printf("Seguro que desea cambiar el dni? NO PODRA VOLVER ATRAS... (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+
+                }
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+
+            break;
+        case 5:
+
+            break;
+        case 0:
+
+                    printf("Ha seleccionado salir...\n");
+            break;
+        default :
+                    printf("HA INGRESADO UNA OPCION INCORRECTA...\n");
+            break;
+        }
+
+    }while(seguro!='n');
+
+}
+void modificarNombreYApellido(char archivo[], int dni){
+    FILE *archi=fopen(archivo, "a+b");
+    pacientes persona;
+    int pos;
+        int tamanio=sizeof(char)*40;
+
+    if(archi){
+            while(fread(&persona, sizeof(pacientes), 1, archi)>0){
+                    if(persona.dni==dni){
+                        printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
+                        printf("Pasamos a modificar su nombre...\n");
+                        system("pause");
+                        system("cls");
+                        nombrePaciente(persona.apeYnombre, tamanio);
+                        pos=ftell(archi)-sizeof(pacientes);
+                        fseek(archi, pos, SEEK_SET);
+                        fwrite(&persona, sizeof(pacientes), 1, archi);
+            }
+    }
+
+    }
+    else{
+    }
+
+
+}
+void modificarPacienteDni(char archivo[], int dni, int dniNuevo){
 
     FILE*archi=fopen(archivo, "a+b");
 
@@ -409,7 +497,7 @@ void modificarPacienteDni(char archivo[], int dniNuevo){
 
             while(fread(&persona, sizeof(pacientes), 1, archi)>0){
 
-                if(persona.dni==dniNuevo){
+                if(persona.dni==dni){
 
                 printf("Pasando a ingresar un DNI nuevo: \n");
                 system("pause");
@@ -422,20 +510,38 @@ void modificarPacienteDni(char archivo[], int dniNuevo){
                 break;
 
                 }
+            }
+            fclose( archi);
+
+    }
                  else{
         system("cls");
         printf("\n ERROR AL ABRIR EL ARCHIVO\n");
         system("pause");
         system("cls");
     }
-            }
-
-    }
 }
 ///MODIFICAR PACIENTE BUSCADO-->VER FUNCIONES Y RETORNOS DE BUSCAR POR DNI
 ///DAR DE BAJA EN ARBOL Y MODIFICAR SU INT ELIMINADO EN EL ARCHIVO.
 
+///funciones de arboles de listas:
 
+nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
+{
+    nodoArbol * aux=buscarPorDNI(arbol, persona.dni);
+    nodoListaIngresos * nuevoNodo=inicListaIngresos();
+
+    if(aux==NULL)
+    {
+        arbol=insertarNodoPaciente(arbol, persona);
+        aux=buscarPorDNI(arbol, persona.dni);
+    }
+
+    nuevoNodo=crearNodoListaIngresos(ingreso);
+    aux->lista=agregarPrincipio(nuevoNodo,aux->lista);
+
+    return arbol;
+}
 
 
 
