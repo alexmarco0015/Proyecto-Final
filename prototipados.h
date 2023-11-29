@@ -91,7 +91,9 @@ void mostrarNodo(pacientes persona);
 int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
-nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
+void modificarNombreYApellido(char archivo[], int dni);
+void modificarEdad(char archivo[], int dni);
+void modificarDireccion(char archivo[], int dni);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
@@ -137,6 +139,8 @@ nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
 nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
+void modificarMatricula(int dni, int numIngreso, char archivo[]);
+void modificarFecha(int dni, int numIngreso,char archivo[]);
 
 ///prototipados pracXingresos.c:
 void crearResultado(char resultado[]);

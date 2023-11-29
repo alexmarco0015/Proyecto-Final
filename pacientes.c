@@ -398,6 +398,7 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
         return i;
 }
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
+    ///PEDIR DNI CUANDO SE LLAME A ESTE MENU
     int opcion=1000;
     int verificado;
     char seguro='n';
@@ -427,25 +428,79 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
                         }
                     }while(verificado!=0);
 
+                    modificarPacienteDni(archivo,dni, dniNuevo);
                 }
+                system("pause");
+                system("cls");
+
+                    opcion=0;
             break;
         case 2:
                 system("cls");
-                printf("Seguro que desea cambiar el dni? NO PODRA VOLVER ATRAS... (s/n)\n");
+                printf("Seguro que desea cambiar el nombre? NO PODRA VOLVER ATRAS... (s/n)\n");
                 fflush(stdin);
                 scanf("%c", &seguro);
                 if(seguro=='s'){
 
-                }
+                    modificarNombreYApellido(archivo, dni);
+
+                    }
+
+                system("pause");
+                system("cls");
+
+                    opcion=0;
 
             break;
         case 3:
+            system("cls");
+                printf("Seguro que desea cambiar la edad? NO PODRA VOLVER ATRAS... (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+
+                   modificarEdad(archivo,dni);
+
+                    }
+
+                system("pause");
+                system("cls");
+
+                    opcion=0;
 
             break;
         case 4:
+             system("cls");
+                printf("Seguro que desea cambiar la direccion? NO PODRA VOLVER ATRAS... (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+
+                   modificarDireccion(archivo, dni);
+
+                    }
+
+                system("pause");
+                system("cls");
+
+                    opcion=0;
 
             break;
         case 5:
+            system("cls");
+                printf("Seguro que desea cambiar el telefono? NO PODRA VOLVER ATRAS... (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+
+                   modificarTelefono(archivo,dni);
+
+                    }
+
+                system("pause");
+                system("cls");
+
+                    opcion=0;
 
             break;
         case 0:
@@ -455,10 +510,70 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
         default :
                     printf("HA INGRESADO UNA OPCION INCORRECTA...\n");
             break;
+
+
+            }
+            }while(seguro!='n');
+
+}
+void modificarTelefono(char archivo[], int dni){
+    ///revisar puede ingresar letras
+FILE*archi=fopen(archivo,"a+b");
+    int tamanio=sizeof(char)*40;
+    pacientes persona;
+    int pos;
+    if(archi){
+        while(fread(&persona, sizeof(pacientes), 1,archi)>0){
+            if(persona.dni==dni){
+                telPaciente(persona.telefono, tamanio);
+                pos=ftell(archi)-sizeof(pacientes);
+                    fseek(archi, pos, SEEK_SET);
+                    fwrite(&persona, sizeof(pacientes), 1, archi);
+            }
         }
+        fclose(archi);
+    }else{
+                    printf("ERROR AL ABRIR EL ARCHIVO...");
+    }
 
-    }while(seguro!='n');
-
+}
+void modificarDireccion(char archivo[], int dni){
+    FILE*archi=fopen(archivo,"a+b");
+    int tamanio=sizeof(char)*40;
+    pacientes persona;
+    int pos;
+    if(archi){
+        while(fread(&persona, sizeof(pacientes),1,archi)>0){
+            if(persona.dni==dni){
+                direccionPaciente(persona.direccion, tamanio);
+                  pos=ftell(archi)-sizeof(pacientes);
+                    fseek(archi, pos, SEEK_SET);
+                    fwrite(&persona, sizeof(pacientes), 1, archi);
+            }
+        }
+                fclose(archi);
+    }else{
+                    printf("ERROR AL ABRIR EL ARCHIVO...");
+    }
+}
+void modificarEdad(char archivo[], int dni){
+    FILE*archi=fopen(archivo,"a+b");
+    pacientes persona;
+    int pos;
+    if(archi){
+        while(fread(&persona, sizeof(pacientes),1,archi)>0){
+                if(persona.dni==dni){
+                    int edad=edadPaciente(edad);
+                    persona.edad=edad;
+                    pos=ftell(archi)-sizeof(pacientes);
+                    fseek(archi, pos, SEEK_SET);
+                    fwrite(&persona, sizeof(pacientes), 1, archi);
+                }
+        }
+                fclose(archi);
+    }else{
+                    printf("ERROR AL ABRIR EL ARCHIVO...");
+    }
 }
 void modificarNombreYApellido(char archivo[], int dni){
     FILE *archi=fopen(archivo, "a+b");
@@ -479,10 +594,13 @@ void modificarNombreYApellido(char archivo[], int dni){
                         fwrite(&persona, sizeof(pacientes), 1, archi);
             }
     }
+            fclose(archi);
 
     }
     else{
+            printf("ERROR AL ABRIR EL ARCHIVO...");
     }
+
 
 
 }
