@@ -40,6 +40,9 @@
 		<Unit filename="Menues.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="estructuraCompuesta.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="ingresoUsuario.c">
 			<Option compilerVar="CC" />
 		</Unit>

@@ -1,6 +1,6 @@
 #ifndef PROTOTIPADOS_H_INCLUDED
 #define PROTOTIPADOS_H_INCLUDED
-#endif  //PROTOTIPADOS_H_INCLUDED
+
 
 typedef struct{
     int nroIngreso;
@@ -91,9 +91,6 @@ void mostrarNodo(pacientes persona);
 int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
-void modificarNombreYApellido(char archivo[], int dni);
-void modificarEdad(char archivo[], int dni);
-void modificarDireccion(char archivo[], int dni);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
@@ -139,8 +136,8 @@ nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
 nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
-void modificarMatricula(int dni, int numIngreso, char archivo[]);
-void modificarFecha(int dni, int numIngreso,char archivo[]);
+void muestraIngreso(ingresos dato);
+
 
 ///prototipados pracXingresos.c:
 void crearResultado(char resultado[]);
@@ -150,3 +147,17 @@ nodoPractXingreso * inicListapracXingresos();
 nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
 nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
+void muestraPracXingreso(pracXingreso dato);
+
+///prototipados
+nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso);
+nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, pracXingreso dato);
+nodoListaIngresos * leerArchivoPracticas(char archivoPracticas[], nodoListaIngresos * lista);
+void recorrerArbolYagregarPracticasxIngreso(nodoArbol * arbol, char archivoPracticas[]);
+nodoArbol * agregarListaIngresos(nodoArbol * arbol, ingresos dato);
+nodoArbol* leerArchivoIngresos(nodoArbol * arbol, char archivoIngresos[]);
+nodoPractXingreso * recorrerYmostrarListaPrac(nodoPractXingreso * lista);
+nodoListaIngresos * recorrerYmostrarListaIngresos(nodoListaIngresos * lista);
+void recorrerYmostrarEstructuraCompuesta(nodoArbol * arbol);
+
+#endif  //PROTOTIPADOS_H_INCLUDED
