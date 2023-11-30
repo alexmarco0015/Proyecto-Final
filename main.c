@@ -13,17 +13,7 @@ int main()
     char archivoIngresos[]="ingresos.bin";
     empleados_laboratorio arregloEmpleados[100];
     int validosEmpleados=0;
-    int opcion=1000;
-
-
-
-//    cargaPaciente("miarchivo2.bin");
-//    nodoArbol*arbol = inicArbol();
-//    arbol=pasarArchiToArbol(arbol, "miarchivo2.bin");
-//    mostrarArbol(arbol);
-//
-//    int opcion=1000;
-
+    int opcion=-1;
 
    do{
         printf("           Laboratorio Central - Hospital de ninios\n");
@@ -36,6 +26,7 @@ int main()
         {
             case 1:
                 system("cls");
+                validosEmpleados=plasmarEnArreglo(archivoEmpleados, arregloEmpleados, validosEmpleados);
                 crearusuario(archivoEmpleados, arregloEmpleados, validosEmpleados);
                 system("cls");
                 break;
@@ -47,7 +38,8 @@ int main()
                 {
                     case 1://perfil de uso administrativo
                         system("cls");
-                        menuAdministrativo(archivoPacientes);
+                        validosEmpleados=plasmarEnArreglo(archivoEmpleados, arregloEmpleados, validosEmpleados);
+                        menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados);
                         system("cls");
                         break;
                     case 2://perfil de uso prof laboratorio
@@ -55,8 +47,9 @@ int main()
                         menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos);
                         system("cls");
                         break;
-                    case 3://administrativo
+                    case 3://admin
                         system("cls");
+                        validosEmpleados=plasmarEnArreglo(archivoEmpleados, arregloEmpleados, validosEmpleados);
                         menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados, archivoPacientes, archivoPractXingresos, archivoIngresos);
                         system("cls");
                         break;

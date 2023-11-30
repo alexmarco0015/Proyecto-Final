@@ -5,7 +5,7 @@
 typedef struct{
     int nroIngreso;
     int nroPractica;
-    char resultado[40];
+    char resultado[100];
     //faltan punteros;
 
 }pracXingreso;
@@ -115,12 +115,15 @@ void modApeYnombre(const char archivo[], int dni);
 void modUsername(const char archivo[], int dni);
 void modContrasenia(const char archivo[], int dni);
 void modTipoPerfil(const char archivo[], int dni);
+void darDeBajaEmpleado(const char archivoEmpleados[], int dni);
+void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], int validosEmpleados, int dni);
+void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validosEmpleados, int dni);
 
 ///prototipados de librería "Menues":
 void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[]);
 void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
-void menuAdministrativo(char archivoPacientes[]);
+void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados);
 void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[]);
 
 ///prototipados librería ingresoUsuario

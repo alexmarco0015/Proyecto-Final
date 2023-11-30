@@ -587,22 +587,24 @@ void modificarNombreYApellido(char archivo[], int dni)
 
     if(archi){
             while(fread(&persona, sizeof(pacientes), 1, archi)>0){
-                    if(persona.dni==dni){
-                        printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
-                        printf("Pasamos a modificar su nombre...\n");
-                        system("pause");
-                        system("cls");
-                        nombrePaciente(persona.apeYnombre, tamanio);
-                        pos=ftell(archi)-sizeof(pacientes);
-                        fseek(archi, pos, SEEK_SET);
-                        fwrite(&persona, sizeof(pacientes), 1, archi);
+                if(persona.dni==dni){
+                    printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
+                    printf("Pasamos a modificar su nombre...\n");
+                    system("pause");
+                    system("cls");
+                    nombrePaciente(persona.apeYnombre, tamanio);
+                    pos=ftell(archi)-sizeof(pacientes);
+                    fseek(archi, pos, SEEK_SET);
+                    fwrite(&persona, sizeof(pacientes), 1, archi);
             }
     }
-            fclose(archi);
-
+            fclose(archi);
     }
     else{
+            system("cls");
             printf("ERROR AL ABRIR EL ARCHIVO...");
+            system("pause");
+            system("cls");
     }
 
 
@@ -610,7 +612,6 @@ void modificarNombreYApellido(char archivo[], int dni)
 }
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
 {
-
     FILE*archi=fopen(archivo, "r+b");
 
         pacientes persona;
@@ -644,20 +645,20 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
         system("cls");
     }
 }
-void bajaPaciente(char archivo[], nodoArbol*arbol){
-   FILE*archi=fopen(archivo, "r+");
-   pacientes persona;
-   if(archi){
-            while(fread(&persona, ))
-
-
-
-        fclose(archi);
-
-   }else{
-    printf("ERROR AL ABRIR EL ARCHIVO...\n");
-   }
-}
+//void bajaPaciente(char archivo[], nodoArbol*arbol){
+//   FILE*archi=fopen(archivo, "r+");
+//   pacientes persona;
+//   if(archi){
+//            while(fread(&persona, ))
+//
+//
+//
+//        fclose(archi);
+//
+//   }else{
+//    printf("ERROR AL ABRIR EL ARCHIVO...\n");
+//   }
+//}
 
 ///funciones de arboles de listas:
 

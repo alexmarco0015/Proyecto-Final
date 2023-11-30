@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
-/***
-typedef struct{
-    int nroIngreso;
-    int nroPractica;
-    char resultado[40];
-}pracXingreso;
-***/
 
 void crearResultado(char resultado[])
 {
@@ -21,8 +14,8 @@ void crearResultado(char resultado[])
         fflush(stdin);
         scanf("%c", &seguro);
         system("cls");
-        if(strlen(resultado)>40 || strlen(resultado)<10){//verificamos que no se exceda de la cantidad de caracteres ni le falten
-            printf("se ha excedido o le ha faltado en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 40 y mas de 10..\n");
+        if(strlen(resultado)>100 || strlen(resultado)<10){//verificamos que no se exceda de la cantidad de caracteres ni le falten
+            printf("se ha excedido o le ha faltado en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 100 y mas de 10..\n");
             seguro='n';
             system("pause");
             system("cls");
@@ -83,8 +76,6 @@ void cargaPractica(char archivoPractica[], int ingreso)
             fflush(stdin);
             scanf("%c", &continuar);
         }
-
-
         fclose(buffer);
     }
     else{
@@ -93,8 +84,6 @@ void cargaPractica(char archivoPractica[], int ingreso)
         system("pause");
         system("cls");
     }
-
-
 }
 
 nodoPractXingreso * inicListapracXingresos()

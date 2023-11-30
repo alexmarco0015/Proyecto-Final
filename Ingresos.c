@@ -77,7 +77,7 @@ void fechaIngreso(char fecha[])
 {
     char seguro;
     do{
-            printf("Inserte la fecha de ingreso del paciente:\n");
+            printf("Inserte la fecha de ingreso del paciente: (00/00/0000)ejemplo \n");
             fflush(stdin);
             gets(fecha);
             printf("\nSeguro que desea esa fecha? 's' para si y 'n' para no\n");
@@ -98,7 +98,7 @@ void fechaRetiro(char fecha[])
 {
     char seguro;
     do{
-            printf("Inserte la fecha de retiro de la practica:\n");
+            printf("Inserte la fecha de retiro de la practica: (00/00/0000)ejemplo \n");
             fflush(stdin);
             gets(fecha);
             printf("\nSeguro que desea esa fecha? 's' para si y 'n' para no\n");
@@ -121,6 +121,7 @@ int matriculaSolicitante(int matri)
         printf("ingrese la matricula del solicitante..\n");
         fflush(stdin);
         scanf("%d", &matri);
+        printf("\n");
 
         if(matri<1)
         {

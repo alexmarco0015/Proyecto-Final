@@ -20,7 +20,7 @@ void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, c
         {
             case 1:
                 system("cls");
-                menuAdministrativo(archivoPacientes);
+                menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados);
 
                 system("cls");
                 break;
@@ -56,11 +56,12 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
     int opcion=1000;
     int dni=0;
     int verificado;
+    int contador=0;
 
     do{
 
         printf("Bienvenido al MENU de control de empleados\n");
-        printf("1-Ver empleados\n2-Registrar un empleado\n3-Eliminar un empleado\n-4-Modificar un empleado\n0-Salir\n");
+        printf("1-Ver empleados\n2-Registrar un empleado\n3-Modificar un empleado\n4-Buscar un empleado en particular\n0-Salir\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -83,13 +84,12 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
                 break;
             case 3:
                 system("cls");
-                ///eliminar un empleado del sistema
-                system("pause");
-                system("cls");
-                break;
-            case 4:
-                system("cls");
                 do{
+                    if(contador>4){
+                        printf("Ha fallado varias veces, volviendo al menu anterior..\n");
+                        break;
+                    }
+
                     printf("Empleados del laboratorio:\n");
                     mostrarArregloEmpleados(arreglo, validosEmpleados);
                     printf("\nDe todos los empleados, seleccione el dni del empleado a modificar..\n");
@@ -101,10 +101,21 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
                         printf("El dni del usuario que usted busca no se encuentra en el sistema, por favor, seleccione correctamente...\n");
                         system("pause");
                         system("cls");
+                        contador++;
                     }
                 }while(verificado==0);
                 system("cls");
-                modificarEmpleadoMenu(dni, arreglo, validosEmpleados, archivoEmpleados);
+                if(contador<4){
+                    modificarEmpleadoMenu(dni, arreglo, validosEmpleados, archivoEmpleados);
+                }
+                system("cls");
+                break;
+            case 4:
+                system("cls");
+                printf("Ingrese el dni del empleado a buscar..\n");
+                fflush(stdin);
+                scanf("%d", &dni);
+                chequearEmpleadoAdmin(arreglo, validosEmpleados, dni);
                 system("pause");
                 system("cls");
                 break;
@@ -133,7 +144,7 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
 
     do{
         printf("Menu de modificaciones del empleado\n");
-        printf("1-Modificar dni\n2-Modificar nombre y apellido\n3-Modoficar nombre de usuario\n4-Modificar contrasenia\n5-\n6-\n0-salir del menu\n");
+        printf("1-Modificar dni\n2-Modificar nombre y apellido\n3-Modoficar nombre de usuario\n4-Modificar contrasenia\n5-Eliminar o dar de alta un empleado\n0-salir del menu\n");
         printf("Elija una opcion.. ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -184,6 +195,12 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
                 system("pause");
                 system("cls");
                 break;
+            case 6:
+                system("cls");
+                darDeBajaEmpleado(archivoEmpleados, dni);
+                system("pause");
+                system("cls");
+                break;
             case 0:
                 system("cls");
                 printf("Volviendo al menu anterior...\n");
@@ -201,13 +218,14 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
     }while(opcion!=0);
 }
 
-void menuAdministrativo(char archivoPacientes[])
+void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados)
 {
+    int dni=0;
     int opcion=1000;
     do{
 
         printf("Bienvenido al MENU Administrativo\n");
-        printf("1-Registrar Pacientes\n2-Registrar Orden\n3-Ver Resultados\n-4-Buscar Paciente y modificar\n0-Salir del Menu\n");
+        printf("1-Registrar Pacientes\n2-Buscar Paciente y modificar\n3-Chequear Un Empleado\n0-Salir del Menu\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -223,18 +241,16 @@ void menuAdministrativo(char archivoPacientes[])
                 break;
             case 2:
                 system("cls");
-                ///aca tenemos que solicitar el ingreso, de eso me voy a encargar en otra librería
+
                 system("pause");
                 system("cls");
                 break;
             case 3:
                 system("cls");
-                system("pause");
-                system("cls");
-                break;
-            case 4:
-                system("cls");
-
+                printf("Ingrese el dni del empleado a buscar..\n");
+                fflush(stdin);
+                scanf("%d", &dni);
+                chequearEmpleadoAdministrativo(arregloEmpleados, validosEmpleados, dni);
                 system("pause");
                 system("cls");
                 break;
@@ -259,6 +275,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
     int opcion=-1;
     int dni=-1;
     int flag=-1;
+    int contador=0;
     ingresos persona;
     do{
         printf("  Menu Laboratorio\n");
@@ -273,6 +290,11 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
             case 1:
                 system("cls");
                 do{
+                    if(contador==3)
+                    {
+                        printf("Ha ingresado incorrectamente el dni 3 veces, volviendo al menu..\n");
+                        break;
+                    }
                     printf("Ingrese el dni del paciente:\n");
                     fflush(stdin);
                     scanf("%d", &dni);
@@ -282,13 +304,17 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                         printf("Ingreso un dni incorrecto, vuelva a ingresar..\n\n");
                         system("pause");
                         system("cls");
+                        contador++;
                     }
                 }while(flag!=1);
+                if(contador!=3)
+                {
+                    persona=crearIngresos(persona, archivoIngresos, dni);
 
-                persona=crearIngresos(persona, archivoIngresos, dni);
-                cargaIngreso(archivoIngresos, archivoPaciente, persona);
+                    cargaIngreso(archivoIngresos, archivoPaciente, persona);
 
-                cargaPractica(archivoPractXingresos, persona.nroIngreso);
+                    cargaPractica(archivoPractXingresos, persona.nroIngreso);
+                }
 
                 system("pause");
                 system("cls");
