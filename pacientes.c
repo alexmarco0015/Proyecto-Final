@@ -650,7 +650,7 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
     }
 }
 void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
-   FILE*archi=fopen(archivo, "rb");
+   FILE*archi=fopen(archivo, "r+b");
    pacientes persona;
    nodoArbol*buscado=buscarPorDNI(arbol,dni);
    if(buscado==NULL){

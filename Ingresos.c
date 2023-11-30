@@ -227,12 +227,15 @@ nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngr
 
 void muestraIngreso(ingresos dato)
 {
+    if(dato.eliminado==0){
+
     printf("\n///////////////////////////////\n");
     printf("Fecha de Ingreso: %s\n", dato.fechaIngreso);
     printf("Fecha de Retiro: %s\n", dato.fechaRetiro);
     printf("Matricula del profesional: %d\n", dato.matriculaProfesional);
     printf("Numero de Ingreso: %d\n", dato.nroIngreso);
     printf("///////////////////////////////\n");
+    }
 }
 
 
@@ -326,4 +329,6 @@ void modificarFecha(int dni, int numIngreso, char archivo[]){
             printf("ERROR AL ABRIR EL ARCHIVO...\n");
         }
 }
+
+
 

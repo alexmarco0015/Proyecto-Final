@@ -263,4 +263,30 @@ void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso){
             system("cls");
         }
 }
-///FALTA BAJA DE PRACTICA POR INGRESOS, NO TIENE INT ELIMINADO.
+
+nodoPractXingreso * bajaPracticaxIngreso(int nroPractica, nodoPractXingreso * lista){
+ nodoPractXingreso* seg;
+   nodoPractXingreso * ante;
+
+   if((lista != NULL) && (lista->ingreso.nroPractica==nroPractica )) {
+
+      nodoPractXingreso * aux = lista;
+      lista = lista->siguiente;
+      free(aux);
+   }else {
+      seg = lista;
+      while((seg != NULL) && (seg->ingreso.nroPractica!=nroPractica )) {
+         ante = seg;
+         seg = seg->siguiente;
+      }
+
+      if(seg!=NULL) {
+         ante->siguiente = seg->siguiente;
+
+         free(seg);
+
+      }
+   }
+   return lista;
+
+}
