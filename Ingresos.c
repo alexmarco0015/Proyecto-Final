@@ -214,3 +214,96 @@ void muestraIngreso(ingresos dato)
     printf("Numero de Ingreso: %d\n", dato.nroIngreso);
     printf("///////////////////////////////\n");
 }
+
+
+void modificarIngresoMenu(int dni, int ingreso,char archivo[], nodoArbol*arbol){
+    int opcion=1000;
+    char seguro='n';
+    do{
+        printf("Menu de modificaciones del ingreso\n");
+        printf("1-Modificar matricula\n2-Modificar fecha\n3-salir del menu\n");
+        printf("Elija una opcion.. ");
+        fflush(stdin);
+        scanf("%d", &opcion);
+        seguro='n';
+        switch(opcion)
+        {
+            case 1:
+                system("cls");
+                printf("Seguro que desea cambiar la matricula? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+                    modificarMatricula(dni,ingreso,archivo);
+                }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 2:
+                system("cls");
+                printf("Seguro que desea cambiar la fecha? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+                modificarFecha(dni, ingreso, archivo);
+                }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 3:
+                system("cls");
+                    printf("ha seleccionado salir del menu...");
+                system("pause");
+                system("cls");
+                break;
+            default:
+                system("cls");
+                printf("Ha seleccionado un dato incorrecto o un caracter... Vuelva a introducir un digito correcto..\n");
+                system("pause");
+                system("cls");
+                break;
+        }
+    }while(opcion!=0);
+}
+
+
+void modificarMatricula(int dni, int numIngreso, char archivo[]){
+        FILE*archi=fopen(archivo, "r+b");
+        ingresos ingresito;
+        int pos;
+        if(archi){
+            while(fread(&ingresito, sizeof(ingresos),1,archi)>0){
+                if(ingresito.dniPaciente==dni && ingresito.nroIngreso==numIngreso){
+                    matriculaSolicitante(ingresito.matriculaProfesional);
+                     pos=ftell(archi)-sizeof(ingresos);
+                    fseek(archi, pos, SEEK_SET);
+                    fwrite(&ingresito, sizeof(ingresos), 1, archi);
+                }
+            }
+            fclose(archi);
+        }else{
+            printf("ERROR AL ABRIR EL ARCHIVO...\n");
+        }
+}
+void modificarFecha(int dni, int numIngreso, char archivo[]){
+    FILE*archi=fopen(archivo, "r+b");
+    ingresos ingresito;
+        int pos;
+    if(archi){
+            while(fread(&ingresito, sizeof(ingresos),1,archi)>0){
+                if(ingresito.dniPaciente==dni && ingresito.nroIngreso==numIngreso){
+                    fechaIngreso(ingresito.fechaIngreso);
+                    fechaRetiro(ingresito.fechaRetiro);
+                     pos=ftell(archi)-sizeof(ingresos);
+                    fseek(archi, pos, SEEK_SET);
+                    fwrite(&ingresito, sizeof(ingresos), 1, archi);
+                }
+            }
+            fclose(archi);
+        }else{
+            printf("ERROR AL ABRIR EL ARCHIVO...\n");
+        }
+}
+

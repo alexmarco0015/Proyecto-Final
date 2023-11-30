@@ -147,6 +147,9 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
 nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
+void modificarIngresoMenu(int dni, int ingreso,char archivo[], nodoArbol*arbol);
+void modificarMatricula(int dni, int numIngreso, char archivo[]);
+void modificarFecha(int dni, int numIngreso, char archivo[]);
 
 
 ///prototipados pracXingresos.c:
@@ -176,5 +179,15 @@ void recorrerYmostrarEstructuraCompuestaPosOrder(nodoArbol * arbol);
 void contarPacientes(int *num, nodoArbol*arbol);
 nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista);
 void inOrderSinPracticas(nodoArbol * arbol);
+
+
+
+///Prototipados practicas:
+
+void leer_arch_practicas(practicas arreglo[], int * validos);
+void alta_practica (practicas arreglo[], int* validos,char nombre_practica[]);
+void modificar_nombre_practica(practicas arreglo[], int* validos,char nombre_practica[]);
+void baja_practica(practicas arreglo[], int* validos,char nombre_practica[]);
+void sobreescribir_arch_practicas(practicas arreglo[], int * validos);
 
 #endif  //PROTOTIPADOS_H_INCLUDED

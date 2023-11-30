@@ -3,43 +3,7 @@
 #include <string.h>
 #include "prototipados.h"
 
-///Comentarios:
-//    la estructurta practica debe ser como en el campus por el archivo.bin
-//    Agregar el archivo.bin a la carpeta del tp: "lasPracticas.bin"
-//    en prototipados.h, #endif va luego del codigo
-//    trabaje con un arreglo de los datos del archivo
-//    baja_practica: COMPLETAR CON VALIDACION "solo si no fue incluida en ningún ingreso"
-
-
-///Estructura:
-
-/*
-typedef struct
-{
-     int nroPractica;
-    char nombrePractica[30];
-    int eliminado;
-} Practica;
-
-*/
-
-
-///Prototipados:
-
-void leer_arch_practicas(practicas arreglo[], int * validos);
-void alta_practica (practicas arreglo[], int* validos,char nombre_practica[]);
-void modificar_nombre_practica(practicas arreglo[], int* validos,char nombre_practica[]);
-void baja_practica(practicas arreglo[], int* validos,char nombre_practica[]);
-void sobreescribir_arch_practicas(practicas arreglo[], int * validos);
-
-
 ///Funciones:
-
-/*
-1)Alta_de_practica
-2)Modificacion_de_practica: solo su nombre
-3)Baja_de_practica: solo si no fue incluida en ningún ingreso
-*/
 
 void leer_arch_practicas(practicas arreglo[], int* validos)
 {
