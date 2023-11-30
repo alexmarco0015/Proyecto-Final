@@ -5,9 +5,10 @@
 
 
 ///funciones:
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[])
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes)
 {
     int opcion=1000;
+    int personas=0;
     do{
 
         printf("Bienvenido/a MENU ADMIN\n");
@@ -20,13 +21,12 @@ void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, c
         {
             case 1:
                 system("cls");
-                menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados);
-
+                menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados, arbol, arregloPacientes, validosPacientes);
                 system("cls");
                 break;
             case 2:
                 system("cls");
-                menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos);
+                menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos, arbol);
 
                 system("cls");
                 break;
@@ -218,14 +218,16 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
     }while(opcion!=0);
 }
 
-void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados)
+void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes)
 {
     int dni=0;
     int opcion=1000;
+    int verificacion=-1;
+    int contador=0;
     do{
-
+        contador=0;
         printf("Bienvenido al MENU Administrativo\n");
-        printf("1-Registrar Pacientes\n2-Buscar Paciente y modificar\n3-Chequear Un Empleado\n0-Salir del Menu\n");
+        printf("1-Lista de Pacientes\n2-Registrar Pacientes\n3-Buscar Paciente y modificar\n4-Chequear Un Empleado\n0-Salir del Menu\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -235,17 +237,46 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
         {
             case 1:
                 system("cls");
-                cargaPaciente(archivoPacientes);
+                printf("Mostrando Pacientes:\n");
+                system("pause");
+                inOrderSinPracticas(arbol);
                 system("pause");
                 system("cls");
                 break;
             case 2:
                 system("cls");
-
+                cargaPaciente(archivoPacientes);
                 system("pause");
                 system("cls");
                 break;
             case 3:
+                system("cls");
+                do{
+                    contador++;
+                    if(contador>3)
+                    {
+                        printf("Ha ingresado mal el dni 3 veces seguidas, volviendo..\n");
+                        break;
+                    }
+                    printf("Ingrese el dni del paciente a buscar..\n");
+                    fflush(stdin);
+                    scanf("%d", &dni);
+                    verificacion=existeEnElArbol(arbol, dni);
+                    if(verificacion!=1)
+                    {
+                        system("cls");
+                        printf("Ha seleccionado un dni que no se encuentra.. vuelva a ingresar\n\n");
+                        system("pause");
+                    }
+                }while(verificacion!=1);
+
+                if(contador<4){
+                    menuPaciente(archivoPacientes, dni, arbol);
+                }
+                system("pause");
+                system("cls");
+                break;
+            case 4:
                 system("cls");
                 printf("Ingrese el dni del empleado a buscar..\n");
                 fflush(stdin);
@@ -270,7 +301,7 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
     }while(opcion!=0);
 }
 
-void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[])
+void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol)
 {
     int opcion=-1;
     int dni=-1;

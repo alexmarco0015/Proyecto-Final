@@ -140,6 +140,7 @@ empleados_laboratorio crearCuenta(empleados_laboratorio usuario)
     strcpy(usuario.apeYnombre, nombre);
     system("cls");
     usuario.perfil=crearPerfil(usuario.perfil);
+    usuario.eliminado=0;
     return usuario;
 }
 ///funcion que crea el usuario y si no existía antes de crear el perfil. Si existe no permite crearte un perfil, si no, lo crea e inserta en el archivo
@@ -482,8 +483,9 @@ void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], in
             printf("*");
             }
             printf("\ndni: %d\n", arregloEmpleados[i].dni);
-            printf("ALTA DEL SISTEMA :%d (1:Fuera de servicio | 0:En servicio)", arregloEmpleados[i].eliminado);
+            printf("ALTA DEL SISTEMA :%d (1:Fuera de servicio | 0:En servicio)\n", arregloEmpleados[i].eliminado);
             printf("------------------------------------------\n");
+            break;
         }
     }
     if(i>validosEmpleados)

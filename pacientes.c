@@ -632,7 +632,6 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
                 fseek(archi, pos, SEEK_SET);
                 fwrite(&persona, sizeof(pacientes), 1, archi);
                 break;
-
                 }
             }
             fclose( archi);

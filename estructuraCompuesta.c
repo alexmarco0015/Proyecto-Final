@@ -139,16 +139,82 @@ nodoListaIngresos * recorrerYmostrarListaIngresos(nodoListaIngresos * lista)
     return lista;
 }
 
-void recorrerYmostrarEstructuraCompuesta(nodoArbol * arbol)
+void recorrerYmostrarEstructuraCompuestaInOrder(nodoArbol * arbol)
 {
 
     if(arbol)
     {
-        recorrerYmostrarEstructuraCompuesta(arbol->izq);
-        printf("\n----------------------------\n");
+        recorrerYmostrarEstructuraCompuestaInOrder(arbol->izq);
+        printf("\n=============================\n");
         mostrarNodo(arbol->persona);
         arbol->lista=recorrerYmostrarListaIngresos(arbol->lista);
-        printf("\n--------------------------------\n");
-        recorrerYmostrarEstructuraCompuesta(arbol->der);
+        printf("\n=============================\n");
+        recorrerYmostrarEstructuraCompuestaInOrder(arbol->der);
+    }
+}
+void recorrerYmostrarEstructuraCompuestaPreOrder(nodoArbol * arbol)
+{
+
+    if(arbol)
+    {
+        printf("\n=============================\n");
+        mostrarNodo(arbol->persona);
+        arbol->lista=recorrerYmostrarListaIngresos(arbol->lista);
+        printf("\n=============================\n");
+        recorrerYmostrarEstructuraCompuestaPreOrder(arbol->izq);
+        recorrerYmostrarEstructuraCompuestaPreOrder(arbol->der);
+    }
+}
+
+void recorrerYmostrarEstructuraCompuestaPosOrder(nodoArbol * arbol)
+{
+
+    if(arbol)
+    {
+        recorrerYmostrarEstructuraCompuestaPosOrder(arbol->izq);
+        recorrerYmostrarEstructuraCompuestaPosOrder(arbol->der);
+        printf("\n=============================\n");
+        mostrarNodo(arbol->persona);
+        arbol->lista=recorrerYmostrarListaIngresos(arbol->lista);
+        printf("\n=============================\n");
+    }
+}
+void contarPacientes(int *num, nodoArbol*arbol)
+{
+    if(arbol)
+    {
+        if(arbol->persona.eliminado!=0)
+        {
+            *num=*num+1;
+        }
+        contarPacientes(num, arbol->izq);
+        contarPacientes(num, arbol->der);
+    }
+}
+
+nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista)
+{
+    nodoListaIngresos * aux=lista;
+
+    while(aux)
+    {
+        muestraIngreso(aux->ingreso);
+        aux=aux->siguiente;
+    }
+
+    return lista;
+}
+
+void inOrderSinPracticas(nodoArbol * arbol)
+{
+
+    if(arbol)
+    {
+        inOrderSinPracticas(arbol->izq);
+        printf("\n=============================\n");
+        mostrarNodo(arbol->persona);
+        arbol->lista=recorrerYmostrarsinPracticas(arbol->lista);
+        printf("\n=============================\n");
+        inOrderSinPracticas(arbol->der);
     }
 }

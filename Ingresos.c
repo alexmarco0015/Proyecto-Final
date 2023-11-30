@@ -3,27 +3,6 @@
 #include <string.h>
 #include "prototipados.h"
 
-//typedef struct{
-//    int nroIngreso;
-//    char fechaIngreso[10];
-//    char fechaRetiro[10];
-//    int dniPaciente;
-//    int matriculaProfesional;
-//    int eliminado;//0 para no eliminado o 1 para eliminado
-//
-//}ingresos;
-
-
-//Listado general de ingresos (sin detalle de prácticas), con detalles del paciente y
-//posibilidad de filtrar por “fecha desde” y “fecha hasta”. Es decir que la fecha del ingreso,
-//este incluido en ese rango. Ordenado de manera descendente por fecha de ingreso.
-//o Consulta de 1 ingreso en particular incluyendo las practicas del mismo con sus
-//respectivos nombres y los resultados obtenidos. El ingreso debe poder ser filtrado por
-//nro de ingreso, fecha de ingreso o por dni del paciente.
-
-
-
-//este arreglo es para ver todos los registros, tanto los eliminados como los que no lo fueron.
 int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
 {
     FILE * buffer=fopen(archivo, "rb");

@@ -120,11 +120,11 @@ void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], in
 void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validosEmpleados, int dni);
 
 ///prototipados de librería "Menues":
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[]);
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes);
 void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
-void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados);
-void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[]);
+void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes);
+void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol);
 
 ///prototipados librería ingresoUsuario
 int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[]);
@@ -161,7 +161,7 @@ void muestraPracXingreso(pracXingreso dato);
 void cargaPractica(char archivoPractica[], int ingreso);
 
 
-///prototipados
+///prototipados estructuraCompuesta.c:
 nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso);
 nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, pracXingreso dato);
 nodoListaIngresos * leerArchivoPracticas(char archivoPracticas[], nodoListaIngresos * lista);
@@ -170,6 +170,11 @@ nodoArbol * agregarListaIngresos(nodoArbol * arbol, ingresos dato);
 nodoArbol* leerArchivoIngresos(nodoArbol * arbol, char archivoIngresos[]);
 nodoPractXingreso * recorrerYmostrarListaPrac(nodoPractXingreso * lista);
 nodoListaIngresos * recorrerYmostrarListaIngresos(nodoListaIngresos * lista);
-void recorrerYmostrarEstructuraCompuesta(nodoArbol * arbol);
+void recorrerYmostrarEstructuraCompuestaInOrder(nodoArbol * arbol);
+void recorrerYmostrarEstructuraCompuestaPreOrder(nodoArbol * arbol);
+void recorrerYmostrarEstructuraCompuestaPosOrder(nodoArbol * arbol);
+void contarPacientes(int *num, nodoArbol*arbol);
+nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista);
+void inOrderSinPracticas(nodoArbol * arbol);
 
 #endif  //PROTOTIPADOS_H_INCLUDED

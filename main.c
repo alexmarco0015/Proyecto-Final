@@ -12,8 +12,10 @@ int main()
     char archivoPacientes[]="pacientes.bin";
     char archivoIngresos[]="ingresos.bin";
     empleados_laboratorio arregloEmpleados[100];
-    int validosEmpleados=0;
+    int validosEmpleados=0, validosPacientes=0;
     int opcion=-1;
+    nodoArbol * arbol=inicArbol();
+    pacientes arregloPacientes[100];
 
    do{
         printf("           Laboratorio Central - Hospital de ninios\n");
@@ -39,18 +41,18 @@ int main()
                     case 1://perfil de uso administrativo
                         system("cls");
                         validosEmpleados=plasmarEnArreglo(archivoEmpleados, arregloEmpleados, validosEmpleados);
-                        menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados);
+                        menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados, arbol, arregloPacientes, validosPacientes);
                         system("cls");
                         break;
                     case 2://perfil de uso prof laboratorio
                         system("cls");
-                        menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos);
+                        menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos, arbol);
                         system("cls");
                         break;
                     case 3://admin
                         system("cls");
                         validosEmpleados=plasmarEnArreglo(archivoEmpleados, arregloEmpleados, validosEmpleados);
-                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados, archivoPacientes, archivoPractXingresos, archivoIngresos);
+                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados, archivoPacientes, archivoPractXingresos, archivoIngresos, arbol, arregloPacientes, validosPacientes);
                         system("cls");
                         break;
                     case -1:
