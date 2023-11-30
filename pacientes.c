@@ -323,6 +323,8 @@ void ordenarPacientesPorName(pacientes arreglo[], int tamano) {
 void mostrarArreglo(pacientes arreglo[], int val) {
 
     for (int i = 0; i < val; i++) {
+            if(arreglo[i].eliminado==0){
+
         printf("-----------------------------\n");
         printf("Nombre: %s\n", arreglo[i].apeYnombre);
         printf("Edad: %d\n", arreglo[i].edad);
@@ -330,6 +332,7 @@ void mostrarArreglo(pacientes arreglo[], int val) {
         printf("Direccion: %s\n", arreglo[i].direccion);
         printf("Teléfono: %s\n", arreglo[i].telefono);
         printf("\n");
+            }
     }
 }
 
@@ -366,6 +369,7 @@ nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
 }
 
 void mostrarNodo(pacientes persona){
+        if(persona.eliminado==0){
 
         printf("\n");
         printf("DNI: %i \n",persona.dni);
@@ -373,6 +377,7 @@ void mostrarNodo(pacientes persona){
         printf("EDAD: %i \n",persona.edad);
         printf("DIRECCION: %s \n",persona.direccion);
         printf("TELEFONO: %s \n",persona.telefono);
+        }
 
 }
 int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
@@ -587,24 +592,22 @@ void modificarNombreYApellido(char archivo[], int dni)
 
     if(archi){
             while(fread(&persona, sizeof(pacientes), 1, archi)>0){
-                if(persona.dni==dni){
-                    printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
-                    printf("Pasamos a modificar su nombre...\n");
-                    system("pause");
-                    system("cls");
-                    nombrePaciente(persona.apeYnombre, tamanio);
-                    pos=ftell(archi)-sizeof(pacientes);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&persona, sizeof(pacientes), 1, archi);
+                    if(persona.dni==dni){
+                        printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
+                        printf("Pasamos a modificar su nombre...\n");
+                        system("pause");
+                        system("cls");
+                        nombrePaciente(persona.apeYnombre, tamanio);
+                        pos=ftell(archi)-sizeof(pacientes);
+                        fseek(archi, pos, SEEK_SET);
+                        fwrite(&persona, sizeof(pacientes), 1, archi);
             }
     }
-            fclose(archi);
+            fclose(archi);
+
     }
     else{
-            system("cls");
             printf("ERROR AL ABRIR EL ARCHIVO...");
-            system("pause");
-            system("cls");
     }
 
 
@@ -612,6 +615,7 @@ void modificarNombreYApellido(char archivo[], int dni)
 }
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
 {
+
     FILE*archi=fopen(archivo, "r+b");
 
         pacientes persona;
@@ -632,6 +636,7 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
                 fseek(archi, pos, SEEK_SET);
                 fwrite(&persona, sizeof(pacientes), 1, archi);
                 break;
+
                 }
             }
             fclose( archi);
@@ -644,20 +649,43 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
         system("cls");
     }
 }
-//void bajaPaciente(char archivo[], nodoArbol*arbol){
-//   FILE*archi=fopen(archivo, "r+");
-//   pacientes persona;
-//   if(archi){
-//            while(fread(&persona, ))
-//
-//
-//
-//        fclose(archi);
-//
-//   }else{
-//    printf("ERROR AL ABRIR EL ARCHIVO...\n");
-//   }
-//}
+void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
+   FILE*archi=fopen(archivo, "rb");
+   pacientes persona;
+   nodoArbol*buscado=buscarPorDNI(arbol,dni);
+   if(buscado==NULL){
+                printf("la persona que desea buscar no existe...");
+               }
+   if(archi){
+               if(buscado->lista!=NULL){
+
+                printf("no puede borrar a este paciente porque posee un ingreso!!!!\n");
+                system("pause");
+                system("cls");
+
+               }else if(buscado->lista==NULL){
+
+                        while(fread(&persona,sizeof(archi), 1,archi)>0){
+
+                            if(persona.dni==dni){
+
+                                persona.eliminado=1;
+                                printf("Paciente eliminado... (s/n) \n");
+                                mostrarNodo(persona);
+                                    system("pause");
+                                    system("cls");
+                            }
+                        }
+                    }
+
+        fclose(archi);
+
+   }else{
+    printf("ERROR AL ABRIR EL ARCHIVO...\n");
+        system("pause");
+        system("cls");
+   }
+}
 
 ///funciones de arboles de listas:
 
