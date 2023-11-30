@@ -91,6 +91,13 @@ void mostrarNodo(pacientes persona);
 int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
+void modificarTelefono(char archivo[], int dni);
+void modificarDireccion(char archivo[], int dni);
+void modificarEdad(char archivo[], int dni);
+void modificarNombreYApellido(char archivo[], int dni);
+void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
+void bajaPaciente(char archivo[], nodoArbol*arbol);
+nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
@@ -110,11 +117,11 @@ void modContrasenia(const char archivo[], int dni);
 void modTipoPerfil(const char archivo[], int dni);
 
 ///prototipados de librería "Menues":
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[]);
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[]);
 void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void menuAdministrativo(char archivoPacientes[]);
-void menuLaboratorio();
+void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[]);
 
 ///prototipados librería ingresoUsuario
 int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[]);
@@ -131,7 +138,7 @@ void fechaIngreso(char fecha[]);
 void fechaRetiro(char fecha[]);
 int matriculaSolicitante(int matri);
 ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni);
-void cargaIngreso(char archivoIngresos[], char archivoPacientes[], int dni);
+void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito);
 nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
 nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista);
@@ -148,6 +155,8 @@ nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
 nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
 void muestraPracXingreso(pracXingreso dato);
+void cargaPractica(char archivoPractica[], int ingreso);
+
 
 ///prototipados
 nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso);

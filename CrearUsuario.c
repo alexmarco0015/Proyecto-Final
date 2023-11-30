@@ -58,30 +58,30 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
 }
 
 ///la funcion retorna el dni que inserte el usuario:
-int dniUsuario(int dni)
-{
-    do{
-        printf("Ingrese su dni:\n");
-        fflush(stdin);
-        scanf("%d", &dni);
-
-        if(dni>digitosDNI){
-            system("cls");
-            printf("Ha seleccionado una cantidad de digitos demasiado alta..\n");
-            system("pause");
-            system("cls");
-        }
-        if(dni<1){
-            system("cls");
-            printf("Ha ingresado un dni invalido\n");
-            system("pause");
-            system("cls");
-        }
-
-    }while(dni>digitosDNI || dni<1);
-
-    return dni;
-}
+//int dniUsuario(int dni)
+//{
+//    do{
+//        printf("Ingrese su dni:\n");
+//        fflush(stdin);
+//        scanf("%d", &dni);
+//
+//        if(dni>99999999){
+//            system("cls");
+//            printf("Ha seleccionado una cantidad de digitos demasiado alta..\n");
+//            system("pause");
+//            system("cls");
+//        }
+//        if(dni<){
+//            system("cls");
+//            printf("Ha ingresado un dni invalido\n");
+//            system("pause");
+//            system("cls");
+//        }
+//
+//    }while(dni>digitosDNI || dni<1);
+//
+//    return dni;
+//}
 
 ///recopilamos el nombre y apellido como puntero a traves de la funcion
 void nombreYapellidoUsuario(char nombre[], int tamanio)
@@ -151,7 +151,7 @@ void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int val
 
 
     if(buffer){
-        usuario.dni=dniUsuario(usuario.dni);
+        usuario.dni=dniPaciente(usuario.dni);
         verificacion=verificarEmpleado(usuario.dni, arreglo, validos);
         if(verificacion==0){
             usuario=crearCuenta(usuario);
@@ -207,9 +207,12 @@ void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos)
     int i=0;
 
     while(i<validos){
+        printf("-----------\n");
         printf("%s\n", arreglo[i].usuario);
         printf("%s\n", arreglo[i].contrasenia);
         printf("%d\n", arreglo[i].perfil);
+        printf("%s\n", arreglo[i].apeYnombre);
+        printf("%d\n", arreglo[i].dni);
         i++;
     }
 
@@ -241,7 +244,7 @@ int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int vali
 //modificar si se elimina o no(dar de baja)
 void modDni(const char archivo[], int dni, int dniNuevo)
 {
-    FILE *buffer=fopen(archivo, "a+b");
+    FILE *buffer=fopen(archivo, "r+b");
     empleados_laboratorio persona;
     int pos;
 
@@ -272,7 +275,7 @@ void modDni(const char archivo[], int dni, int dniNuevo)
 
 void modApeYnombre(const char archivo[], int dni)
 {
-    FILE * buffer=fopen(archivo, "a+b");
+    FILE * buffer=fopen(archivo, "r+b");
     empleados_laboratorio persona;
     int pos;
     int tamanio=sizeof(char)*40;
@@ -305,7 +308,7 @@ void modApeYnombre(const char archivo[], int dni)
 
 void modUsername(const char archivo[], int dni)
 {
-    FILE * buffer=fopen(archivo, "a+b");
+    FILE * buffer=fopen(archivo, "r+b");
     empleados_laboratorio persona;
     int pos;
     int tamanio=sizeof(char)*20;
@@ -337,7 +340,7 @@ void modUsername(const char archivo[], int dni)
 
 void modContrasenia(const char archivo[], int dni)
 {
-    FILE * buffer=fopen(archivo, "a+b");
+    FILE * buffer=fopen(archivo, "r+b");
     empleados_laboratorio persona;
     int pos;
     int tamanio=sizeof(char)*20;
@@ -369,7 +372,7 @@ void modContrasenia(const char archivo[], int dni)
 
 void modTipoPerfil(const char archivo[], int dni)
 {
-    FILE * buffer=fopen(archivo, "a+b");
+    FILE * buffer=fopen(archivo, "r+b");
     empleados_laboratorio persona;
     int pos;
 

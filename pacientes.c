@@ -516,9 +516,10 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
             }while(seguro!='n');
 
 }
-void modificarTelefono(char archivo[], int dni){
+void modificarTelefono(char archivo[], int dni)
+{
     ///revisar puede ingresar letras
-FILE*archi=fopen(archivo,"a+b");
+FILE*archi=fopen(archivo,"r+b");
     int tamanio=sizeof(char)*40;
     pacientes persona;
     int pos;
@@ -537,8 +538,9 @@ FILE*archi=fopen(archivo,"a+b");
     }
 
 }
-void modificarDireccion(char archivo[], int dni){
-    FILE*archi=fopen(archivo,"a+b");
+void modificarDireccion(char archivo[], int dni)
+{
+    FILE*archi=fopen(archivo,"r+b");
     int tamanio=sizeof(char)*40;
     pacientes persona;
     int pos;
@@ -556,8 +558,9 @@ void modificarDireccion(char archivo[], int dni){
                     printf("ERROR AL ABRIR EL ARCHIVO...");
     }
 }
-void modificarEdad(char archivo[], int dni){
-    FILE*archi=fopen(archivo,"a+b");
+void modificarEdad(char archivo[], int dni)
+{
+    FILE*archi=fopen(archivo,"r+b");
     pacientes persona;
     int pos;
     if(archi){
@@ -575,8 +578,9 @@ void modificarEdad(char archivo[], int dni){
                     printf("ERROR AL ABRIR EL ARCHIVO...");
     }
 }
-void modificarNombreYApellido(char archivo[], int dni){
-    FILE *archi=fopen(archivo, "a+b");
+void modificarNombreYApellido(char archivo[], int dni)
+{
+    FILE *archi=fopen(archivo, "r+b");
     pacientes persona;
     int pos;
         int tamanio=sizeof(char)*40;
@@ -604,9 +608,10 @@ void modificarNombreYApellido(char archivo[], int dni){
 
 
 }
-void modificarPacienteDni(char archivo[], int dni, int dniNuevo){
+void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
+{
 
-    FILE*archi=fopen(archivo, "a+b");
+    FILE*archi=fopen(archivo, "r+b");
 
         pacientes persona;
         int pos;
@@ -639,8 +644,20 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo){
         system("cls");
     }
 }
-///MODIFICAR PACIENTE BUSCADO-->VER FUNCIONES Y RETORNOS DE BUSCAR POR DNI
-///DAR DE BAJA EN ARBOL Y MODIFICAR SU INT ELIMINADO EN EL ARCHIVO.
+void bajaPaciente(char archivo[], nodoArbol*arbol){
+   FILE*archi=fopen(archivo, "r+");
+   pacientes persona;
+   if(archi){
+            while(fread(&persona, ))
+
+
+
+        fclose(archi);
+
+   }else{
+    printf("ERROR AL ABRIR EL ARCHIVO...\n");
+   }
+}
 
 ///funciones de arboles de listas:
 

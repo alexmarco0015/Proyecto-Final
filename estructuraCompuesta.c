@@ -33,17 +33,21 @@ nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, pracXingreso
 nodoListaIngresos * leerArchivoPracticas(char archivoPracticas[], nodoListaIngresos * lista)
 {
     FILE*buffer=fopen(archivoPracticas, "rb");
-
+    nodoListaIngresos*aux=lista;
     pracXingreso dato;
-
+    ///REVISAR
     if(buffer)
     {
         while(fread(&dato, sizeof(pracXingreso), 1, buffer)>0)
         {
-            if(lista->ingreso.nroIngreso==dato.nroIngreso)
-            {
-                lista=agregarListaPracticas(lista, dato);
-            }
+            while(aux){
+                if(aux->ingreso.nroIngreso==dato.nroIngreso)
+                {
+                    aux=agregarListaPracticas(lista, dato);
+                }
+                aux=aux->siguiente;
+        }
+        aux=lista;
         }
 
         fclose(buffer);
@@ -54,6 +58,7 @@ nodoListaIngresos * leerArchivoPracticas(char archivoPracticas[], nodoListaIngre
         system("pause");
         system("cls");
     }
+    lista=aux;
 
     return lista;
 }

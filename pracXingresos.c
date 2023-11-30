@@ -65,6 +65,38 @@ pracXingreso crearPractica(char archivoPracticas[], pracXingreso pXi, int numero
     return pXi;
 }
 
+void cargaPractica(char archivoPractica[], int ingreso)
+{
+    FILE*buffer=fopen(archivoPractica, "ab");
+    char continuar='s';
+    pracXingreso practiquita;
+
+    if(buffer)
+    {
+        while(continuar=='s')
+        {
+            practiquita=crearPractica(archivoPractica, practiquita,ingreso);
+
+            fwrite(&practiquita, sizeof(pracXingreso), 1, buffer);
+
+            printf("Desea continuar cargando practicas? s/n\n");
+            fflush(stdin);
+            scanf("%c", &continuar);
+        }
+
+
+        fclose(buffer);
+    }
+    else{
+        system("cls");
+        printf("Error al abrir el archivo..\n\n");
+        system("pause");
+        system("cls");
+    }
+
+
+}
+
 nodoPractXingreso * inicListapracXingresos()
 {
     return NULL;

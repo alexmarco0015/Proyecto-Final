@@ -146,25 +146,14 @@ ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni
     return ingresoPaciente;
 }
 
-void cargaIngreso(char archivoIngresos[], char archivoPacientes[], int dni)
+void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito)
 {
     FILE *buffer=fopen(archivoIngresos, "ab");
-    ingresos ingresoPaciente;
-    char cont='s';
 
     if(buffer){
 
-        while(cont=='s')
-        {
-            ingresoPaciente=crearIngresos(ingresoPaciente, archivoIngresos, dni);
+        fwrite(&ingresito, sizeof(ingresos), 1, buffer);
 
-            fwrite(&ingresoPaciente, sizeof(ingresos), 1, buffer);
-
-            printf("¿Desea agregar otro ingreso? (s/n): ");
-            fflush(stdin);
-            scanf(" %c", &cont);
-            system("cls");
-        }
         fclose(buffer);
     }
     else{

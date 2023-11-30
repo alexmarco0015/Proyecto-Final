@@ -5,7 +5,7 @@
 
 
 ///funciones:
-void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[])
+void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[])
 {
     int opcion=1000;
     do{
@@ -26,7 +26,7 @@ void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, c
                 break;
             case 2:
                 system("cls");
-                menuLaboratorio();
+                menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos);
 
                 system("cls");
                 break;
@@ -148,7 +148,7 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
                 if(seguro=='s'){
                     do{
                         printf("Ingrese el dniNuevo:\n");
-                        dniNuevo=dniUsuario(dniNuevo);
+                        dniNuevo=dniPaciente(dniNuevo);
                         verificado=verificarEmpleado(dniNuevo, arreglo, validosEmpleados);
                         if(verificado!=0){
                             printf("Ha ingresado un dni que ya existe en el sistema, NO SE PUEDEN REPETIR DNI.\n");
@@ -254,9 +254,12 @@ void menuAdministrativo(char archivoPacientes[])
     }while(opcion!=0);
 }
 
-void menuLaboratorio()
+void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[])
 {
-    int opcion;
+    int opcion=-1;
+    int dni=-1;
+    int flag=-1;
+    ingresos persona;
     do{
         printf("  Menu Laboratorio\n");
         printf("1-Cargar Resultados\n2-Buscar pacientes\n3-\n0-Salir\n");
@@ -269,6 +272,24 @@ void menuLaboratorio()
         {
             case 1:
                 system("cls");
+                do{
+                    printf("Ingrese el dni del paciente:\n");
+                    fflush(stdin);
+                    scanf("%d", &dni);
+                    flag=buscaPaciente(archivoPaciente, dni);
+                    if(flag==0){
+                        system("cls");
+                        printf("Ingreso un dni incorrecto, vuelva a ingresar..\n\n");
+                        system("pause");
+                        system("cls");
+                    }
+                }while(flag!=1);
+
+                persona=crearIngresos(persona, archivoIngresos, dni);
+                cargaIngreso(archivoIngresos, archivoPaciente, persona);
+
+                cargaPractica(archivoPractXingresos, persona.nroIngreso);
+
                 system("pause");
                 system("cls");
                 break;

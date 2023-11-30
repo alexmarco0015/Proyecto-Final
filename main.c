@@ -4,12 +4,19 @@
 
 const char archivoEmpleados[]="empleados.bin";
 
+
+
 int main()
 {
+    char archivoPractXingresos[]="PracXingresos.bin";
     char archivoPacientes[]="pacientes.bin";
+    char archivoIngresos[]="ingresos.bin";
     empleados_laboratorio arregloEmpleados[100];
     int validosEmpleados=0;
     int opcion=1000;
+
+
+
 //    cargaPaciente("miarchivo2.bin");
 //    nodoArbol*arbol = inicArbol();
 //    arbol=pasarArchiToArbol(arbol, "miarchivo2.bin");
@@ -45,12 +52,12 @@ int main()
                         break;
                     case 2://perfil de uso prof laboratorio
                         system("cls");
-                        menuLaboratorio();
+                        menuLaboratorio(archivoPacientes, archivoPractXingresos, archivoIngresos);
                         system("cls");
                         break;
                     case 3://administrativo
                         system("cls");
-                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados, archivoPacientes);
+                        menuADMIN(arregloEmpleados, validosEmpleados, archivoEmpleados, archivoPacientes, archivoPractXingresos, archivoIngresos);
                         system("cls");
                         break;
                     case -1:
@@ -65,9 +72,7 @@ int main()
                 system("pause");
                 system("cls");
                 break;
-            case 4:
-                mostrarArregloEmpleados(arregloEmpleados, validosEmpleados);
-                break;
+
             default:
                 system("cls");
                 printf("Ha seleccionado un caracter o un numero incorrecto, por favor, vuelva a elegir correctamente..\n");
