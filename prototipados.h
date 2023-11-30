@@ -96,7 +96,7 @@ void modificarDireccion(char archivo[], int dni);
 void modificarEdad(char archivo[], int dni);
 void modificarNombreYApellido(char archivo[], int dni);
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
-void bajaPaciente(char archivo[], nodoArbol*arbol);
+void bajaPaciente(char archivo[], nodoArbol*arbol, int dni);
 nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
 
 ///prototipados de librería "crearUsuario":
