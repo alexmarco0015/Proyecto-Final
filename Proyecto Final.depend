@@ -8,7 +8,7 @@
 	<stdlib.h>
 	"prototipados.h"
 
-1701305034 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
+1701344960 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
 
 1701305215 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
 	<stdio.h>
@@ -138,7 +138,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701289984 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
+1701344998 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

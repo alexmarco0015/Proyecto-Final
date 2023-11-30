@@ -6,7 +6,6 @@ typedef struct{
     int nroIngreso;
     int nroPractica;
     char resultado[40];
-    //faltan punteros;
 
 }pracXingreso;
 
@@ -156,6 +155,10 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
 void muestraPracXingreso(pracXingreso dato);
 void cargaPractica(char archivoPractica[], int ingreso);
+void menuModPracticasxIngreso(char archivo[], int nroIngreso);
+void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso);
+int pedirNum();
+void modificarResultadoPractica(char archivo[], int nroIngreso);
 
 
 ///prototipados
