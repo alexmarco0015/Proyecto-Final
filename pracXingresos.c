@@ -2,13 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
-/***
-typedef struct{
-    int nroIngreso;
-    int nroPractica;
-    char resultado[40];
-}pracXingreso;
-***/
 
 void crearResultado(char resultado[])
 {
