@@ -42,7 +42,7 @@ int main()
                     case 1://perfil de uso administrativo
                         system("cls");
                         validosEmpleados=plasmarEnArreglo(archivoEmpleados, arregloEmpleados, validosEmpleados);
-                        menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados, arbol, arregloPacientes, validosPacientes);
+                        menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados, arbol, arregloPacientes, validosPacientes,archivoIngresos);
                         system("cls");
                         break;
                     case 2://perfil de uso prof laboratorio

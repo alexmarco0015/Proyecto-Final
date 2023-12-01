@@ -95,6 +95,7 @@ void fechaRetiro(char fecha[])
 }
 ///preguntamos cual es la matricula del solicitante, lo ingresamos de forma manual porq no sabiamos de que otra forma podría ser
 int matriculaSolicitante(int matri)
+
 {
     do{
         printf("ingrese la matricula del solicitante..\n");
@@ -180,6 +181,7 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngr
         printf("\notromas");
         nuevoNodo->siguiente=lista;
         lista=nuevoNodo;
+
     }
     return lista;
 }
@@ -214,6 +216,7 @@ void muestraIngreso(ingresos dato)
     printf("Fecha de Retiro: %s\n", dato.fechaRetiro);
     printf("Matricula del profesional: %d\n", dato.matriculaProfesional);
     printf("Numero de Ingreso: %d\n", dato.nroIngreso);
+    printf("DNI paciente: %d\n", dato.dniPaciente);
     printf("///////////////////////////////\n");
 }
 
@@ -237,6 +240,7 @@ void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol){
                 scanf("%c", &seguro);
                 if(seguro=='s'){
                     modificarMatricula(ingreso,archivo);
+
                 }
                 system("pause");
                 system("cls");
@@ -282,6 +286,7 @@ void modificarMatricula(int numIngreso, char archivo[]){
                      pos=ftell(archi)-sizeof(ingresos);
                     fseek(archi, pos, SEEK_SET);
                     fwrite(&ingresito, sizeof(ingresos), 1, archi);
+                    break;
                 }
             }
             fclose(archi);

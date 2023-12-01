@@ -125,7 +125,7 @@ void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validos
 void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes);
 void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
-void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes);
+void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes, char archivoIngresos[]);
 void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol);
 
 ///prototipados librería ingresoUsuario
@@ -152,7 +152,8 @@ void muestraIngreso(ingresos dato);
 void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);
 void modificarMatricula(int numIngreso, char archivo[]);
 void modificarFecha(int numIngreso, char archivo[]);
-
+void mostrarArchivoIngresos(char archivoIngresos[]);
+void mostrarIngresosPorPaciente(nodoArbol*arbol, char archivoIngresos[]);
 
 ///prototipados pracXingresos.c:
 void crearResultado(char resultado[]);
@@ -185,6 +186,9 @@ void recorrerYmostrarEstructuraCompuestaPosOrder(nodoArbol * arbol);
 void contarPacientes(int *num, nodoArbol*arbol);
 nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista);
 void inOrderSinPracticas(nodoArbol * arbol);
+void mostrarArchivoPracticas(char archivopracticas[]);
+void mostrarListaIngresos(nodoListaIngresos*lista);
+void mostrarArchivoIngresosConPracticas(char archivoIngresos[], char archivopracticas[]);
 
 
 

@@ -362,19 +362,19 @@ int existeEnElArbol(nodoArbol*raiz, int dni){
 }
 ///busca por el arbol a través del dni, si existe, devuelve el nodo del arbol donde se encuentre el dni
 nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
-
-    if (raiz == NULL ) {
-        return NULL;
+ if (raiz == NULL) {
+        return NULL; // Árbol vacío o final de la rama
     }
-    if(raiz->persona.dni == dni){
+
+    if (dni == raiz->persona.dni) {
         return raiz;
     }
 
     if (dni < raiz->persona.dni) {
         return buscarPorDNI(raiz->izq, dni);
+    } else {
+        return buscarPorDNI(raiz->der, dni);
     }
-
-    return buscarPorDNI(raiz->der, dni);
 }
 ///con esta funcion podemos mostrar un nodo del arbol o de un arreglo o lista
 void mostrarNodo(pacientes persona){

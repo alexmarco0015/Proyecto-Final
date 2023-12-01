@@ -21,7 +21,7 @@ void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, c
         {
             case 1:
                 system("cls");
-                menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados, arbol, arregloPacientes, validosPacientes);
+                menuAdministrativo(archivoPacientes, arregloEmpleados, validosEmpleados, arbol, arregloPacientes, validosPacientes, archivoIngresos);
                 system("cls");
                 break;
             case 2:
@@ -218,7 +218,7 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
     }while(opcion!=0);
 }
 
-void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes)
+void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes,char archivoIngresos[])
 {
     int dni=0;
     int opcion=1000;
@@ -227,7 +227,7 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
     do{
         contador=0;
         printf("Bienvenido al MENU Administrativo\n");
-        printf("1-Lista de Pacientes\n2-Registrar Pacientes\n3-Buscar Paciente y modificar\n4-Chequear Un Empleado\n0-Salir del Menu\n");
+        printf("1-Lista de Pacientes\n2-Registrar Pacientes\n3-Buscar Paciente y modificar\n4-Chequear Un Empleado\n5-Ver lista de ingresos general \n0-Salir del Menu\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -238,13 +238,16 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
             case 1:
                 system("cls");
                 printf("Mostrando Pacientes:\n");
+
                 recorrerYmostrarEstructuraCompuestaInOrder(arbol);
+
                 system("pause");
                 system("cls");
                 break;
             case 2:
                 system("cls");
                 cargaPaciente(archivoPacientes);
+
                 system("pause");
                 system("cls");
                 break;
@@ -320,6 +323,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
         {
             case 1:
                 system("cls");
+
                 do{
                     if(contador==3)
                     {
@@ -346,7 +350,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
 
                     cargaPractica(archivoPractXingresos, persona.nroIngreso);
                 }
-
+             mostrarArchivoIngresosConPracticas(archivoIngresos,archivoPractXingresos);
                 system("pause");
                 system("cls");
                 break;
