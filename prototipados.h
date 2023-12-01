@@ -6,6 +6,7 @@ typedef struct{
     int nroIngreso;
     int nroPractica;
     char resultado[100];
+    int eliminado;
     //faltan punteros;
 
 }pracXingreso;
@@ -96,8 +97,9 @@ void modificarDireccion(char archivo[], int dni);
 void modificarEdad(char archivo[], int dni);
 void modificarNombreYApellido(char archivo[], int dni);
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
-void bajaPaciente(char archivo[], nodoArbol*arbol);
+void bajaPaciente(char archivo[], nodoArbol*arbol, int dni);
 nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
+void ordenarEmpleadosPorName(empleados_laboratorio arreglo[], int tamano);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
@@ -133,8 +135,8 @@ void ingresoUsuario(char usuario[], char contrasenia[]);
 int analizasiEsAdmin(char usuario[], char contrasenia[], int perfil);
 int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archivo[]);
 
-
 ///prototipados ingresos.c:
+void eliminarIngreso(int numIngreso, char archivo[]);
 int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos);
 int ultimoIngreso(char archivoIngresos[], int dni);
 void fechaIngreso(char fecha[]);
@@ -147,9 +149,9 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
 nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
-void modificarIngresoMenu(int dni, int ingreso,char archivo[], nodoArbol*arbol);
-void modificarMatricula(int dni, int numIngreso, char archivo[]);
-void modificarFecha(int dni, int numIngreso, char archivo[]);
+void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);
+void modificarMatricula(int numIngreso, char archivo[]);
+void modificarFecha(int numIngreso, char archivo[]);
 
 
 ///prototipados pracXingresos.c:
@@ -162,6 +164,10 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
 void muestraPracXingreso(pracXingreso dato);
 void cargaPractica(char archivoPractica[], int ingreso);
+void menuModPracticasxIngreso(char archivo[],int nroIngreso);
+void modificarResultadoPractica(char archivo[], int nroIngreso);
+int pedirNum();
+void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso);
 
 
 ///prototipados estructuraCompuesta.c:

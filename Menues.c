@@ -238,8 +238,7 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
             case 1:
                 system("cls");
                 printf("Mostrando Pacientes:\n");
-                system("pause");
-                inOrderSinPracticas(arbol);
+                recorrerYmostrarEstructuraCompuestaInOrder(arbol);
                 system("pause");
                 system("cls");
                 break;
@@ -307,10 +306,11 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
     int dni=-1;
     int flag=-1;
     int contador=0;
+    int ingresito;
     ingresos persona;
     do{
         printf("  Menu Laboratorio\n");
-        printf("1-Cargar Resultados\n2-Buscar pacientes\n3-\n0-Salir\n");
+        printf("1-Cargar Resultados\n2-Modificar un ingreso\n3-Modificar una PracticaxIngreso\n4-Eliminar un ingreso\n0-Salir\n");
 
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
@@ -352,11 +352,26 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                 break;
             case 2:
                 system("cls");
+                printf("Escriba a continuacion el ingreso que usted desee modificar..\n");
+                scanf("%d", &ingresito);
+                modificarIngresoMenu(ingresito, archivoIngresos, arbol);
                 system("pause");
                 system("cls");
                 break;
             case 3:
                 system("cls");
+                printf("Escriba a continuacion el ingreso que usted desee modificar..\n");
+                scanf("%d", &ingresito);
+                menuModPracticasxIngreso(archivoPractXingresos, ingresito);
+                system("pause");
+                system("cls");
+                break;
+            case 4:
+                system("cls");
+                printf("Inserte el ingreso a ser eliminado..\n");
+                fflush(stdin);
+                scanf("%d", &ingresito);
+                eliminarIngreso(ingresito, archivoIngresos);
                 system("pause");
                 system("cls");
                 break;

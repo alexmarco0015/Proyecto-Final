@@ -23,6 +23,7 @@ int main()
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
         scanf("%d", &opcion);
+        arbol=pasarArchiToArbol(arbol, archivoPacientes);
 
         switch(opcion)
         {

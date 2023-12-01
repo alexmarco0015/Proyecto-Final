@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
-
+///el usuario inserta el tipo de resultado que ha generado dicha practica
 void crearResultado(char resultado[])
 {
     char seguro;
@@ -22,7 +22,7 @@ void crearResultado(char resultado[])
         }
     }while(seguro!='s' && seguro!='S');
 }
-
+///nro de practica que se genera automaticamente.
 int nroPractica(char archivoPracticas[], int numeroIngreso)
 {
     int i=0;
@@ -48,7 +48,7 @@ int nroPractica(char archivoPracticas[], int numeroIngreso)
 
     return i+1;
 }
-
+///crea la practica con ayuda de las anteriores funciones.
 pracXingreso crearPractica(char archivoPracticas[], pracXingreso pXi, int numeroIngreso)
 {
     pXi.nroIngreso=numeroIngreso;
@@ -57,7 +57,7 @@ pracXingreso crearPractica(char archivoPracticas[], pracXingreso pXi, int numero
 
     return pXi;
 }
-
+///carga la practicaxIngreso al archivo.
 void cargaPractica(char archivoPractica[], int ingreso)
 {
     FILE*buffer=fopen(archivoPractica, "ab");
@@ -85,12 +85,12 @@ void cargaPractica(char archivoPractica[], int ingreso)
         system("cls");
     }
 }
-
+///inicializacion de un nodo de tipo lista
 nodoPractXingreso * inicListapracXingresos()
 {
     return NULL;
 }
-
+///creacion de un nodo de tipo lista
 nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso){
 
     nodoPractXingreso*nuevo=(nodoPractXingreso*)malloc(sizeof(nodoPractXingreso));
@@ -103,7 +103,7 @@ nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso){
 
     return nuevo;
 }
-
+///un agregar al principio de tipo nodolista de toda la vida
 nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista)
 {
 
@@ -118,7 +118,7 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
     }
     return lista;
 }
-
+///pasamos el archivo de pracXingresos a la lista de practicasXingresos
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso)
 {
     pracXingreso practica;
@@ -142,7 +142,7 @@ nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, cha
     }
     return lista;
 }
-
+///mostramos una pracXingreso, sirve para nodos, registros y demás
 void muestraPracXingreso(pracXingreso dato)
 {
     printf("\n******************\n");
@@ -150,6 +150,7 @@ void muestraPracXingreso(pracXingreso dato)
     printf("Resultado: \n%s\n", dato.resultado);
     printf("*******************\n");
 }
+///menú para modificaciones del archivo de pracXingresos.
 void menuModPracticasxIngreso(char archivo[],int nroIngreso){
   int opcion=1000;
     char seguro='n';
@@ -225,6 +226,7 @@ void modificarResultadoPractica(char archivo[], int nroIngreso){
 
 
 }
+///pedimos el numero de la practica en cuestion, para poder acceder a ella más tarde
 int pedirNum(){
     int num;
     printf("por  favor, ingrese el numero de la practica\n");
@@ -235,6 +237,7 @@ int pedirNum(){
 
     return num;
 }
+
 void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso){
         FILE*archi=fopen(archivo, "r+b");
         int pos;
@@ -259,4 +262,30 @@ void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso){
             system("cls");
         }
 }
-///FALTA BAJA DE PRACTICA POR INGRESOS, NO TIENE INT ELIMINADO.
+///baja de una parctXingreso a través de los nodos.
+nodoPractXingreso * bajaPracticaxIngreso(int nroPractica, nodoPractXingreso * lista){
+ nodoPractXingreso* seg;
+   nodoPractXingreso * ante;
+
+   if((lista != NULL) && (lista->ingreso.nroPractica==nroPractica )) {
+
+      nodoPractXingreso * aux = lista;
+      lista = lista->siguiente;
+      free(aux);
+   }else {
+      seg = lista;
+      while((seg != NULL) && (seg->ingreso.nroPractica!=nroPractica )) {
+         ante = seg;
+         seg = seg->siguiente;
+      }
+
+      if(seg!=NULL) {
+         ante->siguiente = seg->siguiente;
+
+         free(seg);
+
+      }
+   }
+   return lista;
+
+}

@@ -79,10 +79,13 @@ void recorrerArbolYagregarPracticasxIngreso(nodoArbol * arbol, char archivoPract
 nodoArbol * agregarListaIngresos(nodoArbol * arbol, ingresos dato)
 {
     nodoArbol * aux=buscarPorDNI(arbol, dato.dniPaciente);
-    nodoListaIngresos * nuevoNodo=inicListaIngresos();
-    nuevoNodo=crearNodoListaIngresos(dato);
 
-    aux->lista=agregarPrincipio(nuevoNodo, aux->lista);
+    if(aux!=NULL)
+    {
+        nodoListaIngresos * nuevoNodo=inicListaIngresos();
+        nuevoNodo=crearNodoListaIngresos(dato);
+        arbol->lista=agregarPrincipio(nuevoNodo, aux->lista);
+    }
 
     return arbol;
 }
@@ -196,9 +199,11 @@ nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista)
 {
     nodoListaIngresos * aux=lista;
 
-    while(aux)
+    while(aux!=NULL)
     {
+        printf("----------------\n");
         muestraIngreso(aux->ingreso);
+        printf("------------------\n");
         aux=aux->siguiente;
     }
 
@@ -211,10 +216,14 @@ void inOrderSinPracticas(nodoArbol * arbol)
     if(arbol)
     {
         inOrderSinPracticas(arbol->izq);
-        printf("\n=============================\n");
-        mostrarNodo(arbol->persona);
-        arbol->lista=recorrerYmostrarsinPracticas(arbol->lista);
-        printf("\n=============================\n");
+        if(arbol->persona.eliminado==0){
+            printf("\n=============================\n");
+            mostrarNodo(arbol->persona);
+            if (arbol->lista != NULL) {
+                arbol->lista = recorrerYmostrarsinPracticas(arbol->lista);
+            }
+            printf("\n=============================\n");
+        }
         inOrderSinPracticas(arbol->der);
     }
 }

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "prototipados.h"
 
+///valida la edad del paciente, devuelve 1 si es valido, 0 si es invalido
 int validarEdad(int edad)
 {
     int flag=0;
@@ -12,6 +13,7 @@ int validarEdad(int edad)
     }
     return flag;
 }
+///valida el dni de un paciente, devuelve 0 si es valido, 1 si es invalido
 int validarDni(int dniBuscado)
 {
     int contador = 0;
@@ -32,7 +34,7 @@ int validarDni(int dniBuscado)
         return 1;  // DNI inválido
     }
 }
-
+///busca un paciente por el archivo, a través del dni, si este se encuentra, devuelve 1, sino 0
 int buscaPaciente(char archivo[], int dniBuscado)
 {
 
@@ -44,14 +46,16 @@ int buscaPaciente(char archivo[], int dniBuscado)
 
     if(archi)
     {
-        while(fread(&persona, sizeof(pacientes), 1, archi)&& flag!=1)
+        while(fread(&persona, sizeof(pacientes), 1, archi)>0 && flag!=1)
         {
             if(persona.dni==dniBuscado)
             {
                 flag=1;
+
             }
-            fclose(archi);
+
         }
+            fclose(archi);
     }
     else
     {
@@ -59,7 +63,7 @@ int buscaPaciente(char archivo[], int dniBuscado)
     }
     return flag;
 }
-
+///con este hacemos un scanf del dni del paciente. Si el dni no es valido, le vuelve a insistir
 int dniPaciente(int dni)
 {
     int flag=0;
@@ -88,7 +92,7 @@ int dniPaciente(int dni)
             }
             return dni;
 }
-
+///escaneamos el nombre del paciente, para evitar comprobaciones complicadas, preguntamos si está seguro de insertar x nombre
 void nombrePaciente(char nombre[40], int tamanio)
 {
     char seguro;
@@ -108,7 +112,7 @@ void nombrePaciente(char nombre[40], int tamanio)
             }
         }while(seguro!='s' && seguro!='S');
 }
-
+///preguntamos la edad del paciente, si se excede de la edad de "niño" le decimos que es un error..
 int edadPaciente(int edad)
 {
     do{
@@ -126,7 +130,7 @@ int edadPaciente(int edad)
 
     return edad;
 }
-
+///le preguntamos la direccion del paciente, para evitar comprobaciones complejas, le preguntamos si está seguro, confiamos en el usuario
 void direccionPaciente(char direccion[30], int tamanio)
 {
         char seguro;
@@ -146,10 +150,10 @@ void direccionPaciente(char direccion[30], int tamanio)
             }
         }while(seguro!='s' && seguro!='S');
 }
-
+///preguntamos su numero telefonico, confiamos en que el usuario solo ingrese numeros y no letras.
 void telPaciente(char celular[15], int tamanio)
 {
-    ///falta validar que sean solo numeros lo que el usuario ingrese, de momento puede ingresar hasta letras...
+
     char seguro;
     do{
         printf("ingrese su numero de telefono/celular: \n");
@@ -167,7 +171,7 @@ void telPaciente(char celular[15], int tamanio)
         }
     }while(seguro!='s' && seguro!='S');
 }
-
+///funcion que acompañada de todas las anteriores, creamos un paciente para luego insertarlo en el archivo
 pacientes crearPaciente(pacientes paciente)
 {
     int tamaniocel=sizeof(char)*15;
@@ -188,11 +192,9 @@ pacientes crearPaciente(pacientes paciente)
     telPaciente(cel, tamaniocel);
     strcpy(paciente.telefono, cel);
 
-    paciente.eliminado=0; ///es por defecto 0, nunca fue eliminado.
-
     return paciente;
 }
-
+///carga una persona en el archivo, si el dni ya existia, le dice q es imposible registrar a ese usuario..
 void cargaPaciente(char archivo[])
 {
     FILE *archi=fopen(archivo, "ab");
@@ -214,6 +216,7 @@ void cargaPaciente(char archivo[])
                 break;
             }
             persona=crearPaciente(persona);
+            persona.eliminado=0;
 
             fwrite(&persona, sizeof(pacientes), 1, archi);
 
@@ -232,11 +235,12 @@ void cargaPaciente(char archivo[])
     }
     fclose(archi);
 }
+///inicializamos un arbol
 nodoArbol*inicArbol(){
 
     return NULL;
 }
-
+///creamos un nodo de tipo arbol, con ayuda de los registros PACIENTE
 nodoArbol*crearNodo(pacientes registro){
 
     nodoArbol *nuevo=(nodoArbol*)malloc(sizeof(nodoArbol));
@@ -246,6 +250,8 @@ nodoArbol*crearNodo(pacientes registro){
     nuevo->persona.edad=registro.edad;
     strcpy(nuevo->persona.direccion, registro.direccion);
     strcpy(nuevo->persona.telefono, registro.telefono);
+    nuevo->persona.eliminado=registro.eliminado;
+    nuevo->lista=inicListaIngresos();
 
 
     nuevo->izq=NULL;
@@ -254,6 +260,7 @@ nodoArbol*crearNodo(pacientes registro){
     return nuevo;
 
 }
+///insertamos el nodo previamente creado en el arbol
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro){
 
     if(arbolPaciente==NULL){
@@ -269,8 +276,7 @@ nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro){
 
 return arbolPaciente;
 }
-
-
+///leemos el archivo y este lo pasa al arbol, inserta dato a dato.
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
 
     FILE *archi=fopen(archivo, "rb");
@@ -291,6 +297,7 @@ nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
 
     return arbol;
 }
+///funcion que permite mostrar el arbol de pacientes.
 void mostrarArbol(nodoArbol*arbol){
 
     if(arbol){
@@ -320,6 +327,7 @@ void ordenarPacientesPorName(pacientes arreglo[], int tamano) {
         }
     }
 }
+///funcion que muestra el arreglo de tipo pacientes.
 void mostrarArreglo(pacientes arreglo[], int val) {
 
     for (int i = 0; i < val; i++) {
@@ -335,7 +343,7 @@ void mostrarArreglo(pacientes arreglo[], int val) {
             }
     }
 }
-
+///corrobora si un nodo existe en el arbol a través del DNI, si existe devuelve 1, sino 0
 int existeEnElArbol(nodoArbol*raiz, int dni){
 
     if (raiz == NULL) {
@@ -352,6 +360,7 @@ int existeEnElArbol(nodoArbol*raiz, int dni){
 
     return existeEnElArbol(raiz->der, dni);
 }
+///busca por el arbol a través del dni, si existe, devuelve el nodo del arbol donde se encuentre el dni
 nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
 
     if (raiz == NULL ) {
@@ -367,9 +376,8 @@ nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
 
     return buscarPorDNI(raiz->der, dni);
 }
-
+///con esta funcion podemos mostrar un nodo del arbol o de un arreglo o lista
 void mostrarNodo(pacientes persona){
-        if(persona.eliminado==0){
 
         printf("\n");
         printf("DNI: %i \n",persona.dni);
@@ -377,9 +385,10 @@ void mostrarNodo(pacientes persona){
         printf("EDAD: %i \n",persona.edad);
         printf("DIRECCION: %s \n",persona.direccion);
         printf("TELEFONO: %s \n",persona.telefono);
-        }
+        printf("eliminado: %d\n",persona.eliminado);
 
 }
+///pasamos el archivo de pacientes a un arreglo de pacientes
 int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
 
     FILE*archi=fopen(archivo, "rb");
@@ -402,6 +411,7 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
     }
         return i;
 }
+///menu de modificaciones pacientes..
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
     ///PEDIR DNI CUANDO SE LLAME A ESTE MENU
     int opcion=1000;
@@ -521,6 +531,7 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
             }while(seguro!='n');
 
 }
+///funcion que a través del dni del paciente, se le modifica su telefono celular
 void modificarTelefono(char archivo[], int dni)
 {
     ///revisar puede ingresar letras
@@ -543,6 +554,7 @@ FILE*archi=fopen(archivo,"r+b");
     }
 
 }
+///Funcion que a través del dni del paciente se modifica la direccion del paciente.
 void modificarDireccion(char archivo[], int dni)
 {
     FILE*archi=fopen(archivo,"r+b");
@@ -563,6 +575,7 @@ void modificarDireccion(char archivo[], int dni)
                     printf("ERROR AL ABRIR EL ARCHIVO...");
     }
 }
+///funcion que a través del dni del paciente se modifica en el archivo la edad del paciente.
 void modificarEdad(char archivo[], int dni)
 {
     FILE*archi=fopen(archivo,"r+b");
@@ -583,6 +596,7 @@ void modificarEdad(char archivo[], int dni)
                     printf("ERROR AL ABRIR EL ARCHIVO...");
     }
 }
+///modifica en el archivo el nombre y apellido del paciente con ayuda del dni
 void modificarNombreYApellido(char archivo[], int dni)
 {
     FILE *archi=fopen(archivo, "r+b");
@@ -613,6 +627,8 @@ void modificarNombreYApellido(char archivo[], int dni)
 
 
 }
+///con esta funcion modificaremos el dni del paciente en cuestion, le pasamos 2 dni, el que usamos para encontrarlo y el
+///nuevo que será el que lo cambie
 void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
 {
 
@@ -649,6 +665,7 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
         system("cls");
     }
 }
+
 void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
    FILE*archi=fopen(archivo, "rb");
    pacientes persona;

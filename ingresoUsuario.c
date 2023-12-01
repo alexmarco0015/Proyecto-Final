@@ -3,7 +3,7 @@
 #include <string.h>
 #include "prototipados.h"
 
-///funciones:
+///cargamos el arreglo de empleados del laboratorio
 int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[])
 {
     FILE * buffer=fopen(archivo, "rb");
@@ -27,7 +27,7 @@ int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[])
 
     return i;
 }
-
+///analiza si un perfil es 1 o 2, este es para el menu principal.
 int analizaPerfil(char usuario[], char contrasenia[], empleados_laboratorio arreglo[], int validos)
 {
     int perfil=-1, i=0;
@@ -41,7 +41,7 @@ int analizaPerfil(char usuario[], char contrasenia[], empleados_laboratorio arre
     }
     return perfil;
 }
-
+///pregunta usuario y contraseña, para verificar el tipo de perfil que el usuario tiene.
 void ingresoUsuario(char usuario[], char contrasenia[])
 {
     printf("ingrese su nombre de usuario: \n");
@@ -52,7 +52,7 @@ void ingresoUsuario(char usuario[], char contrasenia[])
     fflush(stdin);
     gets(contrasenia);
 }
-
+///esta funcion en particular, verifica si el administrador ha puesto bien sus datos, para acceder a un menu "especial"
 int analizasiEsAdmin(char usuario[], char contrasenia[], int perfil)
 {
     char admin[]="administrador";
@@ -65,7 +65,7 @@ int analizasiEsAdmin(char usuario[], char contrasenia[], int perfil)
     }
     return perfil;
 }
-
+///funcion que con ayuda de las anteriores, verificamos que tipo de perfil es el usuario y contraseña.
 int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archivo[])
 {
     int perfil;

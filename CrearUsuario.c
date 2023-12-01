@@ -460,6 +460,7 @@ void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validos
             printf("------------------------------------------\n");
             break;
         }
+        i++;
     }
     if(i>validosEmpleados)
     {
@@ -487,9 +488,27 @@ void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], in
             printf("------------------------------------------\n");
             break;
         }
+        i++;
     }
     if(i>validosEmpleados)
     {
         printf("El dni que usted ingresó no se encuentra en el sistema..\n");
+    }
+}
+
+void ordenarEmpleadosPorName(empleados_laboratorio arreglo[], int tamano) {
+    int i, j;
+    empleados_laboratorio temp;
+
+   for (i = 0; i < tamano; i++) {
+        for (j = 0; j < tamano - i-1 ; j++) {
+
+            if (strcmp(arreglo[j].apeYnombre, arreglo[j + 1].apeYnombre) > 0) {
+
+                temp=arreglo[j];
+                arreglo[j]=arreglo[j + 1];
+                arreglo[j + 1]=temp;
+            }
+        }
     }
 }
