@@ -194,23 +194,20 @@ pacientes crearPaciente(pacientes paciente)
 
     return paciente;
 }
-///carga una persona en el archivo, si el dni ya existia, le dice q es imposible registrar a ese usuario..
-void cargaPaciente(char archivo[])
-{
-    FILE *archi=fopen(archivo, "ab");
+///carga una persona, si el dni ya existia, le dice q es imposible registrar a ese usuario..
 
+pacientes cargaPaciente(nodoArbol*arbol)
+{
     pacientes persona;
 
     char cont='s';
 
-    if(archi)
-    {
         while(cont=='s')
         {
 
             persona.dni=dniPaciente(persona.dni);
 
-            if(buscaPaciente(archivo, persona.dni)==1)
+            if(buscarPorDNI(arbol,persona.dni))
             {
                 printf("El paciente ya existe en el sistema...\n");
                 break;
@@ -218,22 +215,15 @@ void cargaPaciente(char archivo[])
             persona=crearPaciente(persona);
             persona.eliminado=0;
 
-            fwrite(&persona, sizeof(pacientes), 1, archi);
-
 
             printf("¿Desea ingresar otro paciente? (s/n): ");
             fflush(stdin);
             scanf(" %c", &cont);
             system("cls");
         }
-    }
-    else
-    {
-        printf("ERROR AL ABRIR EL ARCHIVO...");
-        system("pause");
-        system("cls");
-    }
-    fclose(archi);
+
+        return persona;
+
 }
 ///inicializamos un arbol
 nodoArbol*inicArbol(){
@@ -251,7 +241,7 @@ nodoArbol*crearNodo(pacientes registro){
     strcpy(nuevo->persona.direccion, registro.direccion);
     strcpy(nuevo->persona.telefono, registro.telefono);
     nuevo->persona.eliminado=registro.eliminado;
-    nuevo->lista=inicListaIngresos();
+    nuevo->lista=NULL;
 
 
     nuevo->izq=NULL;
@@ -261,16 +251,19 @@ nodoArbol*crearNodo(pacientes registro){
 
 }
 ///insertamos el nodo previamente creado en el arbol
-nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes registro){
+nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes persona){
 
     if(arbolPaciente==NULL){
 
-        arbolPaciente=crearNodo(registro);
+        arbolPaciente=crearNodo(persona);
     }
-        if(registro.dni<arbolPaciente->persona.dni){
-            arbolPaciente->izq=insertarNodoPaciente(arbolPaciente->izq, registro);
-            }else if(registro.dni>arbolPaciente->persona.dni){
-                arbolPaciente->der=insertarNodoPaciente(arbolPaciente->der, registro);
+        if(persona.dni<arbolPaciente->persona.dni){
+
+            arbolPaciente->izq=insertarNodoPaciente(arbolPaciente->izq, persona);
+
+            }else if(persona.dni>arbolPaciente->persona.dni){
+
+                arbolPaciente->der=insertarNodoPaciente(arbolPaciente->der, persona);
         }
 
 
@@ -287,7 +280,7 @@ nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
 
         while(fread(&registro, sizeof(pacientes), 1, archi)>0){
 
-                arbol=insertarNodoPaciente(arbol, registro);
+                arbol=insertarNodoPaciente(arbol,registro);
         }
     }else{
         printf("ERROR AL ABRIR EL ARCHIVO\n");
@@ -296,6 +289,29 @@ nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
     fclose(archi);
 
     return arbol;
+}
+
+void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]){
+
+        FILE*archi=fopen(archivo,"wb");
+
+        if(archi){
+           escribirEnElArchi(archi, arbol);
+           fclose(archi);
+        }else {
+        printf("Error al abrir el archivo para escritura.\n");
+    }
+
+}
+
+void escribirEnElArchi(FILE*archi, nodoArbol*arbol){
+    if(arbol){
+        fwrite(&arbol->persona,sizeof(pacientes),1,archi);
+        escribirEnElArchi(archi,arbol->izq);
+        escribirEnElArchi(archi,arbol->der);
+    }
+
+
 }
 ///funcion que permite mostrar el arbol de pacientes.
 void mostrarArbol(nodoArbol*arbol){
@@ -706,22 +722,22 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
 
 ///funciones de arboles de listas:
 
-nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
-{
-    nodoArbol * aux=buscarPorDNI(arbol, persona.dni);
-    nodoListaIngresos * nuevoNodo=inicListaIngresos();
-
-    if(aux==NULL)
-    {
-        arbol=insertarNodoPaciente(arbol, persona);
-        aux=buscarPorDNI(arbol, persona.dni);
-    }
-
-    nuevoNodo=crearNodoListaIngresos(ingreso);
-    aux->lista=agregarPrincipio(nuevoNodo,aux->lista);
-
-    return arbol;
-}
+//nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
+//{
+//    nodoArbol * aux=buscarPorDNI(arbol, persona.dni);
+//    nodoListaIngresos * nuevoNodo=inicListaIngresos();
+//
+//    if(aux==NULL)
+//    {
+//        arbol=insertarNodoPaciente(arbol, persona);
+//        aux=buscarPorDNI(arbol, persona.dni);
+//    }
+//
+//    nuevoNodo=crearNodoListaIngresos(ingreso);
+//    aux->lista=agregarPrincipio(nuevoNodo,aux->lista);
+//
+//    return arbol;
+//}
 
 
 

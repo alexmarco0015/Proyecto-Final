@@ -8,7 +8,7 @@
 void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes)
 {
     int opcion=1000;
-    int personas=0;
+   // int personas=0;
     do{
 
         printf("Bienvenido/a MENU ADMIN\n");
@@ -239,14 +239,14 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
                 system("cls");
                 printf("Mostrando Pacientes:\n");
 
-                recorrerYmostrarEstructuraCompuestaInOrder(arbol);
+              //  recorrerYmostrarEstructuraCompuestaInOrder(arbol);
 
                 system("pause");
                 system("cls");
                 break;
             case 2:
                 system("cls");
-                cargaPaciente(archivoPacientes);
+                //cargaPaciente(archivoPacientes);
 
                 system("pause");
                 system("cls");
@@ -350,7 +350,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
 
                     cargaPractica(archivoPractXingresos, persona.nroIngreso);
                 }
-             mostrarArchivoIngresosConPracticas(archivoIngresos,archivoPractXingresos);
+
                 system("pause");
                 system("cls");
                 break;

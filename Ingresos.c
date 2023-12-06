@@ -79,7 +79,7 @@ void fechaRetiro(char fecha[])
     do{
             printf("Inserte la fecha de retiro de la practica: (00/00/0000)ejemplo \n");
             fflush(stdin);
-            gets(fecha);
+           gets(fecha);
             printf("\nSeguro que desea esa fecha? 's' para si y 'n' para no\n");
             fflush(stdin);
             scanf("%c", &seguro);
@@ -117,15 +117,16 @@ int matriculaSolicitante(int matri)
 ///función para prototipar la carga de un ingreso al archivo..
 ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni)
 {
-    ingresoPaciente.dniPaciente=dni;
     ingresoPaciente.nroIngreso=ultimoIngreso(archivoIngresos, dni);
     fechaIngreso(ingresoPaciente.fechaIngreso);
     fechaRetiro(ingresoPaciente.fechaRetiro);
     ingresoPaciente.matriculaProfesional=matriculaSolicitante(ingresoPaciente.matriculaProfesional);
     ingresoPaciente.eliminado=0;
+    ingresoPaciente.dniPaciente=dni;
 
     return ingresoPaciente;
 }
+
 ///cargamos los ingresos en el archivo, para luego ingresarlos a una lista
 void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito)
 {
@@ -154,12 +155,12 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
 
     nodoListaIngresos *nuevo=(nodoListaIngresos*)malloc(sizeof(nodoListaIngresos));
 
-    nuevo->ingreso.dniPaciente=ingreso.dniPaciente;
     strcpy(nuevo->ingreso.fechaIngreso, ingreso.fechaIngreso);
     strcpy(nuevo->ingreso.fechaRetiro, ingreso.fechaRetiro);
     nuevo->ingreso.matriculaProfesional=ingreso.matriculaProfesional;
     nuevo->ingreso.nroIngreso=ingreso.nroIngreso;
     nuevo->ingreso.eliminado=ingreso.eliminado;
+    nuevo->ingreso.dniPaciente=ingreso.dniPaciente;
 
     nuevo->lista=inicListapracXingresos();
 
@@ -168,26 +169,69 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
     return nuevo;
 }
 ///agregamos al principio de la lista los nodos creados en la funcion anterior
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos * nuevoNodo, nodoListaIngresos * lista)
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[])
 {
+        ingresos ingresito=crearIngresos(ingresito,archivoIngresos, ingresito.dniPaciente);
+
+        nodoListaIngresos*nuevoNodo=inicListaIngresos();
+        nuevoNodo->ingreso=ingresito;
 
     if(lista==NULL)
     {
-        printf("\notro");
         lista=nuevoNodo;
     }
     else
     {
-        printf("\notromas");
         nuevoNodo->siguiente=lista;
         lista=nuevoNodo;
 
     }
     return lista;
 }
+nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,FILE*archivoIngresos){
+
+            nodoArbol*aux=buscarPorDNI(arbol, dni);
+
+            if(aux==NULL){
+                printf("LA PERSONA BUSCADA NO EXISTE...\n");
+                return arbol;
+            }
+            aux->lista=agregarPrincipio(aux->lista,archivoIngresos);
+
+          return arbol;
+}
+
+void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]){
+        FILE*archi=fopen(archivoIngresos,"wb");
+        ingresos ingresito;
+        if(archi){
+
+        }
+}
+
+void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo) {
+    if (arbol != NULL) {
+
+        guardarListaEnArchivoRecursivo(arbol->lista, archivo);
+
+        guardarListasDelArbolRecursivo(arbol->izq, archivo);
+        guardarListasDelArbolRecursivo(arbol->der, archivo);
+    }
+}
+void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo){
+
+    while (lista != NULL) {
+
+        fwrite(&(lista->ingreso), sizeof(ingresos), 1, archivo);
+
+        lista = lista->siguiente;
+    }
+}
+
 ///con esto pasamos todos los registros del archivo a la lista de listas..
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni)
 {
+    ///REVISAR
     ingresos ingreso;
     FILE *archi=fopen(archivoIngresos, "rb");
     if(archi!=NULL)
