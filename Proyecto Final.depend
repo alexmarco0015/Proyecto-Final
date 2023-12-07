@@ -154,3 +154,57 @@
 	<stdlib.h>
 	"prototipados.h"
 
+1701907041 source:c:\users\alex\documents\github\proyecto-finalnuevo\crearusuario.c
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	"prototipados.h"
+
+1701910485 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
+
+1701907041 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresousuario.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1701907053 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1701907053 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1701907053 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
+	<stdio.h>
+	<stdlib.h>
+	"prototipados.h"
+
+1701910475 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1701907041 source:c:\users\alex\documents\github\proyecto-finalnuevo\practicas.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1701907041 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
+1701910512 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	"prototipados.h"
+

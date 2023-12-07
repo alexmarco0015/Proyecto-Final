@@ -174,11 +174,12 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
         ingresos ingresito=crearIngresos(ingresito,archivoIngresos, ingresito.dniPaciente);
 
         nodoListaIngresos*nuevoNodo=inicListaIngresos();
-        nuevoNodo->ingreso=ingresito;
-
+        nuevoNodo=crearNodoListaIngresos(ingresito);
+    printf("una pista");
     if(lista==NULL)
     {
         lista=nuevoNodo;
+        printf("ingreso por aca");
     }
     else
     {
@@ -188,16 +189,16 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
     }
     return lista;
 }
-nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,FILE*archivoIngresos){
+nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
 
             nodoArbol*aux=buscarPorDNI(arbol, dni);
-
+            printf("primer paso");
             if(aux==NULL){
                 printf("LA PERSONA BUSCADA NO EXISTE...\n");
                 return arbol;
             }
             aux->lista=agregarPrincipio(aux->lista,archivoIngresos);
-
+            printf("segundo paso");
           return arbol;
 }
 

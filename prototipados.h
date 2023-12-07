@@ -159,7 +159,7 @@ void mostrarIngresosPorPaciente(nodoArbol*arbol, char archivoIngresos[]);
 void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo);
 void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo);
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]);
-nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,FILE*archivoIngresos);
+nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]);
 
 
 ///prototipados pracXingresos.c:

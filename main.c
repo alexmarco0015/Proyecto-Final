@@ -20,7 +20,9 @@ int main()
     pacientes persona=cargaPaciente(arbol);
     arbol=insertarNodoPaciente(arbol, persona);
     arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
+    printf("O aca\n");
     mostrarArbol(arbol);
+    printf("O aqui\n");
     mostrarListaIngresos(arbol->lista);
 
 
