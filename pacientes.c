@@ -59,7 +59,7 @@ int buscaPaciente(char archivo[], int dniBuscado)
     }
     else
     {
-        printf("ERROR AL ABRIR EL ARCHIVO...");
+        printf("                    ERROR AL ABRIR EL ARCHIVO...");
     }
     return flag;
 }
@@ -69,7 +69,7 @@ int dniPaciente(int dni)
     int flag=0;
             while(!flag)
             {
-                printf("ingrese el dni: sin puntos ni espacios...\n");
+                printf("                    ingrese el dni: sin puntos ni espacios...\n");
                 fflush(stdin);
                 scanf("%i", &dni);
 
@@ -77,7 +77,7 @@ int dniPaciente(int dni)
 
                 if(flag==1)
                 {
-                    printf("EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
+                    printf("                    EL DNI INGRESADO ES ERRONEO, INTENTE NUEVAMENTE...\n");
 
                     flag=0;
 
@@ -97,15 +97,15 @@ void nombrePaciente(char nombre[40], int tamanio)
 {
     char seguro;
     do{
-            printf("Inserte nombre y apellido del Paciente:\n");
+            printf("                    Inserte nombre y apellido del Paciente:\n");
             fflush(stdin);
             gets(nombre);
-            printf("\nSeguro que desea ese nombre y apellido? 's' para si y 'n' para no\n");
+            printf("\n                    Seguro que desea ese nombre y apellido? 's' para si y 'n' para no\n");
             fflush(stdin);
             scanf("%c", &seguro);
             system("cls");
             if(strlen(nombre)>tamanio){//verificamos que no se exceda de la cantidad de caracteres
-                printf("se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 40..\n");
+                printf("                    se ha excedido en la cantidad de caracteres que puede ocupar, por favor, ingrese menos de 40..\n");
                 seguro='n';
                 system("pause");
                 system("cls");
@@ -116,12 +116,12 @@ void nombrePaciente(char nombre[40], int tamanio)
 int edadPaciente(int edad)
 {
     do{
-        printf("ingrese edad: \n");
+        printf("                    ingrese edad: \n");
         scanf("%i", &edad);
 
         if(validarEdad(edad)==1)
         {
-            printf("ERROR AL INGRESAR EDAD, INTENTE NUEVAMENTE...\n");
+            printf("                    ERROR AL INGRESAR EDAD, INTENTE NUEVAMENTE...\n");
 
             printf("ingrese edad: \n");
             scanf("%i", &edad);
@@ -135,10 +135,10 @@ void direccionPaciente(char direccion[30], int tamanio)
 {
         char seguro;
         do{
-            printf("ingrese la direccion del domicilio: \n");
+            printf("                    ingrese la direccion del domicilio: \n");
             fflush(stdin);
             gets(direccion);
-            printf("\nSeguro que desea esa direccion? 's' para si y 'n' para no\n");
+            printf("\n                    Seguro que desea esa direccion? 's' para si y 'n' para no\n");
             fflush(stdin);
             scanf("%c", &seguro);
             system("cls");
@@ -156,10 +156,10 @@ void telPaciente(char celular[15], int tamanio)
 
     char seguro;
     do{
-        printf("ingrese su numero de telefono/celular: \n");
+        printf("                    ingrese su numero de telefono del padre/tutor: \n");
         fflush(stdin);
         gets(celular);
-        printf("\nSeguro que desea ese celular? 's' para si y 'n' para no\n");
+        printf("\n                  Seguro que desea ese celular? 's' para si y 'n' para no\n");
         fflush(stdin);
         scanf("%c", &seguro);
         system("cls");
@@ -209,14 +209,14 @@ pacientes cargaPaciente(nodoArbol*arbol)
 
             if(buscarPorDNI(arbol,persona.dni))
             {
-                printf("El paciente ya existe en el sistema...\n");
+                printf("                    El paciente ya existe en el sistema...\n");
                 break;
             }
             persona=crearPaciente(persona);
             persona.eliminado=0;
 
 
-            printf("¿Desea ingresar otro paciente? (s/n): ");
+            printf("                    ¿Desea ingresar otro paciente? (s/n): ");
             fflush(stdin);
             scanf(" %c", &cont);
             system("cls");
@@ -299,7 +299,7 @@ void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]){
            escribirEnElArchi(archi, arbol);
            fclose(archi);
         }else {
-        printf("Error al abrir el archivo para escritura.\n");
+        printf("                    Error al abrir el archivo para escritura.\n");
     }
 
 }
@@ -349,12 +349,12 @@ void mostrarArreglo(pacientes arreglo[], int val) {
     for (int i = 0; i < val; i++) {
             if(arreglo[i].eliminado==0){
 
-        printf("-----------------------------\n");
-        printf("Nombre: %s\n", arreglo[i].apeYnombre);
-        printf("Edad: %d\n", arreglo[i].edad);
-        printf("DNI: %d\n", arreglo[i].dni);
-        printf("Direccion: %s\n", arreglo[i].direccion);
-        printf("Teléfono: %s\n", arreglo[i].telefono);
+        printf("                    -----------------------------\n");
+        printf("                    Nombre: %s\n", arreglo[i].apeYnombre);
+        printf("                    Edad: %d\n", arreglo[i].edad);
+        printf("                    DNI: %d\n", arreglo[i].dni);
+        printf("                    Direccion: %s\n", arreglo[i].direccion);
+        printf("                    Teléfono: %s\n", arreglo[i].telefono);
         printf("\n");
             }
     }
@@ -396,12 +396,12 @@ nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
 void mostrarNodo(pacientes persona){
 
         printf("\n");
-        printf("DNI: %i \n",persona.dni);
-        printf("NOMBRE Y APELLIDO: %s \n",persona.apeYnombre);
-        printf("EDAD: %i \n",persona.edad);
-        printf("DIRECCION: %s \n",persona.direccion);
-        printf("TELEFONO: %s \n",persona.telefono);
-        printf("eliminado: %d\n",persona.eliminado);
+        printf("                    DNI: %i \n",persona.dni);
+        printf("                    NOMBRE Y APELLIDO: %s \n",persona.apeYnombre);
+        printf("                    EDAD: %i \n",persona.edad);
+        printf("                    DIRECCION: %s \n",persona.direccion);
+        printf("                    TELEFONO: %s \n",persona.telefono);
+        printf("                    eliminado: %d\n",persona.eliminado);
 
 }
 ///pasamos el archivo de pacientes a un arreglo de pacientes
@@ -423,7 +423,7 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
 
         fclose(archi);
     }else{
-            printf("ERROR AL ABRIR EL ARCHIVO...\n");
+            printf("                    ERROR AL ABRIR EL ARCHIVO...\n");
     }
         return i;
 }
@@ -435,9 +435,14 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
     char seguro='n';
     int dniNuevo;
     do{
-        printf("Menu de modificaciones del paciente\n");
-        printf("1-Modificar dni\n2-Modificar nombre y apellido\n3-Modoficar edad\n4-Modificar direccion\n5-Telefono\n0-salir del menu\n");
-        printf("Elija una opcion.. \n");
+        printf("                    Menu de modificaciones del paciente\n");
+        printf("                    1-Modificar dni\n");
+        printf("                    2-Modificar nombre y apellido\n");
+        printf("                    3-Modoficar edad\n");
+        printf("                    4-Modificar direccion\n");
+        printf("                    5-Telefono\n");
+        printf("                    0-salir del menu\n");
+        printf("                    Elija una opcion.. \n");
         fflush(stdin);
         scanf("%d", &opcion);
         seguro='n';

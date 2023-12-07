@@ -11,8 +11,11 @@ void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, c
    // int personas=0;
     do{
 
-        printf("Bienvenido/a MENU ADMIN\n");
-        printf("1-Entrar a Menu Administrativo\n2-Entrar a Menu de Laboratorio\n3-Menu control Empleados\n0-Salir del Menu\n");
+        printf("                    Bienvenido/a MENU ADMIN\n");
+        printf("                    1-Entrar a Menu Administrativo\n");
+        printf("                    2-Entrar a Menu de Laboratorio\n");
+        printf("                    3-Menu control Empleados\n");
+        printf("                    0-Salir del Menu\n");
         printf("\nIngrese la opcion a elegir.. ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -60,9 +63,12 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
 
     do{
 
-        printf("Bienvenido al MENU de control de empleados\n");
-        printf("1-Ver empleados\n2-Registrar un empleado\n3-Modificar un empleado\n4-Buscar un empleado en particular\n0-Salir\n");
-
+        printf("                    Bienvenido al MENU de control de empleados\n");
+        printf("                    1-Ver empleados\n");
+        printf("                    2-Registrar un empleado\n");
+        printf("                    3-Modificar un empleado\n");
+        printf("                    4-Buscar un empleado en particular\n");
+        printf("                    0-Salir\n");
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -86,11 +92,11 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
                 system("cls");
                 do{
                     if(contador>4){
-                        printf("Ha fallado varias veces, volviendo al menu anterior..\n");
+                        printf("                    Ha fallado varias veces, volviendo al menu anterior..\n");
                         break;
                     }
 
-                    printf("Empleados del laboratorio:\n");
+                    printf("                    Empleados del laboratorio:\n");
                     mostrarArregloEmpleados(arreglo, validosEmpleados);
                     printf("\nDe todos los empleados, seleccione el dni del empleado a modificar..\n");
                     fflush(stdin);
@@ -121,7 +127,7 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
                 break;
             case 0:
                 system("cls");
-                printf("\nHa seleccionado salir del Menu..\n volviendo al Menu principal\n");
+                printf("\n                    Ha seleccionado salir del Menu..\n                    volviendo al Menu principal\n");
                 system("pause");
                 system("cls");
                 break;
@@ -143,8 +149,13 @@ void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validos
     int dniNuevo;
 
     do{
-        printf("Menu de modificaciones del empleado\n");
-        printf("1-Modificar dni\n2-Modificar nombre y apellido\n3-Modoficar nombre de usuario\n4-Modificar contrasenia\n5-Eliminar o dar de alta un empleado\n0-salir del menu\n");
+        printf("                    Menu de modificaciones del empleado\n");
+        printf("                    1-Modificar dni\n");
+        printf("                    2-Modificar nombre y apellido\n");
+        printf("                    3-Modoficar nombre de usuario\n");
+        printf("                    4-Modificar contrasenia\n");
+        printf("                    5-Eliminar o dar de alta un empleado\n");
+        printf("                    0-salir del menu\n");
         printf("Elija una opcion.. ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -226,9 +237,13 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
     int contador=0;
     do{
         contador=0;
-        printf("Bienvenido al MENU Administrativo\n");
-        printf("1-Lista de Pacientes\n2-Registrar Pacientes\n3-Buscar Paciente y modificar\n4-Chequear Un Empleado\n5-Ver lista de ingresos general \n0-Salir del Menu\n");
-
+        printf("                    Bienvenido al MENU Administrativo\n");
+        printf("                    1-Lista de Pacientes\n");
+        printf("                    2-Registrar Pacientes\n");
+        printf("                    3-Buscar Paciente y modificar\n");
+        printf("                    4-Chequear Un Empleado\n");
+        printf("                    5-Ver lista de ingresos general\n");
+        printf("                    0-Salir del Menu\n");
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
         scanf("%d", &opcion);
@@ -237,7 +252,7 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
         {
             case 1:
                 system("cls");
-                printf("Mostrando Pacientes:\n");
+                printf("                    Mostrando Pacientes:\n");
 
               //  recorrerYmostrarEstructuraCompuestaInOrder(arbol);
 
@@ -312,9 +327,12 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
     int ingresito;
     ingresos persona;
     do{
-        printf("  Menu Laboratorio\n");
-        printf("1-Cargar Resultados\n2-Modificar un ingreso\n3-Modificar una PracticaxIngreso\n4-Eliminar un ingreso\n0-Salir\n");
-
+        printf("                    Menu Laboratorio\n");
+        printf("                    1-Cargar Resultados\n");
+        printf("                    2-Modificar un ingreso\n");
+        printf("                    3-Modificar una PracticaxIngreso\n");
+        printf("                    4-Eliminar un ingreso\n");
+        printf("                    0-Salir\n");
         printf("Ingrese la opcion a elegir.. ");
         fflush(stdin);
         scanf("%d", &opcion);

@@ -27,8 +27,10 @@ int main()
 
 
 //   do{
-//        printf("           Laboratorio Central - Hospital de ninios\n");
-//        printf("1-Registrarse\n2-Ingresar\n0-Salir del Programa\n");
+//        printf("                    Laboratorio Central - Hospital de ninios\n");
+//        printf("                    1-Registrarse\n");
+//        printf("                    2-Ingresar\n");
+//        printf("                    0-Salir del Programa\n");
 //        printf("Ingrese la opcion a elegir.. ");
 //        fflush(stdin);
 //        scanf("%d", &opcion);
