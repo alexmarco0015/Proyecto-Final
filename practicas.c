@@ -4,7 +4,7 @@
 #include "prototipados.h"
 
 ///Funciones:
-
+|
 void leer_arch_practicas(practicas arreglo[], int* validos)
 {
     FILE * arch=fopen("lasPracticas.bin","rb");
@@ -90,7 +90,7 @@ void sobreescribir_arch_practicas(practicas arreglo[], int* validos)
         }
     else
         {
-        printf("Error al abrir el archivo...\n\n");
+        printf("                    Error al abrir el archivo...\n\n");
         system("pause");
         system("cls");
         }

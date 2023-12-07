@@ -108,7 +108,7 @@ void nombreYapellidoUsuario(char nombre[], int tamanio)
 int crearPerfil(int perfil)
 {
     do{
-            printf("Es de tipo 1:ADMINISTRATIVO, 2:LABORATORIO\n");
+            printf("                    Es de tipo 1:ADMINISTRATIVO, 2:LABORATORIO\n");
             fflush(stdin);
             scanf("%d", &perfil);
             if(perfil!=1 && perfil!=2){
@@ -172,7 +172,7 @@ void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int val
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo..\n");
+        printf("                    Error al abrir el archivo..\n");
         system("pause");
         system("cls");
     }
@@ -194,7 +194,7 @@ int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int 
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo...\n");
+        printf("                    Error al abrir el archivo...\n");
         system("pause");
         system("cls");
     }
@@ -208,12 +208,12 @@ void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos)
     int i=0;
 
     while(i<validos){
-        printf("-----------\n");
-        printf("nombre de usuario: %s\n", arreglo[i].usuario);
-        printf("contrasenia: %s\n", arreglo[i].contrasenia);
-        printf("perfil: |%d| 1=administrativo 2=laboratorio\n", arreglo[i].perfil);
-        printf("nombre y apellido: %s\n", arreglo[i].apeYnombre);
-        printf("dni: %d\n", arreglo[i].dni);
+        printf("                    -----------------------------------\n");
+        printf("                    nombre de usuario: %s\n", arreglo[i].usuario);
+        printf("                    contrasenia: %s\n", arreglo[i].contrasenia);
+        printf("                    perfil: |%d| 1=administrativo 2=laboratorio\n", arreglo[i].perfil);
+        printf("                    nombre y apellido: %s\n", arreglo[i].apeYnombre);
+        printf("                    dni: %d\n", arreglo[i].dni);
         i++;
     }
 
@@ -286,8 +286,8 @@ void modApeYnombre(const char archivo[], int dni)
 
         while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
             if(persona.dni==dni){
-                printf("Este es el nombre y apellido actual: %s\n", persona.apeYnombre);
-                printf("Pasamos a modificar su nombre...\n\n");
+                printf("                    Este es el nombre y apellido actual: %s\n", persona.apeYnombre);
+                printf("                    Pasamos a modificar su nombre...\n\n");
                 system("pause");
                 system("cls");
                 nombreYapellidoUsuario(persona.apeYnombre, tamanio);
@@ -302,7 +302,7 @@ void modApeYnombre(const char archivo[], int dni)
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo..\n");
+        printf("                    Error al abrir el archivo..\n");
         system("pause");
         system("cls");
     }
@@ -319,8 +319,8 @@ void modUsername(const char archivo[], int dni)
 
         while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
             if(persona.dni==dni){
-                printf("Este es el nombre de usuario actual: %s\n", persona.usuario);
-                printf("Pasamos a modificar su nombre de usuario..\n\n");
+                printf("                    Este es el nombre de usuario actual: %s\n", persona.usuario);
+                printf("                    Pasamos a modificar su nombre de usuario..\n\n");
                 system("pause");
                 system("cls");
                 nombreUsuario(persona.usuario, tamanio);
@@ -334,7 +334,7 @@ void modUsername(const char archivo[], int dni)
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo..\n");
+        printf("                    Error al abrir el archivo..\n");
         system("pause");
         system("cls");
     }
@@ -351,8 +351,8 @@ void modContrasenia(const char archivo[], int dni)
 
         while(fread(&persona, sizeof(empleados_laboratorio), 1, buffer)>0){
             if(persona.dni==dni){
-                printf("Este es la contrasenia actual: %s\n", persona.contrasenia);
-                printf("Pasamos a modificar su contrasenia..\n\n");
+                printf("                    Este es la contrasenia actual: %s\n", persona.contrasenia);
+                printf("                    Pasamos a modificar su contrasenia..\n\n");
                 system("pause");
                 system("cls");
                 contraseniaUsuario(persona.contrasenia, tamanio);
@@ -397,7 +397,7 @@ void modTipoPerfil(const char archivo[], int dni)
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo..\n");
+        printf("                    Error al abrir el archivo..\n");
         system("pause");
         system("cls");
     }
@@ -437,7 +437,7 @@ void darDeBajaEmpleado(const char archivoEmpleados[], int dni)
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo..\n\n");
+        printf("                    Error al abrir el archivo..\n\n");
         system("pause");
         system("cls");
     }
@@ -450,14 +450,14 @@ void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validos
     {
         if(arregloEmpleados[i].dni==dni)
         {
-            printf("---------------------------------------\n");
-            printf("nombre de usuario: %s\n", arregloEmpleados[i].usuario);
-            printf("contrasenia: %s\n", arregloEmpleados[i].contrasenia);
-            printf("perfil: |%d| 1=administrativo 2=laboratorio\n", arregloEmpleados[i].perfil);
-            printf("nombre y apellido: %s\n", arregloEmpleados[i].apeYnombre);
-            printf("dni: %d\n", arregloEmpleados[i].dni);
-            printf("ALTA DEL SISTEMA :%d (1:Fuera de servicio | 0:En servicio)", arregloEmpleados[i].eliminado);
-            printf("------------------------------------------\n");
+            printf("       ---------------------------------------\n");
+            printf("       nombre de usuario: %s\n", arregloEmpleados[i].usuario);
+            printf("       contrasenia: %s\n", arregloEmpleados[i].contrasenia);
+            printf("       perfil: |%d| 1=administrativo 2=laboratorio\n", arregloEmpleados[i].perfil);
+            printf("       nombre y apellido: %s\n", arregloEmpleados[i].apeYnombre);
+            printf("       dni: %d\n", arregloEmpleados[i].dni);
+            printf("       ALTA DEL SISTEMA :%d (1:Fuera de servicio | 0:En servicio)", arregloEmpleados[i].eliminado);
+            printf("       ------------------------------------------\n");
             break;
         }
         i++;
@@ -475,24 +475,30 @@ void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], in
     {
         if(arregloEmpleados[i].dni==dni)
         {
-            printf("---------------------------------------\n");
-            printf("nombre de usuario: %s\n", arregloEmpleados[i].usuario);
-            printf("contrasenia: %s\n", arregloEmpleados[i].contrasenia);
-            printf("perfil: |%d| 1=administrativo 2=laboratorio\n", arregloEmpleados[i].perfil);
-            printf("contrasenia: ");
+            printf("       ---------------------------------------\n");
+            printf("       nombre de usuario: %s\n", arregloEmpleados[i].usuario);
+            printf("       contrasenia: %s\n", arregloEmpleados[i].contrasenia);
+            printf("       perfil: |%d| 1=administrativo 2=laboratorio\n", arregloEmpleados[i].perfil);
+            printf("       contrasenia: ");
             for (int j = 0; j < sizeof(arregloEmpleados[i].contrasenia) - 1 && arregloEmpleados[i].contrasenia[j] != '\0'; j++) {
             printf("*");
             }
             printf("\ndni: %d\n", arregloEmpleados[i].dni);
-            printf("ALTA DEL SISTEMA :%d (1:Fuera de servicio | 0:En servicio)\n", arregloEmpleados[i].eliminado);
-            printf("------------------------------------------\n");
+            if(arregloEmpleados[i].eliminado==0)
+            {
+                printf("       Estado de servicio: EN SERVICIO\n", arregloEmpleados[i].eliminado);
+            }
+            else{
+                printf("       Estado de servicio: FUERA DE SERVICIO\n", arregloEmpleados[i].eliminado);
+            }
+            printf("       ------------------------------------------\n");
             break;
         }
         i++;
     }
     if(i>validosEmpleados)
     {
-        printf("El dni que usted ingresó no se encuentra en el sistema..\n");
+        printf("       El dni que usted ingresó no se encuentra en el sistema..\n");
     }
 }
 

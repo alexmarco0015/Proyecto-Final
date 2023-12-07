@@ -20,7 +20,7 @@ int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[])
     }
     else{
         system("cls");
-        printf("Error al abrir el archivo...\n\n");
+        printf("                    Error al abrir el archivo...\n\n");
         system("pause");
         system("cls");
     }
