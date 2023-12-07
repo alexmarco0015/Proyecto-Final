@@ -164,11 +164,11 @@ nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]);
 
 ///prototipados pracXingresos.c:
 void crearResultado(char resultado[]);
-int nroPractica(char archivoPracticas[], int numeroIngreso);
-pracXingreso crearPractica(char archivoPracticas[], pracXingreso pXi, int numeroIngreso);
+int nroPractica(nodoPractXingreso*lista);
+pracXingreso crearPractica(int nroIngreso, int nropract);
 nodoPractXingreso * inicListapracXingresos();
 nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
-nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
+nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista, char archivoPracticas[]);
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
 void muestraPracXingreso(pracXingreso dato);
 void cargaPractica(char archivoPractica[], int ingreso);
@@ -196,6 +196,9 @@ void inOrderSinPracticas(nodoArbol * arbol);
 void mostrarArchivoPracticas(char archivopracticas[]);
 void mostrarListaIngresos(nodoListaIngresos*lista);
 void mostrarArchivoIngresosConPracticas(char archivoIngresos[], char archivopracticas[]);
+nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso);
+nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]);
+nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso);
 
 
 

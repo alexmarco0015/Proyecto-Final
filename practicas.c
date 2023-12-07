@@ -4,7 +4,7 @@
 #include "prototipados.h"
 
 ///Funciones:
-|
+
 void leer_arch_practicas(practicas arreglo[], int* validos)
 {
     FILE * arch=fopen("lasPracticas.bin","rb");

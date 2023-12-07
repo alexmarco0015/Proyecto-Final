@@ -19,24 +19,41 @@ nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso)
 }
 
 
-//nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, pracXingreso dato)
-//{
-//    nodoListaIngresos * aux = buscarIngreso(lista, dato.nroIngreso);
-//
-//    nodoPractXingreso * nuevoNodo = crearNodoListaPracXingresos(dato);
-//
-//    if (aux == NULL) {
-//        aux = crearNodoListaIngresos(aux->ingreso);
-//        aux->siguiente = lista;
-//        lista = aux;
-//    }
-//
-//    aux->lista = agregarPrincipioPracXingresos(nuevoNodo, aux->lista);
-//
-//    return lista;
-//}
-//
-//
+nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, char)
+{
+    nodoListaIngresos * aux ;
+
+    pracXingreso dato=crearPractica()
+
+    nodoPractXingreso * nuevoNodo = crearNodoListaPracXingresos(dato);
+
+    if (aux == NULL) {
+        aux = crearNodoListaIngresos(aux->ingreso);
+        aux->siguiente = lista;
+        lista = aux;
+    }
+
+    aux->lista = agregarPrincipioPracXingresos(nuevoNodo, aux->lista);
+
+    return lista;
+}
+nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso){
+    if (arbol == NULL) {
+        return NULL;
+    }
+
+    nodoListaIngresos* encontrado = buscarIngreso(arbol->lista, nroIngreso);
+
+    if (encontrado != NULL) {
+        return encontrado;
+    }
+
+    nodoListaIngresos* izquierda = buscarIngresoArbol(arbol->izq, nroIngreso);
+    nodoListaIngresos* derecha = buscarIngresoArbol(arbol->der, nroIngreso);
+
+
+}
+
 //
 //nodoListaIngresos * leerArchivoPracticas(char archivoPracticas[], nodoListaIngresos * lista)
 //{

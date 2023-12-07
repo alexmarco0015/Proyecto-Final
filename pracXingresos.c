@@ -23,40 +23,26 @@ void crearResultado(char resultado[])
     }while(seguro!='s' && seguro!='S');
 }
 ///nro de practica que se genera automaticamente.
-int nroPractica(char archivoPracticas[], int numeroIngreso)
+int nroPractica(nodoPractXingreso*lista)
 {
-    int i=0;
-    FILE*buffer=fopen(archivoPracticas, "rb");
-    pracXingreso aux;
+  nodoPractXingreso*aux=lista;
+   int i=0;
 
-    if(buffer)
-    {
-        while(fread(&aux, sizeof(pracXingreso), 1, buffer)>0)
-        {
-            if(numeroIngreso == aux.nroIngreso){
-                i++;
-            }
-        }
-        fclose(buffer);
-    }
-    else{
-        system("cls");
-        printf("Error al abrir el archivo..\n\n");
-        system("pause");
-        system("cls");
-    }
-
-    return i+1;
+   while(aux){
+        aux=aux->siguiente;
+        i++;
+   }
+   return i;
 }
 ///crea la practica con ayuda de las anteriores funciones.
-pracXingreso crearPractica(char archivoPracticas[], pracXingreso pXi, int numeroIngreso)
-{
-    pXi.nroIngreso=numeroIngreso;
-    pXi.nroPractica=nroPractica(archivoPracticas, numeroIngreso);
-    crearResultado(pXi.resultado);
-
-    return pXi;
+pracXingreso crearPractica(int nroIngreso, int nropract){
+    pracXingreso practiquita;
+    practiquita.nroIngreso=nroIngreso;
+    practiquita.nroPractica=nropract;
+    crearResultado(practiquita.resultado);
+    practiquita.eliminado=0;
 }
+
 ///carga la practicaxIngreso al archivo.
 void cargaPractica(char archivoPractica[], int ingreso)
 {
@@ -104,7 +90,7 @@ nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso){
     return nuevo;
 }
 ///un agregar al principio de tipo nodolista de toda la vida
-nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista)
+nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista, char archivoPracticas[])
 {
 
     if(lista==NULL)
@@ -118,6 +104,24 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
     }
     return lista;
 }
+
+nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]){
+
+           nodoArbol*aux;
+           aux->lista=buscarIngresoArbol(arbol,ingresito.nroIngreso);
+
+            if(aux->lista==NULL){
+
+                arbol=cargarIngresoenArbol(arbol,ingresito.dniPaciente,archivoIngresos);
+                aux->lista=buscarIngresoArbol(arbol, ingresito.nroIngreso);
+
+            }
+
+            aux->lista->lista=agregarListaPracticas(aux->lista,aux->lista->lista->ingreso);
+
+            return arbol;
+}
+
 ///pasamos el archivo de pracXingresos a la lista de practicasXingresos
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso)
 {
@@ -129,7 +133,7 @@ nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, cha
         {
             if(practica.nroIngreso==ingreso)
             {
-                lista=agregarPrincipioPracXingresos(crearNodoListaPracXingresos(practica), lista);
+                lista=agregarPrincipioPracXingresos(crearNodoListaPracXingresos(practica), lista, archivoPracXingresos);
             }
         }
         fclose(archi);

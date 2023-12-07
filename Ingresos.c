@@ -192,13 +192,13 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
 nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
 
             nodoArbol*aux=buscarPorDNI(arbol, dni);
-            printf("primer paso");
+
             if(aux==NULL){
                 printf("LA PERSONA BUSCADA NO EXISTE...\n");
                 return arbol;
             }
             aux->lista=agregarPrincipio(aux->lista,archivoIngresos);
-            printf("segundo paso");
+
           return arbol;
 }
 

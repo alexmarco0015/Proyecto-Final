@@ -3,14 +3,14 @@
 	<stdio.h>
 	<stdlib.h>
 
-1701901374 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
+1701954642 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
 
-1701901274 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
+1701960783 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
 
-1701900426 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
+1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -53,19 +53,19 @@
 	<string.h>
 	"prototipados.h"
 
-1701426911 source:c:\users\valen\onedrive\documentos\github\proyecto-final\crearusuario.c
+1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\crearusuario.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"prototipados.h"
 
-1701426911 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresousuario.c
+1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresousuario.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1701895318 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
+1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -126,19 +126,19 @@
 	<string.h>
 	"prototipados.h"
 
-1701901140 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
+1701954642 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1701426893 source:c:\users\valen\onedrive\documentos\github\proyecto-final\practicas.c
+1701954652 source:c:\users\valen\onedrive\documentos\github\proyecto-final\practicas.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1701426911 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
+1701959536 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
