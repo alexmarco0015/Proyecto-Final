@@ -364,9 +364,9 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                 {
                     persona=crearIngresos(persona, archivoIngresos, dni);
 
-                    cargaIngreso(archivoIngresos, archivoPaciente, persona);
+                    //cargaIngreso(archivoIngresos, archivoPaciente, persona);
 
-                    cargaPractica(archivoPractXingresos, persona.nroIngreso);
+                    //cargaPractica(archivoPractXingresos, persona.nroIngreso);
                 }
 
                 system("pause");

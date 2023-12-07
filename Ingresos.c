@@ -175,11 +175,9 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
 
         nodoListaIngresos*nuevoNodo=inicListaIngresos();
         nuevoNodo=crearNodoListaIngresos(ingresito);
-    printf("una pista");
     if(lista==NULL)
     {
         lista=nuevoNodo;
-        printf("ingreso por aca");
     }
     else
     {

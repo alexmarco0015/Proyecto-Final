@@ -168,7 +168,7 @@ int nroPractica(nodoPractXingreso*lista);
 pracXingreso crearPractica(int nroIngreso, int nropract);
 nodoPractXingreso * inicListapracXingresos();
 nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
-nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista, char archivoPracticas[]);
+nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
 nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
 void muestraPracXingreso(pracXingreso dato);
 void cargaPractica(char archivoPractica[], int ingreso);
@@ -180,7 +180,7 @@ void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso);
 
 ///prototipados estructuraCompuesta.c:
 nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso);
-nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, pracXingreso dato);
+nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista);
 nodoListaIngresos * leerArchivoPracticas(char archivoPracticas[], nodoListaIngresos * lista);
 void recorrerArbolYagregarPracticasxIngreso(nodoArbol * arbol, char archivoPracticas[]);
 nodoArbol * agregarListaIngresos(nodoArbol * arbol, ingresos dato);

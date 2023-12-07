@@ -20,8 +20,13 @@ int main()
     pacientes persona=cargaPaciente(arbol);
     arbol=insertarNodoPaciente(arbol, persona);
     arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
+    ///cuando queramos agregarlo a un arbol más completo, hay que hacer una funcion de busqueda de ingresos
+    ///lo añado de esta manera para que
+    arbol->lista=agregarListaPracticas(arbol->lista);
     mostrarArbol(arbol);
     mostrarListaIngresos(arbol->lista);
+    ///luego habría que probar si funciona con una más completa, no solo mostrando uno por uno
+    arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
 
 
 //   do{
