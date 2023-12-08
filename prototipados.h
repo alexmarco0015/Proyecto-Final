@@ -141,8 +141,11 @@ int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archiv
 void eliminarIngreso(int numIngreso, char archivo[]);
 int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos);
 int ultimoIngreso(char archivoIngresos[], int dni);
+int dia(int diaMes);
+int mes(int mesMes);
+int anio(int anioMes);
 void fechaIngreso(char fecha[]);
-void fechaRetiro(char fecha[]);
+void fechaIngreso(char fecha[10]);
 int matriculaSolicitante(int matri);
 ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni);
 void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito);

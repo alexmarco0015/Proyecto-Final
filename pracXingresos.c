@@ -41,6 +41,8 @@ pracXingreso crearPractica(int nroIngreso, int nropract){
     practiquita.nroPractica=nropract+1;
     crearResultado(practiquita.resultado);
     practiquita.eliminado=0;
+
+    return practiquita;
 }
 
 ///carga la practicaxIngreso al archivo.
@@ -107,7 +109,7 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
 
 nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]){
 
-           nodoArbol*aux;
+           nodoArbol*aux=inicArbol();
            aux->lista=buscarIngresoArbol(arbol,ingresito.nroIngreso);
 
             if(aux->lista==NULL){
@@ -117,7 +119,7 @@ nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archiv
 
             }
 
-            aux->lista->lista=agregarListaPracticas(aux->lista);
+            aux->lista=agregarListaPracticas(aux->lista);
 
             return arbol;
 }

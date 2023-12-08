@@ -52,45 +52,28 @@ int ultimoIngreso(char archivoIngresos[], int dni)
     return i+1;
 }
 ///funcion en la que el usuario se encarga de ingresar la fecha, tal cual se le indica en el printf
-void fechaIngreso(char fecha[])
+///funcion en la que el usuario se encarga de ingresar la fecha, tal cual se le indica en el printf
+void fechaIngreso(char fecha[10])
 {
-    char seguro;
-    do{
-            printf("Inserte la fecha de ingreso del paciente: (00/00/0000)ejemplo \n");
-            fflush(stdin);
-            gets(fecha);
-            printf("\nSeguro que desea esa fecha? 's' para si y 'n' para no\n");
-            fflush(stdin);
-            scanf("%c", &seguro);
-            system("cls");
-            if(strlen(fecha)!=10){//verificamos que no se exceda de la cantidad de caracteres
-                printf("No ha insertado la fecha correctamente.. Inserte fecha con ceros y barras '/' \n");
-                seguro='n';
-                system("pause");
-                system("cls");
-            }
-        }while(seguro!='s' && seguro!='S');
+    int dias=0, meses=0, anios=0;
+    dias=dia(dias);
+    meses=mes(meses);
+    anios=anio(anios);
+    fflush(stdin);
+    snprintf(fecha, 11, "%02d-%02d-%02d", dias, meses, anios);
 
 }
-///lo mismo que la funcion de arriba pero para la fecha de retiro
-void fechaRetiro(char fecha[])
+void fechaRetiro(char fecha[10], char fechaAnt[10])
 {
-    char seguro;
-    do{
-            printf("Inserte la fecha de retiro de la practica: (00/00/0000)ejemplo \n");
-            fflush(stdin);
-           gets(fecha);
-            printf("\nSeguro que desea esa fecha? 's' para si y 'n' para no\n");
-            fflush(stdin);
-            scanf("%c", &seguro);
-            system("cls");
-            if(strlen(fecha)!=10){//verificamos que no se exceda de la cantidad de caracteres
-                printf("No ha insertado la fecha correctamente.. Inserte fecha con ceros y barras '/' \n");
-                seguro='n';
-                system("pause");
-                system("cls");
-            }
-        }while(seguro!='s' && seguro!='S');
+    int dias=0, meses=0, anios=0;
+    printf("Ingrese la fecha de retiro, debe ser mayor o igual a la de ingreso..(%s)\n",fechaAnt);
+    dias=dia(dias);
+    printf("fecha ingreso: (%s)\n", fechaAnt);
+    meses=mes(meses);
+    printf("fecha ingreso: (%s)\n", fechaAnt);
+    anios=anio(anios);
+    fflush(stdin);
+    snprintf(fecha, 11, "%02d-%02d-%02d", dias, meses, anios);
 
 }
 ///preguntamos cual es la matricula del solicitante, lo ingresamos de forma manual porq no sabiamos de que otra forma podría ser
@@ -114,16 +97,71 @@ int matriculaSolicitante(int matri)
 
     return matri;
 }
+int dia(int diaMes)
+{
+        do{
+            printf("Ingrese el dia:\n");
+            fflush(stdin);
+            scanf("%d", &diaMes);
+            system("cls");
+
+            if(diaMes>32 || diaMes<1)
+            {
+                printf("Ingreso un día erroneo..\n");
+                system("pause");
+                system("cls");
+            }
+        }while(diaMes>32 || diaMes<1);
+
+    return diaMes;
+}
+int mes(int mesMes)
+{
+        do{
+            printf("Ingrese el mes:\n");
+            fflush(stdin);
+            scanf("%d", &mesMes);
+            system("cls");
+            if(mesMes>12 || mesMes<1)
+            {
+                printf("Ingreso un mes erroneo..\n");
+                system("pause");
+                system("cls");
+            }
+        }while(mesMes>12 || mesMes<1);
+
+    return mesMes;
+}
+int anio(int anioMes)
+{
+
+        do{
+            printf("Ingrese el anio:(Los ultimos 2 digitos)\n");
+            fflush(stdin);
+            scanf("%d", &anioMes);
+            system("cls");
+            if(anioMes>24 || anioMes<03)
+            {
+                printf("Ingreso un anio erroneo..\n");
+                system("pause");
+                system("cls");
+            }
+        }while(anioMes>24 || anioMes<03);
+
+    return anioMes;
+}
 ///función para prototipar la carga de un ingreso al archivo..
 ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni)
 {
-    ingresoPaciente.nroIngreso=ultimoIngreso(archivoIngresos, dni);
+
+    printf("Ingrese la fecha de INGRESO del paciente..\n");
     fechaIngreso(ingresoPaciente.fechaIngreso);
-    fechaRetiro(ingresoPaciente.fechaRetiro);
+    printf("Ingrese la fecha de RETIRO del paciente..\n");
+    fechaRetiro(ingresoPaciente.fechaRetiro, ingresoPaciente.fechaIngreso);
     ingresoPaciente.matriculaProfesional=matriculaSolicitante(ingresoPaciente.matriculaProfesional);
     ingresoPaciente.eliminado=0;
     ingresoPaciente.dniPaciente=dni;
-
+    ingresoPaciente.nroIngreso=ultimoIngreso(archivoIngresos, dni);
     return ingresoPaciente;
 }
 
@@ -346,7 +384,7 @@ void modificarFecha(int numIngreso, char archivo[]){
             while(fread(&ingresito, sizeof(ingresos),1,archi)>0){
                 if(ingresito.nroIngreso==numIngreso){
                     fechaIngreso(ingresito.fechaIngreso);
-                    fechaRetiro(ingresito.fechaRetiro);
+                    fechaRetiro(ingresito.fechaRetiro, ingresito.fechaIngreso);
                      pos=ftell(archi)-sizeof(ingresos);
                     fseek(archi, pos, SEEK_SET);
                     fwrite(&ingresito, sizeof(ingresos), 1, archi);
