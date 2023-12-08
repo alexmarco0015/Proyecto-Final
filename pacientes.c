@@ -744,6 +744,35 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
 //
 //    return arbol;
 //}
+nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
 
+        nodoArbol*nodoBuscar=buscarPorDNI(arbol, dniActual);
+
+        if(nodoBuscar==NULL){
+            printf("EL DNI INGRESADO NO SE ENCUENTRA EN EL SISTEMA!!!\n");
+            return arbol;
+        }
+        printf("MODIFICAR DNI...\n");
+        dniNuevo=dniPaciente(dniNuevo);
+        nodoBuscar->persona.dni=dniNuevo;
+         printf("Datos modificados con éxito en el arbol.\n");
+
+
+
+         if(nodoBuscar->lista){
+                nodoListaIngresos*seg=nodoBuscar->lista;
+            while(seg){
+                if(seg->ingreso.dniPaciente==dniActual){
+                    seg->ingreso.dniPaciente=dniNuevo;
+                }
+                seg=seg->siguiente;
+            }
+            nodoBuscar->lista=seg;
+
+         printf("Datos modificados con éxito en la lista.\n");
+         }
+
+        return arbol;
+}
 
 

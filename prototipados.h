@@ -102,7 +102,7 @@ void ordenarEmpleadosPorName(empleados_laboratorio arreglo[], int tamano);
 void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]);
 void escribirEnElArchi(FILE*archi, nodoArbol*arbol);
 pacientes cargaPaciente(nodoArbol*arbol);
-
+nodoArbol * modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol);
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
 void contraseniaUsuario(char contrasenia[], int tamanio);

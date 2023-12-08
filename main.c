@@ -28,6 +28,10 @@ int main()
     ///luego habría que probar si funciona con una más completa, no solo mostrando uno por uno
     arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
 
+    int dniNuevo=0;
+    arbol=modificarDniArbol(dniNuevo, persona.dni, arbol);
+    mostrarArbol(arbol);
+    mostrarListaIngresos(arbol->lista);
 
 //   do{
 //        printf("                    Laboratorio Central - Hospital de ninios\n");

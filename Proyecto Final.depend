@@ -160,7 +160,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701967529 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
+1702053480 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
 
 1701919113 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresousuario.c
 	<stdio.h>
@@ -174,13 +174,13 @@
 	<string.h>
 	"prototipados.h"
 
-1701975207 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
+1702053493 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1701975207 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
+1701975603 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
