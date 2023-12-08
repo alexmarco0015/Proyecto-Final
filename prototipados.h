@@ -151,7 +151,7 @@ ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni
 void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito);
 nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[]);
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[], int dni);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
 void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);

@@ -207,9 +207,9 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
     return nuevo;
 }
 ///agregamos al principio de la lista los nodos creados en la funcion anterior
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[])
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[], int dni)
 {
-        ingresos ingresito=crearIngresos(ingresito,archivoIngresos, ingresito.dniPaciente);
+        ingresos ingresito=crearIngresos(ingresito,archivoIngresos, dni);
 
         nodoListaIngresos*nuevoNodo=inicListaIngresos();
         nuevoNodo=crearNodoListaIngresos(ingresito);
@@ -233,7 +233,7 @@ nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
                 printf("LA PERSONA BUSCADA NO EXISTE...\n");
                 return arbol;
             }
-            aux->lista=agregarPrincipio(aux->lista,archivoIngresos);
+            aux->lista=agregarPrincipio(aux->lista,archivoIngresos, dni);
 
           return arbol;
 }
@@ -276,7 +276,7 @@ nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngr
         while(fread(&ingreso, sizeof(ingreso), 1, archi)>0)
         {
             if(ingreso.eliminado!=0 && dni==ingreso.dniPaciente){///si es distinto de 0 es agregado a la lista, sino no se agrega.
-                lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista);
+                lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista, dni);
             }
         }
         fclose(archi);

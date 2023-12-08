@@ -744,6 +744,16 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
 //
 //    return arbol;
 //}
+
+void modificarDNIlista(nodoListaIngresos * lista, int dniNuevo)
+{
+    while(lista){
+        lista->ingreso.dniPaciente=dniNuevo;
+
+        lista=lista->siguiente;
+    }
+}
+
 nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
 
         nodoArbol*nodoBuscar=buscarPorDNI(arbol, dniActual);
@@ -758,16 +768,16 @@ nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
          printf("Datos modificados con éxito en el arbol.\n");
 
 
-
          if(nodoBuscar->lista){
-                nodoListaIngresos*seg=nodoBuscar->lista;
-            while(seg){
-                if(seg->ingreso.dniPaciente==dniActual){
-                    seg->ingreso.dniPaciente=dniNuevo;
-                }
-                seg=seg->siguiente;
-            }
-            nodoBuscar->lista=seg;
+            modificarDNIlista(nodoBuscar->lista, dniNuevo);
+//                nodoListaIngresos*seg=nodoBuscar->lista;
+//            while(seg){
+//                if(seg->ingreso.dniPaciente==dniActual){
+//                    seg->ingreso.dniPaciente=dniNuevo;
+//                }
+//                seg=seg->siguiente;
+//            }
+//            nodoBuscar->lista=seg;
 
          printf("Datos modificados con éxito en la lista.\n");
          }
