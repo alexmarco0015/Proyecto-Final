@@ -160,7 +160,7 @@
 	<string.h>
 	"prototipados.h"
 
-1702065082 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
+1702067368 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
 
 1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresousuario.c
 	<stdio.h>
@@ -174,7 +174,7 @@
 	<string.h>
 	"prototipados.h"
 
-1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
+1702066703 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

@@ -155,7 +155,7 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
 void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);
-void modificarMatricula(int numIngreso, char archivo[]);
+void modificarMatricula(int nroIngreso, nodoListaIngresos*lista);
 void modificarFecha(int numIngreso, char archivo[]);
 void mostrarArchivoIngresos(char archivoIngresos[]);
 void mostrarIngresosPorPaciente(nodoArbol*arbol, char archivoIngresos[]);
