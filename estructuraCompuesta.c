@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "prototipados.h"
+#include "pracXingresos.h"
 
 nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso)
 {
@@ -68,70 +69,6 @@ void mostrarListaIngresos(nodoListaIngresos*lista){
     }
 }
 
-//void mostrarArchivoIngresos(char archivoIngresos[]) {
-//    FILE *buffer = fopen(archivoIngresos, "rb");
-//    ingresos dato;
-//
-//    if (buffer) {
-//
-//        while (fread(&dato, sizeof(ingresos), 1, buffer) > 0) {
-//
-//            muestraIngreso(dato);
-//            printf("---------------------------------\n");
-//        }
-//
-//        fclose(buffer);
-//    } else {
-//        printf("Error al abrir el archivo de ingresos.\n");
-//    }
-//}
-//void mostrarArchivoPracticas(char archivopracticas[]) {
-//    FILE *buffer = fopen(archivopracticas, "rb");
-// pracXingreso dato;
-//
-//    if (buffer) {
-//
-//        while (fread(&dato, sizeof(pracXingreso), 1, buffer) > 0) {
-//
-//           muestraPracXingreso(dato);
-//            printf("---------------------------------\n");
-//        }
-//
-//        fclose(buffer);
-//    } else {
-//        printf("Error al abrir el archivo de ingresos.\n");
-//    }
-//}
-//void mostrarArchivoIngresosConPracticas(char archivoIngresos[], char archivopracticas[]) {
-//    FILE *bufferIngresos = fopen(archivoIngresos, "rb");
-//    FILE *bufferPracticas = fopen(archivopracticas, "rb");
-//
-//    ingresos ingresoDato;
-//    pracXingreso practicaDato;
-//
-//    if (bufferIngresos && bufferPracticas) {
-//        while (fread(&ingresoDato, sizeof(ingresos), 1, bufferIngresos) > 0) {
-//            muestraIngreso(ingresoDato);
-//            printf("---------------------------------\n");
-//
-//
-//            fseek(bufferPracticas, 0, SEEK_SET);
-//            while (fread(&practicaDato, sizeof(pracXingreso), 1, bufferPracticas) > 0) {
-//                if (practicaDato.nroIngreso == ingresoDato.nroIngreso) {
-//                    muestraPracXingreso(practicaDato);
-//                    printf("    *****************************\n");
-//                }
-//            }
-//
-//            printf("=================================\n");
-//        }
-//
-//        fclose(bufferIngresos);
-//        fclose(bufferPracticas);
-//    } else {
-//        printf("Error al abrir uno de los archivos.\n");
-//    }
-//}
 nodoPractXingreso * recorrerYmostrarListaPrac(nodoPractXingreso * lista)
 {
     nodoPractXingreso * aux=lista;
