@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "prototipados.h"
 
 const char archivoEmpleados[]="empleados.bin";
@@ -15,23 +16,24 @@ int main()
     int validosEmpleados=0, validosPacientes=0;
     int opcion=-1;
     nodoArbol * arbol=inicArbol();
-    nodoListaIngresos*lista=inicListaIngresos();
     pacientes arregloPacientes[100];
     pacientes persona=cargaPaciente(arbol);
     arbol=insertarNodoPaciente(arbol, persona);
-    arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
+   // arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
     ///cuando queramos agregarlo a un arbol más completo, hay que hacer una funcion de busqueda de ingresos
     ///lo añado de esta manera para que
-    arbol->lista=agregarListaPracticas(arbol->lista);
+   // arbol->lista=agregarListaPracticas(arbol->lista);
     mostrarArbol(arbol);
-    mostrarListaIngresos(arbol->lista);
+   // mostrarListaIngresos(arbol->lista);
     ///luego habría que probar si funciona con una más completa, no solo mostrando uno por uno
-    arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
+    //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
 
-    int dniNuevo=0;
-    arbol=modificarDniArbol(dniNuevo, persona.dni, arbol);
+  int dniNuevo=47316171;
+    char nuevaDireccion[40];
+    arbol= modificarDniArbol(dniNuevo,persona.dni,arbol);
+    arbol=eliminarNodo(arbol,persona.dni);
     mostrarArbol(arbol);
-    mostrarListaIngresos(arbol->lista);
+    //mostrarListaIngresos(arbol->lista);
 
    do{
         printf("                    Laboratorio Central - Hospital de ninios\n");

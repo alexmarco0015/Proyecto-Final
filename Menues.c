@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
+#include "pracXingresos.h"
 
 
 ///funciones:
@@ -92,7 +93,7 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
                 system("cls");
                 do{
                     if(contador>4){
-                        printf("                    Ha fallado varias veces, volviendo al menu anterior..\n");
+                        printf("Ha fallado varias veces, volviendo al menu anterior..\n");
                         break;
                     }
 
@@ -127,7 +128,7 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
                 break;
             case 0:
                 system("cls");
-                printf("\n                    Ha seleccionado salir del Menu..\n                    volviendo al Menu principal\n");
+                printf("\nHa seleccionado salir del Menu..\nvolviendo al Menu principal\n");
                 system("pause");
                 system("cls");
                 break;
@@ -288,7 +289,7 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
                 }while(verificacion!=1);
 
                 if(contador<4){
-                    menuPaciente(archivoPacientes, dni, arbol);
+                    ///menuPaciente(archivoPacientes, dni, arbol);
                 }
                 system("pause");
                 system("cls");
@@ -376,7 +377,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                 system("cls");
                 printf("Escriba a continuacion el ingreso que usted desee modificar..\n");
                 scanf("%d", &ingresito);
-                modificarIngresoMenu(ingresito, archivoIngresos, arbol);
+                //modificarIngresoMenu(ingresito, archivoIngresos, arbol);
                 system("pause");
                 system("cls");
                 break;
@@ -384,7 +385,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                 system("cls");
                 printf("Escriba a continuacion el ingreso que usted desee modificar..\n");
                 scanf("%d", &ingresito);
-                menuModPracticasxIngreso(archivoPractXingresos, ingresito);
+                //menuModPracticasxIngreso(archivoPractXingresos, ingresito);
                 system("pause");
                 system("cls");
                 break;
