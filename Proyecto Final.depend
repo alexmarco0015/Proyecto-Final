@@ -168,7 +168,18 @@
 	<string.h>
 	"prototipados.h"
 
+<<<<<<< Updated upstream
 1701967659 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+=======
+1702227185 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+	"pracXingresos.h"
+
+1702144402 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -185,7 +196,11 @@
 	<stdlib.h>
 	"prototipados.h"
 
+<<<<<<< Updated upstream
 1701975207 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
+=======
+1702227283 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
+>>>>>>> Stashed changes
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

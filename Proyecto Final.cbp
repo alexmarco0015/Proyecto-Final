@@ -55,6 +55,7 @@
 		<Unit filename="pracXingresos.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pracXingresos.h" />
 		<Unit filename="practicas.c">
 			<Option compilerVar="CC" />
 		</Unit>

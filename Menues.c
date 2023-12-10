@@ -413,3 +413,211 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
     }while (opcion!=0);
 }
 
+///menú para modificaciones del archivo de pracXingresos.
+void menuModPracticasxIngreso(char archivo[],int nroIngreso){
+  int opcion=1000;
+    char seguro='n';
+    do{
+        printf("Menu de modificaciones de una practica\n");
+        printf("1-Modificar resultado\n2-Modificar numero de ingreso\n3-salir del menu\n");
+        printf("Elija una opcion.. ");
+        fflush(stdin);
+        scanf("%d", &opcion);
+        seguro='n';
+        switch(opcion)
+        {
+            case 1:
+                system("cls");
+                printf("Seguro que desea cambiar el resultado? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+                    //modificarResultadoPractica(archivo,nroIngreso); luego veo como lo meto
+                }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 2:
+                system("cls");
+                printf("Seguro que desea cambiar el numero de practica? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+                    ///modificarNrodePracticaxIngreso(archivo,nroIngreso); modificar luego al hacer los menues
+                }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 3:
+                system("cls");
+                    printf("ha seleccionado salir del menu...");
+                system("pause");
+                system("cls");
+                break;
+            default:
+                system("cls");
+                printf("Ha seleccionado un dato incorrecto o un caracter... Vuelva a introducir un digito correcto..\n");
+                system("pause");
+                system("cls");
+                break;
+        }
+    }while(opcion!=0);
+}
+///menu de modificaciones de ingresos..
+void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol){
+    int opcion=1000;
+    char seguro='n';
+    do{
+        printf("Menu de modificaciones del ingreso\n");
+        printf("1-Modificar matricula\n2-Modificar fecha\n3-salir del menu\n");
+        printf("Elija una opcion.. ");
+        fflush(stdin);
+        scanf("%d", &opcion);
+        seguro='n';
+        switch(opcion)
+        {
+            case 1:
+                system("cls");
+                printf("Seguro que desea cambiar la matricula? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+                    //modificarMatricula(ingreso,archivo);
+
+                }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 2:
+                system("cls");
+                printf("Seguro que desea cambiar la fecha? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
+                fflush(stdin);
+                scanf("%c", &seguro);
+                if(seguro=='s'){
+                //modificarFecha(ingreso, archivo);
+                }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 3:
+                system("cls");
+                    printf("ha seleccionado salir del menu...");
+                system("pause");
+                system("cls");
+                break;
+            default:
+                system("cls");
+                printf("Ha seleccionado un dato incorrecto o un caracter... Vuelva a introducir un digito correcto..\n");
+                system("pause");
+                system("cls");
+                break;
+        }
+    }while(opcion!=3);
+}
+///menu de modificaciones pacientes..
+void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
+    ///PEDIR DNI CUANDO SE LLAME A ESTE MENU
+    int opcion=1000;
+    int verificado;
+    char seguro='n';
+    int dniNuevo;
+    do{
+        printf("                    Menu de modificaciones del paciente\n");
+        printf("                    1-Modificar dni\n");
+        printf("                    2-Modificar nombre y apellido\n");
+        printf("                    3-Modoficar edad\n");
+        printf("                    4-Modificar direccion\n");
+        printf("                    5-Telefono\n");
+        printf("                    0-salir del menu\n");
+        printf("Elija una opcion.. \n");
+        fflush(stdin);
+        scanf("%d", &opcion);
+        seguro='n';
+
+        switch(opcion){
+            case 1:
+                system("cls");
+//                printf("Seguro que desea cambiar el dni? NO PODRA VOLVER ATRAS... (s/n)\n");
+//                fflush(stdin);
+//                scanf("%c", &seguro);
+//                if(seguro=='s'){
+//                    do{
+//                        dniNuevo=dniPaciente(dniNuevo);
+//                        verificado=existeEnElArbol(arbol,dniNuevo);
+//                        if(verificado!=0){
+//                            printf("Ha ingresado un dni que ya existe en el sistema, NO SE PUEDEN REPETIR DNI.\n");
+//                        }
+//                    }while(verificado!=0);
+//                    //modificarPacienteDni(archivo,dni, dniNuevo);
+//                }
+                system("pause");
+                system("cls");
+                    opcion=0;
+            break;
+            case 2:
+                system("cls");
+//                printf("Seguro que desea cambiar el nombre? NO PODRA VOLVER ATRAS... (s/n)\n");
+//                fflush(stdin);
+//                scanf("%c", &seguro);
+//                if(seguro=='s'){
+//                    modificarNombreYApellido(archivo, dni);
+//                    }
+                system("pause");
+                system("cls");
+                    opcion=0;
+                break;
+            case 3:
+                system("cls");
+//                printf("Seguro que desea cambiar la edad? NO PODRA VOLVER ATRAS... (s/n)\n");
+//                fflush(stdin);
+//                scanf("%c", &seguro);
+//                if(seguro=='s'){
+//                   modificarEdad(archivo,dni);
+//                    }
+                system("pause");
+                system("cls");
+                    opcion=0;
+            break;
+            case 4:
+                system("cls");
+//                printf("Seguro que desea cambiar la direccion? NO PODRA VOLVER ATRAS... (s/n)\n");
+//                fflush(stdin);
+//                scanf("%c", &seguro);
+//                if(seguro=='s'){
+//                   modificarDireccion(archivo, dni);
+//                    }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 5:
+                system("cls");
+//                printf("Seguro que desea cambiar el telefono? NO PODRA VOLVER ATRAS... (s/n)\n");
+//                fflush(stdin);
+//                scanf("%c", &seguro);
+//                if(seguro=='s'){
+//                   modificarTelefono(archivo,dni);
+//                    }
+                system("pause");
+                system("cls");
+                opcion=0;
+                break;
+            case 0:
+                system("cls");
+                printf("Volviendo al menu anterior.\n");
+                system("pause");
+                system("cls");
+                break;
+            default :
+                system("cls");
+                printf("HA INGRESADO UNA OPCION INCORRECTA...\n");
+                system("pause");
+                system("cls");
+                break;
+            }
+    }while(seguro!='n');
+}
