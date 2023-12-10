@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
+#include "pracXingresos.h"
 ///el usuario inserta el tipo de resultado que ha generado dicha practica
 void crearResultado(char resultado[])
 {
@@ -44,35 +45,6 @@ pracXingreso crearPractica(int nroIngreso, int nropract){
 
     return practiquita;
 }
-
-///carga la practicaxIngreso al archivo.
-//void cargaPractica(char archivoPractica[], int ingreso)
-//{
-//    FILE*buffer=fopen(archivoPractica, "ab");
-//    char continuar='s';
-//    pracXingreso practiquita;
-//
-//    if(buffer)
-//    {
-//        while(continuar=='s')
-//        {
-//            practiquita=crearPractica(archivoPractica, practiquita,ingreso);
-//
-//            fwrite(&practiquita, sizeof(pracXingreso), 1, buffer);
-//
-//            printf("Desea continuar cargando practicas? s/n\n");
-//            fflush(stdin);
-//            scanf("%c", &continuar);
-//        }
-//        fclose(buffer);
-//    }
-//    else{
-//        system("cls");
-//        printf("Error al abrir el archivo..\n\n");
-//        system("pause");
-//        system("cls");
-//    }
-//}
 ///inicializacion de un nodo de tipo lista
 nodoPractXingreso * inicListapracXingresos()
 {
@@ -106,7 +78,7 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
     }
     return lista;
 }
-
+///agregamos una practica al arbol si es que no existe se inserta, sino la agrega al principio.
 nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]){
 
            nodoArbol*aux=inicArbol();
@@ -133,80 +105,19 @@ void muestraPracXingreso(pracXingreso dato)
     printf("Resultado: \n%s\n", dato.resultado);
     printf("*******************\n");
 }
-///menú para modificaciones del archivo de pracXingresos.
-void menuModPracticasxIngreso(char archivo[],int nroIngreso){
-  int opcion=1000;
-    char seguro='n';
-    do{
-        printf("Menu de modificaciones de una practica\n");
-        printf("1-Modificar resultado\n2-Modificar numero de ingreso\n3-salir del menu\n");
-        printf("Elija una opcion.. ");
-        fflush(stdin);
-        scanf("%d", &opcion);
-        seguro='n';
-        switch(opcion)
-        {
-            case 1:
-                system("cls");
-                printf("Seguro que desea cambiar el resultado? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-                    modificarResultadoPractica(archivo,nroIngreso);
-                }
-                system("pause");
-                system("cls");
-                opcion=0;
-                break;
-            case 2:
-                system("cls");
-                printf("Seguro que desea cambiar el numero de practica? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-                modificarNrodePracticaxIngreso(archivo,nroIngreso);
-                }
-                system("pause");
-                system("cls");
-                opcion=0;
-                break;
-            case 3:
-                system("cls");
-                    printf("ha seleccionado salir del menu...");
-                system("pause");
-                system("cls");
-                break;
-            default:
-                system("cls");
-                printf("Ha seleccionado un dato incorrecto o un caracter... Vuelva a introducir un digito correcto..\n");
-                system("pause");
-                system("cls");
-                break;
-        }
-    }while(opcion!=0);
-}
-void modificarResultadoPractica(char archivo[], int nroIngreso){
-    FILE*archi=fopen(archivo,"r+b");
-    int pos;
-    pracXingreso practica;
-    if(archi){
-        while(fread(&practica, sizeof(pracXingreso),1,archi)>0){
-            if(practica.nroIngreso==nroIngreso){
+///modificacion de un resultado de practica desde la estructura compuesta
+void modificarResultadoPractica(int nroPract, nodoPractXingreso*lista){
 
-                crearResultado(practica.resultado);
-                    pos=ftell(archi)-sizeof(pracXingreso);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&practica, sizeof(pracXingreso), 1, archi);
-            }
-        }
-        fclose(archi);
-    }else{
-        system("cls");
-        printf("ERROR AL ABRIR EL ARCHIVO...\n");
-        system("pause");
-        system("cls");
+    while(lista!=NULL && nroPract !=lista->ingreso.nroPractica)
+    {
+        lista=lista->siguiente;
     }
 
+    if(lista)
+    {
+        printf("Pasando a modificar El resultado de la practica..\n");
+        crearResultado(lista->ingreso.resultado);
+    }
 
 }
 ///pedimos el numero de la practica en cuestion, para poder acceder a ella más tarde
@@ -220,71 +131,88 @@ int pedirNum(){
 
     return num;
 }
+///modificacion de una parctica desde la estructura compuesta
+void modificarNrodePracticaxIngreso(int nroPract, nodoPractXingreso*lista){
 
-void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso){
-        FILE*archi=fopen(archivo, "r+b");
-        int pos;
-        pracXingreso practica;
-        if(archi){
-            while(fread(&practica,sizeof(pracXingreso),1,archi)>0){
-                if(practica.nroIngreso==nroIngreso){
+    while(lista!=NULL && nroPract !=lista->ingreso.nroPractica)
+    {
+        lista=lista->siguiente;
+    }
 
-                    practica.nroPractica=pedirNum();
-
-                     pos=ftell(archi)-sizeof(pracXingreso);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&practica, sizeof(pracXingreso), 1, archi);
-                }
-            }
-            fclose( archi);
-
-        }else{
-            system("cls");
-                printf("ERROR AL ABRIR EL ARCHIVO");
-            system("pause");
-            system("cls");
-        }
+    if(lista)
+    {
+        printf("Pasando a modificar El numero de la practica..\n");
+        lista->ingreso.nroPractica=pedirNum();
+    }
 }
 ///baja de una parctXingreso a través de los nodos.
-nodoPractXingreso * bajaPracticaxIngreso(int nroPractica, nodoPractXingreso * lista){
- nodoPractXingreso* seg;
-   nodoPractXingreso * ante;
+void bajaPracticaxIngreso(int nroPract, nodoPractXingreso * lista){
 
-   if((lista != NULL) && (lista->ingreso.nroPractica==nroPractica )) {
-
-      nodoPractXingreso * aux = lista;
-      lista = lista->siguiente;
-      free(aux);
-   }else {
-      seg = lista;
-      while((seg != NULL) && (seg->ingreso.nroPractica!=nroPractica )) {
-         ante = seg;
-         seg = seg->siguiente;
-      }
-
-      if(seg!=NULL) {
-         ante->siguiente = seg->siguiente;
-
-         free(seg);
-
-      }
-   }
-   return lista;
+    while(lista!=NULL && nroPract !=lista->ingreso.nroPractica)
+    {
+        lista=lista->siguiente;
+    }
+    if(lista)
+    {
+        printf("Pasando a modificar El numero de la practica..\n");
+        if(lista->ingreso.eliminado==0){
+            lista->ingreso.eliminado=1;
+        }
+        else{
+            lista->ingreso.eliminado=0;
+        }
+    }
 
 }
-void guardarListaPractXingresoEnArchivo(nodoPractXingreso* lista, char archivoPXI[])
- {
-    FILE* archi = fopen(archivoPXI, "ab");
+///insertamos la practica en el ultimo lugar de la lista, si no existe la lista, se inserta al inicio.
+nodoPractXingreso * insertarListaPracXingresoEnIngresos(nodoPractXingreso * lista, nodoPractXingreso *nuevoNodo) {
 
-    if (archi == NULL) {
-        printf("Error al abrir el archivo de prácticas por ingreso.\n");
-        return;
+        if(lista==NULL)
+        {
+            lista=nuevoNodo;
+        }
+        else
+        {
+            nuevoNodo->siguiente=lista;
+            lista=nuevoNodo;
+        }
+
+    return lista;
+}
+nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngreso) {
+
+    // Buscar la lista de ingresos correspondiente en el árbol
+    nodoListaIngresos *listaIngresos = buscarIngresoArbol(raiz, nroIngreso);
+
+    // Buscar la lista de pracXingreso dentro de la lista de ingresos
+    if (listaIngresos != NULL) {
+        return listaIngresos->lista;
     }
 
-    while (lista != NULL) {
-        fwrite(&(lista->ingreso), sizeof(pracXingreso), 1, archi);
-        lista = lista->siguiente;
-    }
+    return NULL;  // Lista de ingresos no encontrada
+}
+///se agregan todas las practicas del archivo al arbol de listas de listas..
+void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol)
+{
+    FILE * buffer=fopen(archivopracXingr, "rb");
+    pracXingreso dato;
 
-    fclose(archi);
+    if(buffer)
+    {
+        while(fread(&dato, sizeof(pracXingreso), 1, buffer)>0)
+        {
+            nodoPractXingreso*nuevoNodo=inicListapracXingresos();
+            nuevoNodo=crearNodoListaPracXingresos(dato);
+            nodoListaIngresos*lista=buscarListaPracXingresoEnArbol(arbol, dato.nroIngreso);
+            insertarListaPracXingresoEnIngresos(lista, nuevoNodo);
+        }
+
+
+        fclose(buffer);
+    }
+    else{
+        printf("Error al abrir el archivo..\n\n");
+        system("pause");
+        system("cls");
+    }
 }

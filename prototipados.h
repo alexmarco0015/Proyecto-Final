@@ -7,7 +7,6 @@ typedef struct{
     int nroPractica;
     char resultado[100];
     int eliminado;
-    //faltan punteros;
 
 }pracXingreso;
 
@@ -78,24 +77,18 @@ void nombrePaciente(char nombre[40], int tamanio);
 int edadPaciente(int edad);
 void direccionPaciente(char direccion[30], int tamanio);
 void telPaciente(char celular[15], int tamanio);
+
 pacientes crearPaciente(pacientes paciente);
 nodoArbol*inicArbol();nodoArbol*crearNodo(pacientes registro);
 nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes persona);
 nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]);
 void mostrarArbol(nodoArbol*arbol);
+int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
 void ordenarPacientesPorName(pacientes arreglo[], int tamano);
 void mostrarArreglo(pacientes arreglo[], int val);
 int existeEnElArbol(nodoArbol*raiz, int dni);
 nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni);
 void mostrarNodo(pacientes persona);
-int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]);
-void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
-void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
-void modificarTelefono(char archivo[], int dni);
-void modificarDireccion(char archivo[], int dni);
-void modificarEdad(char archivo[], int dni);
-void modificarNombreYApellido(char archivo[], int dni);
-void modificarPacienteDni(char archivo[], int dni, int dniNuevo);
 void bajaPaciente(char archivo[], nodoArbol*arbol, int dni);
 nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica);
 void ordenarEmpleadosPorName(empleados_laboratorio arreglo[], int tamano);
@@ -103,12 +96,6 @@ void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]);
 void escribirEnElArchi(FILE*archi, nodoArbol*arbol);
 pacientes cargaPaciente(nodoArbol*arbol);
 nodoArbol * modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol);
-nodoArbol* modificarNombreYApellidoArbol(nodoArbol*arbol, int dni, char nuevoNombre[]);
-nodoArbol* modificarDireccionArbol(nodoArbol*arbol, int dni, char nuevaDireccion[]);
-nodoArbol* modificarTelefonoArbol(nodoArbol*arbol, int dni, char nuevoTelefono[]);
-nodoArbol* modificarEdadArbol(nodoArbol*arbol, int dni, int nuevaEdad);
-void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) ;
-void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo);
 
 
 ///prototipados de librería "crearUsuario":
@@ -159,11 +146,11 @@ ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni
 void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito);
 nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[],int dni);
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[], int dni);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
 void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);
-void modificarMatricula(int numIngreso, char archivo[]);
+void modificarMatricula(int nroIngreso, nodoListaIngresos*lista);
 void modificarFecha(int numIngreso, char archivo[]);
 void mostrarArchivoIngresos(char archivoIngresos[]);
 void mostrarIngresosPorPaciente(nodoArbol*arbol, char archivoIngresos[]);
@@ -171,25 +158,10 @@ void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo);
 void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo);
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]);
 nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]);
-nodoArbol* buscarDniMenor(nodoArbol* arbol);
-nodoArbol* eliminarNodo(nodoArbol* arbol, int dni);
-
+void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista);
+void archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol);
 
 ///prototipados pracXingresos.c:
-void crearResultado(char resultado[]);
-int nroPractica(nodoPractXingreso*lista);
-pracXingreso crearPractica(int nroIngreso, int nropract);
-nodoPractXingreso * inicListapracXingresos();
-nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
-nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
-nodoPractXingreso * pasarArchiAlistaPracXingresos(nodoPractXingreso * lista, char archivoPracXingresos[], int ingreso);
-void muestraPracXingreso(pracXingreso dato);
-void cargaPractica(char archivoPractica[], int ingreso);
-void menuModPracticasxIngreso(char archivo[],int nroIngreso);
-void modificarResultadoPractica(char archivo[], int nroIngreso);
-int pedirNum();
-void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso);
-void guardarListaPractXingresoEnArchivo(nodoPractXingreso* lista, char archivoPXI[]);
 
 
 ///prototipados estructuraCompuesta.c:

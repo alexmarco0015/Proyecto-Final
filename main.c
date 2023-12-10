@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "prototipados.h"
 
 const char archivoEmpleados[]="empleados.bin";
@@ -15,7 +16,6 @@ int main()
     int validosEmpleados=0, validosPacientes=0;
     int opcion=-1;
     nodoArbol * arbol=inicArbol();
-    nodoListaIngresos*lista=inicListaIngresos();
     pacientes arregloPacientes[100];
     pacientes persona=cargaPaciente(arbol);
     arbol=insertarNodoPaciente(arbol, persona);

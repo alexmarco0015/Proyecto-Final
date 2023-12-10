@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
+#include "pracXingresos.h"
 ///pasamos todos los registros de tipo ingreso a un arreglo de ingresos
 int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
 {
@@ -207,7 +208,7 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
     return nuevo;
 }
 ///agregamos al principio de la lista los nodos creados en la funcion anterior
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[],int dni)
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[], int dni)
 {
         ingresos ingresito=crearIngresos(ingresito,archivoIngresos, dni);
 
@@ -225,6 +226,54 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
     }
     return lista;
 }
+///buscamos por todo el arbol donde se encuentra el paciente con el dni del nodoIngresos, si no se encuentra, devuelve que no se encontró en el arbol.
+void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista)
+{
+    nodoArbol* nodoPaciente=buscarPorDNI(arbol, nodoLista->ingreso.dniPaciente);
+
+    if (nodoPaciente != NULL) {
+        // Encontramos el nodo del paciente, ahora adjuntamos la lista de ingresos
+        if(nodoPaciente->lista!=NULL)
+        {
+            nodoLista->siguiente = nodoPaciente->lista;
+            nodoPaciente->lista = nodoLista;
+        }
+        else{
+            nodoPaciente->lista=nodoLista;
+        }
+
+        printf("Lista de ingresos insertada correctamente para el paciente con DNI %d.\n", nodoLista->ingreso.dniPaciente);
+    } else {
+        printf("No se encontro el paciente con DNI %d en el arbol.\n", nodoLista->ingreso.dniPaciente);
+        printf("Sera eliminado del archivo al terminar el programa....\n\n");
+        system("pause");
+        system("cls");
+    }
+
+}
+///pasamos el archivo de ingresos al arbol de pacientes y les insertamos todos los ingresos de cada paciente.
+void archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol)
+{
+    FILE*buffer=fopen(archivoIngresos, "rb");
+    ingresos ingresito;
+
+    if(buffer)
+    {
+        while(fread(&ingresito, sizeof(ingresos), 1, buffer)>0)
+        {
+            nodoListaIngresos*nuevoNodo=inicListaIngresos();
+            nuevoNodo=crearNodoListaIngresos(ingresito);
+            insertarNodoEnArbol(arbol, nuevoNodo);
+        }
+        fclose(buffer);
+    }
+    else{
+        printf("Error al abrir el archivo..\n\n");
+        system("pause");
+        system("cls");
+    }
+}
+
 nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
 
             nodoArbol*aux=buscarPorDNI(arbol, dni);
@@ -233,23 +282,16 @@ nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
                 printf("LA PERSONA BUSCADA NO EXISTE...\n");
                 return arbol;
             }
-            aux->lista=agregarPrincipio(aux->lista,archivoIngresos,dni);
+            aux->lista=agregarPrincipio(aux->lista,archivoIngresos, dni);
 
           return arbol;
 }
 
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]){
-
-        FILE*archi=fopen(archivoIngresos,"ab");
-
+        FILE*archi=fopen(archivoIngresos,"wb");
+        ingresos ingresito;
         if(archi){
 
-        guardarListasDelArbolRecursivo(arbol, archi);
-
-        fclose(archi);
-
-        }else{
-            printf("ERROR AL ABRIR EL ARCHIVO...\n");
         }
 }
 
@@ -272,33 +314,6 @@ void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo){
     }
 }
 
-
-///con esto pasamos todos los registros del archivo a la lista de listas..
-nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni)
-{
-    ///REVISAR
-
-
-    ingresos ingreso;
-    FILE *archi=fopen(archivoIngresos, "rb");
-    if(archi!=NULL)
-    {
-        while(fread(&ingreso, sizeof(ingreso), 1, archi)>0)
-        {
-            if(ingreso.eliminado!=0 && dni==ingreso.dniPaciente){///si es distinto de 0 es agregado a la lista, sino no se agrega.
-                lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista,dni);
-            }
-        }
-        fclose(archi);
-    }
-    else{
-        system("cls");
-        printf("Error al abrir el archivo..\n");
-        system("pause");
-        system("cls");
-    }
-    return lista;
-}
 ///mostramos un ingreso en particular, se puede usar en varias funciones
 void muestraIngreso(ingresos dato)
 {
@@ -311,99 +326,46 @@ void muestraIngreso(ingresos dato)
     printf("///////////////////////////////\n");
 }
 
-///menu de modificaciones de ingresos..
-void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol){
-    int opcion=1000;
-    char seguro='n';
-    do{
-        printf("Menu de modificaciones del ingreso\n");
-        printf("1-Modificar matricula\n2-Modificar fecha\n3-salir del menu\n");
-        printf("Elija una opcion.. ");
-        fflush(stdin);
-        scanf("%d", &opcion);
-        seguro='n';
-        switch(opcion)
-        {
-            case 1:
-                system("cls");
-                printf("Seguro que desea cambiar la matricula? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-                    modificarMatricula(ingreso,archivo);
+void modificarMatricula(int nroIngreso, nodoListaIngresos*lista){
 
-                }
-                system("pause");
-                system("cls");
-                opcion=0;
-                break;
-            case 2:
-                system("cls");
-                printf("Seguro que desea cambiar la fecha? UNA VEZ ESCOJA SI, NO HAY VUELTA ATRAS.. (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-                modificarFecha(ingreso, archivo);
-                }
-                system("pause");
-                system("cls");
-                opcion=0;
-                break;
-            case 3:
-                system("cls");
-                    printf("ha seleccionado salir del menu...");
-                system("pause");
-                system("cls");
-                break;
-            default:
-                system("cls");
-                printf("Ha seleccionado un dato incorrecto o un caracter... Vuelva a introducir un digito correcto..\n");
-                system("pause");
-                system("cls");
-                break;
-        }
-    }while(opcion!=3);
+    while(lista!=NULL && nroIngreso !=lista->ingreso.nroIngreso)
+    {
+        lista=lista->siguiente;
+    }
+
+    if(lista)
+    {
+        printf("Pasando a modificar la matricula del profesional solicitante..\n");
+        lista->ingreso.matriculaProfesional=matriculaSolicitante(lista->ingreso.matriculaProfesional);
+    }
+
 }
 
-///el titulo describe todo
-void modificarMatricula(int numIngreso, char archivo[]){
-        FILE*archi=fopen(archivo, "r+b");
-        ingresos ingresito;
-        int pos;
-        if(archi){
-            while(fread(&ingresito, sizeof(ingresos),1,archi)>0){
-                if(ingresito.nroIngreso==numIngreso){
-                    matriculaSolicitante(ingresito.matriculaProfesional);
-                     pos=ftell(archi)-sizeof(ingresos);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&ingresito, sizeof(ingresos), 1, archi);
-                    break;
-                }
-            }
-            fclose(archi);
-        }else{
-            printf("ERROR AL ABRIR EL ARCHIVO...\n");
-        }
-}
+void modificarFechaIngreso(int nroIngreso, nodoListaIngresos*lista)
+{
+    while(lista!=NULL && nroIngreso !=lista->ingreso.nroIngreso)
+    {
+        lista=lista->siguiente;
+    }
 
-void modificarFecha(int numIngreso, char archivo[]){
-    FILE*archi=fopen(archivo, "r+b");
-    ingresos ingresito;
-        int pos;
-    if(archi){
-            while(fread(&ingresito, sizeof(ingresos),1,archi)>0){
-                if(ingresito.nroIngreso==numIngreso){
-                    fechaIngreso(ingresito.fechaIngreso);
-                    fechaRetiro(ingresito.fechaRetiro, ingresito.fechaIngreso);
-                     pos=ftell(archi)-sizeof(ingresos);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&ingresito, sizeof(ingresos), 1, archi);
-                }
-            }
-            fclose(archi);
-        }else{
-            printf("ERROR AL ABRIR EL ARCHIVO...\n");
-        }
+    if(lista)
+    {
+        printf("Pasando a modificar la fecha de ingreso..\n");
+        fechaIngreso(lista->ingreso.fechaIngreso);
+    }
+}
+void modificarFechaRetiro(int nroIngreso, nodoListaIngresos*lista)
+{
+    while(lista!=NULL && nroIngreso !=lista->ingreso.nroIngreso)
+    {
+        lista=lista->siguiente;
+    }
+
+    if(lista)
+    {
+        printf("Pasando a modificar la fecha de ingreso..\n");
+        fechaRetiro(lista->ingreso.fechaRetiro, lista->ingreso.fechaIngreso);
+    }
 }
 ///cambia el ingreso por 0 o por 1, dependiendo lo que elija el usuario.
 void eliminarIngreso(int numIngreso, char archivo[])
@@ -440,3 +402,4 @@ void eliminarIngreso(int numIngreso, char archivo[])
         printf("Error al abrir el archivo..\n");
     }
 }
+

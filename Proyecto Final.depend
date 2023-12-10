@@ -160,7 +160,7 @@
 	<string.h>
 	"prototipados.h"
 
-1702059010 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
+1702152324 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
 
 1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresousuario.c
 	<stdio.h>
@@ -168,28 +168,31 @@
 	<string.h>
 	"prototipados.h"
 
-1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+1702150042 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+	"pracXingresos.h"
+
+1702144402 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
+1702153724 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
+	<stdio.h>
+	<stdlib.h>
+	"prototipados.h"
+	"pracXingresos.h"
+
+1702152387 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
-
-1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
-	<stdio.h>
-	<stdlib.h>
-	"prototipados.h"
-
-1702059035 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"prototipados.h"
+	"pracXingresos.h"
 
 1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\practicas.c
 	<stdio.h>
@@ -197,14 +200,19 @@
 	<string.h>
 	"prototipados.h"
 
-1702059187 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
+1702154090 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+	"pracXingresos.h"
+
+1702146692 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 
-1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
-	<stdio.h>
-	<stdlib.h>
+1702154112 c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.h
 	"prototipados.h"
 

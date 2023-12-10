@@ -428,268 +428,9 @@ int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
     }
         return i;
 }
-///menu de modificaciones pacientes..
-void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
-    ///PEDIR DNI CUANDO SE LLAME A ESTE MENU
-    int opcion=1000;
-    int verificado;
-    char seguro='n';
-    int dniNuevo;
-    do{
-        printf("                    Menu de modificaciones del paciente\n");
-        printf("                    1-Modificar dni\n");
-        printf("                    2-Modificar nombre y apellido\n");
-        printf("                    3-Modoficar edad\n");
-        printf("                    4-Modificar direccion\n");
-        printf("                    5-Telefono\n");
-        printf("                    0-salir del menu\n");
-        printf("                    Elija una opcion.. \n");
-        fflush(stdin);
-        scanf("%d", &opcion);
-        seguro='n';
 
-        switch(opcion){
-
-        case 1:
-                system("cls");
-                printf("Seguro que desea cambiar el dni? NO PODRA VOLVER ATRAS... (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-
-                        do{
-                        dniNuevo=dniPaciente(dniNuevo);
-                        verificado=existeEnElArbol(arbol,dniNuevo);
-                        if(verificado!=0){
-                            printf("Ha ingresado un dni que ya existe en el sistema, NO SE PUEDEN REPETIR DNI.\n");
-                        }
-                    }while(verificado!=0);
-
-                    modificarPacienteDni(archivo,dni, dniNuevo);
-                }
-                system("pause");
-                system("cls");
-
-                    opcion=0;
-            break;
-        case 2:
-                system("cls");
-                printf("Seguro que desea cambiar el nombre? NO PODRA VOLVER ATRAS... (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-
-                    modificarNombreYApellido(archivo, dni);
-
-                    }
-
-                system("pause");
-                system("cls");
-
-                    opcion=0;
-
-            break;
-        case 3:
-            system("cls");
-                printf("Seguro que desea cambiar la edad? NO PODRA VOLVER ATRAS... (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-
-                   modificarEdad(archivo,dni);
-
-                    }
-
-                system("pause");
-                system("cls");
-
-                    opcion=0;
-
-            break;
-        case 4:
-             system("cls");
-                printf("Seguro que desea cambiar la direccion? NO PODRA VOLVER ATRAS... (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-
-                   modificarDireccion(archivo, dni);
-
-                    }
-
-                system("pause");
-                system("cls");
-
-                    opcion=0;
-
-            break;
-        case 5:
-            system("cls");
-                printf("Seguro que desea cambiar el telefono? NO PODRA VOLVER ATRAS... (s/n)\n");
-                fflush(stdin);
-                scanf("%c", &seguro);
-                if(seguro=='s'){
-
-                   modificarTelefono(archivo,dni);
-
-                    }
-
-                system("pause");
-                system("cls");
-
-                    opcion=0;
-
-            break;
-        case 0:
-
-                    printf("Ha seleccionado salir...\n");
-            break;
-        default :
-                    printf("HA INGRESADO UNA OPCION INCORRECTA...\n");
-            break;
-
-
-            }
-            }while(seguro!='n');
-
-}
-///funcion que a través del dni del paciente, se le modifica su telefono celular
-void modificarTelefono(char archivo[], int dni)
-{
-    ///revisar puede ingresar letras
-FILE*archi=fopen(archivo,"r+b");
-    int tamanio=sizeof(char)*40;
-    pacientes persona;
-    int pos;
-    if(archi){
-        while(fread(&persona, sizeof(pacientes), 1,archi)>0){
-            if(persona.dni==dni){
-                telPaciente(persona.telefono, tamanio);
-                pos=ftell(archi)-sizeof(pacientes);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&persona, sizeof(pacientes), 1, archi);
-            }
-        }
-        fclose(archi);
-    }else{
-                    printf("ERROR AL ABRIR EL ARCHIVO...");
-    }
-
-}
-///Funcion que a través del dni del paciente se modifica la direccion del paciente.
-void modificarDireccion(char archivo[], int dni)
-{
-    FILE*archi=fopen(archivo,"r+b");
-    int tamanio=sizeof(char)*40;
-    pacientes persona;
-    int pos;
-    if(archi){
-        while(fread(&persona, sizeof(pacientes),1,archi)>0){
-            if(persona.dni==dni){
-                direccionPaciente(persona.direccion, tamanio);
-                  pos=ftell(archi)-sizeof(pacientes);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&persona, sizeof(pacientes), 1, archi);
-            }
-        }
-                fclose(archi);
-    }else{
-                    printf("ERROR AL ABRIR EL ARCHIVO...");
-    }
-}
-///funcion que a través del dni del paciente se modifica en el archivo la edad del paciente.
-void modificarEdad(char archivo[], int dni)
-{
-    FILE*archi=fopen(archivo,"r+b");
-    pacientes persona;
-    int pos;
-    if(archi){
-        while(fread(&persona, sizeof(pacientes),1,archi)>0){
-                if(persona.dni==dni){
-                    int edad=edadPaciente(edad);
-                    persona.edad=edad;
-                    pos=ftell(archi)-sizeof(pacientes);
-                    fseek(archi, pos, SEEK_SET);
-                    fwrite(&persona, sizeof(pacientes), 1, archi);
-                }
-        }
-                fclose(archi);
-    }else{
-                    printf("ERROR AL ABRIR EL ARCHIVO...");
-    }
-}
-///modifica en el archivo el nombre y apellido del paciente con ayuda del dni
-void modificarNombreYApellido(char archivo[], int dni)
-{
-    FILE *archi=fopen(archivo, "r+b");
-    pacientes persona;
-    int pos;
-        int tamanio=sizeof(char)*40;
-
-    if(archi){
-            while(fread(&persona, sizeof(pacientes), 1, archi)>0){
-                    if(persona.dni==dni){
-                        printf("Este es el nombre y apellido actual: %s", persona.apeYnombre);
-                        printf("Pasamos a modificar su nombre...\n");
-                        system("pause");
-                        system("cls");
-                        nombrePaciente(persona.apeYnombre, tamanio);
-                        pos=ftell(archi)-sizeof(pacientes);
-                        fseek(archi, pos, SEEK_SET);
-                        fwrite(&persona, sizeof(pacientes), 1, archi);
-            }
-    }
-            fclose(archi);
-
-    }
-    else{
-            printf("ERROR AL ABRIR EL ARCHIVO...");
-    }
-
-
-
-}
-///con esta funcion modificaremos el dni del paciente en cuestion, le pasamos 2 dni, el que usamos para encontrarlo y el
-///nuevo que será el que lo cambie
-void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
-{
-
-    FILE*archi=fopen(archivo, "r+b");
-
-        pacientes persona;
-        int pos;
-
-    if(archi){
-
-            while(fread(&persona, sizeof(pacientes), 1, archi)>0){
-
-                if(persona.dni==dni){
-
-                printf("Pasando a ingresar un DNI nuevo: \n");
-                system("pause");
-                system("cls");
-
-                persona.dni=dniNuevo;
-                pos=ftell(archi)-sizeof(pacientes);
-                fseek(archi, pos, SEEK_SET);
-                fwrite(&persona, sizeof(pacientes), 1, archi);
-                break;
-
-                }
-            }
-            fclose( archi);
-
-    }
-                 else{
-        system("cls");
-        printf("\n ERROR AL ABRIR EL ARCHIVO\n");
-        system("pause");
-        system("cls");
-    }
-}
 
 void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
-///ESTA FUNCION MODIFICA EL INT ELIMINADO EN EL ARCHIVO.
    FILE*archi=fopen(archivo, "rb");
    pacientes persona;
    nodoArbol*buscado=buscarPorDNI(arbol,dni);
@@ -716,8 +457,6 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
                                     system("cls");
                             }
                         }
-                        eliminarNodo(buscado,dni);
-
                     }
 
         fclose(archi);
@@ -730,7 +469,6 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
 }
 
 ///funciones de arboles de listas:
-
 
 //nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
 //{
@@ -748,6 +486,16 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
 //
 //    return arbol;
 //}
+
+void modificarDNIlista(nodoListaIngresos * lista, int dniNuevo)
+{
+    while(lista){
+        lista->ingreso.dniPaciente=dniNuevo;
+
+        lista=lista->siguiente;
+    }
+}
+
 nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
 
         nodoArbol*nodoBuscar=buscarPorDNI(arbol, dniActual);
@@ -756,145 +504,27 @@ nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
             printf("EL DNI INGRESADO NO SE ENCUENTRA EN EL SISTEMA!!!\n");
             return arbol;
         }
-        printf("         MODIFICAR...\n");
+        printf("MODIFICAR DNI...\n");
         dniNuevo=dniPaciente(dniNuevo);
         nodoBuscar->persona.dni=dniNuevo;
          printf("Datos modificados con éxito en el arbol.\n");
 
 
-
          if(nodoBuscar->lista){
-                nodoListaIngresos*seg=nodoBuscar->lista;
-            while(seg){
-                if(seg->ingreso.dniPaciente==dniActual){
-                    seg->ingreso.dniPaciente=dniNuevo;
-                }
-                seg=seg->siguiente;
-            }
-            nodoBuscar->lista=seg;
+            modificarDNIlista(nodoBuscar->lista, dniNuevo);
+//                nodoListaIngresos*seg=nodoBuscar->lista;
+//            while(seg){
+//                if(seg->ingreso.dniPaciente==dniActual){
+//                    seg->ingreso.dniPaciente=dniNuevo;
+//                }
+//                seg=seg->siguiente;
+//            }
+//            nodoBuscar->lista=seg;
 
-         printf("Datos modificados con exito en la lista.\n");
+         printf("Datos modificados con éxito en la lista.\n");
          }
 
         return arbol;
 }
-nodoArbol* modificarNombreYApellidoArbol(nodoArbol*arbol, int dni, char nuevoNombre[])
-{
-     nodoArbol*nodoBuscar=buscarPorDNI(arbol, dni);
-        int tamanioNombre=sizeof(char)*40;
 
-        if(nodoBuscar==NULL){
-            printf("LA PERSONA NO SE ENCUENTRA EN EL SISTEMA!!!\n");
-            return arbol;
-        }
-        nombrePaciente(nuevoNombre,tamanioNombre);
-
-        strcpy(nodoBuscar->persona.apeYnombre, nuevoNombre);
-
-
-         printf("Datos modificados con exito en el arbol.\n");
-
-return arbol;
-
-}
-
-nodoArbol* modificarTelefonoArbol(nodoArbol*arbol, int dni, char nuevoTelefono[])
-{
-     nodoArbol*nodoBuscar=buscarPorDNI(arbol, dni);
-        int tamanioTelefono=sizeof(char)*40;
-
-        if(nodoBuscar==NULL){
-            printf("LA PERSONA  NO SE ENCUENTRA EN EL SISTEMA!!!\n");
-            return arbol;
-        }
-        telPaciente(nuevoTelefono,tamanioTelefono);
-
-        strcpy(nodoBuscar->persona.telefono,nuevoTelefono);
-
-
-         printf("Datos modificados con exito en el arbol.\n");
-
-return arbol;
-
-}
-nodoArbol* modificarEdadArbol(nodoArbol*arbol, int dni, int nuevaEdad)
-{
-     nodoArbol*nodoBuscar=buscarPorDNI(arbol, dni);
-
-        if(nodoBuscar==NULL){
-            printf("LA PERSONA  NO SE ENCUENTRA EN EL SISTEMA!!!\n");
-            return arbol;
-        }
-
-        printf("         MODIFICAR...\n");
-
-        nuevaEdad=edadPaciente(nuevaEdad);
-
-        nodoBuscar->persona.edad=nuevaEdad;
-
-
-         printf("Datos modificados con exito en el arbol.\n");
-
-return arbol;
-
-}
-nodoArbol* buscarDniMenor(nodoArbol* arbol)
-{
-    while (arbol->izq != NULL) {
-        arbol = arbol->izq;
-    }
-    return arbol;
-}
-nodoArbol* eliminarNodo(nodoArbol* arbol, int dni)
-{
-    ///ESTA FUNCION LIBERA EL NODO EN EL ARBOL
-    if (arbol == NULL) {
-        return arbol;
-    }
-
-
-    if (dni < arbol->persona.dni) {
-        arbol->izq = eliminarNodo(arbol->izq, dni);
-    } else if (dni > arbol->persona.dni) {
-        arbol->der = eliminarNodo(arbol->der, dni);
-    } else {
-
-        /// nodo sin hijos o 1 solo hijo
-        if (arbol->izq == NULL) {
-            nodoArbol* temp = arbol->der;
-            free(arbol);
-            return temp;
-        } else if (arbol->der == NULL) {
-            nodoArbol* temp = arbol->izq;
-            free(arbol);
-            return temp;
-        }
-
-        ///nodo con dos hijos
-        nodoArbol* temp = buscarDniMenor(arbol->der);
-        arbol->persona = temp->persona;
-        arbol->der = eliminarNodo(arbol->der, temp->persona.dni);
-    }
-
-    return arbol;
-}
-void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) {
-    FILE* archi = fopen(archivoIngresos, "ab");
-
-    if (archi != NULL) {
-        cargarNodosDelArbolRecursivo(arbol, archi);
-        fclose(archi);
-    } else {
-        printf("Error al abrir el archivo %s\n", archivoIngresos);
-    }
-}
-
-void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo) {
-    if (arbol != NULL) {
-        fwrite(&(arbol->persona), sizeof(pacientes), 1, archivo);
-
-        cargarNodosDelArbolRecursivo(arbol->izq, archivo);
-        cargarNodosDelArbolRecursivo(arbol->der, archivo);
-    }
-}
 
