@@ -486,10 +486,10 @@ void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], in
             printf("\ndni: %d\n", arregloEmpleados[i].dni);
             if(arregloEmpleados[i].eliminado==0)
             {
-                printf("       Estado de servicio: EN SERVICIO\n", arregloEmpleados[i].eliminado);
+                printf("       Estado de servicio:  EN SERVICIO\n");
             }
             else{
-                printf("       Estado de servicio: FUERA DE SERVICIO\n", arregloEmpleados[i].eliminado);
+                printf("       Estado de servicio: FUERA DE SERVICIO\n");
             }
             printf("       ------------------------------------------\n");
             break;

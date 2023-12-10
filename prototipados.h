@@ -96,7 +96,14 @@ void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]);
 void escribirEnElArchi(FILE*archi, nodoArbol*arbol);
 pacientes cargaPaciente(nodoArbol*arbol);
 nodoArbol * modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol);
-
+nodoArbol* modificarNombreYApellidoArbol(nodoArbol*arbol, int dni, char nuevoNombre[]);
+nodoArbol* modificarDireccionArbol(nodoArbol*arbol, int dni, char nuevaDireccion[]);
+nodoArbol* modificarTelefonoArbol(nodoArbol*arbol, int dni, char nuevoTelefono[]);
+nodoArbol* modificarEdadArbol(nodoArbol*arbol, int dni, int nuevaEdad);
+void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) ;
+void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo);
+nodoArbol* eliminarNodo(nodoArbol* arbol, int dni);
+nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol);
 
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
