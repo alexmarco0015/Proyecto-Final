@@ -103,6 +103,14 @@ void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]);
 void escribirEnElArchi(FILE*archi, nodoArbol*arbol);
 pacientes cargaPaciente(nodoArbol*arbol);
 nodoArbol * modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol);
+nodoArbol* modificarNombreYApellidoArbol(nodoArbol*arbol, int dni, char nuevoNombre[]);
+nodoArbol* modificarDireccionArbol(nodoArbol*arbol, int dni, char nuevaDireccion[]);
+nodoArbol* modificarTelefonoArbol(nodoArbol*arbol, int dni, char nuevoTelefono[]);
+nodoArbol* modificarEdadArbol(nodoArbol*arbol, int dni, int nuevaEdad);
+void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) ;
+void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo);
+
+
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
 void contraseniaUsuario(char contrasenia[], int tamanio);
@@ -151,7 +159,7 @@ ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni
 void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito);
 nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[]);
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[],int dni);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
 void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);
@@ -163,6 +171,8 @@ void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo);
 void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo);
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]);
 nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]);
+nodoArbol* buscarDniMenor(nodoArbol* arbol);
+nodoArbol* eliminarNodo(nodoArbol* arbol, int dni);
 
 
 ///prototipados pracXingresos.c:
@@ -179,6 +189,7 @@ void menuModPracticasxIngreso(char archivo[],int nroIngreso);
 void modificarResultadoPractica(char archivo[], int nroIngreso);
 int pedirNum();
 void modificarNrodePracticaxIngreso(char archivo[], int nroIngreso);
+void guardarListaPractXingresoEnArchivo(nodoPractXingreso* lista, char archivoPXI[]);
 
 
 ///prototipados estructuraCompuesta.c:

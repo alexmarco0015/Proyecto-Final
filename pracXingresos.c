@@ -272,3 +272,19 @@ nodoPractXingreso * bajaPracticaxIngreso(int nroPractica, nodoPractXingreso * li
    return lista;
 
 }
+void guardarListaPractXingresoEnArchivo(nodoPractXingreso* lista, char archivoPXI[])
+ {
+    FILE* archi = fopen(archivoPXI, "ab");
+
+    if (archi == NULL) {
+        printf("Error al abrir el archivo de prácticas por ingreso.\n");
+        return;
+    }
+
+    while (lista != NULL) {
+        fwrite(&(lista->ingreso), sizeof(pracXingreso), 1, archi);
+        lista = lista->siguiente;
+    }
+
+    fclose(archi);
+}

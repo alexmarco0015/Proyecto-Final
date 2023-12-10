@@ -3,14 +3,14 @@
 	<stdio.h>
 	<stdlib.h>
 
-1701954642 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
+1702065781 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
 
-1701960783 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
+1702162399 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
 
-1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
+1702083112 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -65,7 +65,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
+1702054438 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -126,7 +126,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701954642 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
+1702065672 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -138,7 +138,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701959536 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
+1702060003 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -149,7 +149,7 @@
 	<stdlib.h>
 	"prototipados.h"
 
-1701901275 source:c:\users\valen\onedrive\documentos\github\proyecto-final\estructuracompuesta.c
+1702059985 source:c:\users\valen\onedrive\documentos\github\proyecto-final\estructuracompuesta.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"

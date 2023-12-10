@@ -689,6 +689,7 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
 }
 
 void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
+///ESTA FUNCION MODIFICA EL INT ELIMINADO EN EL ARCHIVO.
    FILE*archi=fopen(archivo, "rb");
    pacientes persona;
    nodoArbol*buscado=buscarPorDNI(arbol,dni);
@@ -715,6 +716,8 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
                                     system("cls");
                             }
                         }
+                        eliminarNodo(buscado,dni);
+
                     }
 
         fclose(archi);
@@ -727,6 +730,7 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
 }
 
 ///funciones de arboles de listas:
+
 
 //nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
 //{
@@ -752,7 +756,7 @@ nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
             printf("EL DNI INGRESADO NO SE ENCUENTRA EN EL SISTEMA!!!\n");
             return arbol;
         }
-        printf("MODIFICAR DNI...\n");
+        printf("         MODIFICAR...\n");
         dniNuevo=dniPaciente(dniNuevo);
         nodoBuscar->persona.dni=dniNuevo;
          printf("Datos modificados con éxito en el arbol.\n");
@@ -769,10 +773,128 @@ nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
             }
             nodoBuscar->lista=seg;
 
-         printf("Datos modificados con éxito en la lista.\n");
+         printf("Datos modificados con exito en la lista.\n");
          }
 
         return arbol;
 }
+nodoArbol* modificarNombreYApellidoArbol(nodoArbol*arbol, int dni, char nuevoNombre[])
+{
+     nodoArbol*nodoBuscar=buscarPorDNI(arbol, dni);
+        int tamanioNombre=sizeof(char)*40;
 
+        if(nodoBuscar==NULL){
+            printf("LA PERSONA NO SE ENCUENTRA EN EL SISTEMA!!!\n");
+            return arbol;
+        }
+        nombrePaciente(nuevoNombre,tamanioNombre);
+
+        strcpy(nodoBuscar->persona.apeYnombre, nuevoNombre);
+
+
+         printf("Datos modificados con exito en el arbol.\n");
+
+return arbol;
+
+}
+
+nodoArbol* modificarTelefonoArbol(nodoArbol*arbol, int dni, char nuevoTelefono[])
+{
+     nodoArbol*nodoBuscar=buscarPorDNI(arbol, dni);
+        int tamanioTelefono=sizeof(char)*40;
+
+        if(nodoBuscar==NULL){
+            printf("LA PERSONA  NO SE ENCUENTRA EN EL SISTEMA!!!\n");
+            return arbol;
+        }
+        telPaciente(nuevoTelefono,tamanioTelefono);
+
+        strcpy(nodoBuscar->persona.telefono,nuevoTelefono);
+
+
+         printf("Datos modificados con exito en el arbol.\n");
+
+return arbol;
+
+}
+nodoArbol* modificarEdadArbol(nodoArbol*arbol, int dni, int nuevaEdad)
+{
+     nodoArbol*nodoBuscar=buscarPorDNI(arbol, dni);
+
+        if(nodoBuscar==NULL){
+            printf("LA PERSONA  NO SE ENCUENTRA EN EL SISTEMA!!!\n");
+            return arbol;
+        }
+
+        printf("         MODIFICAR...\n");
+
+        nuevaEdad=edadPaciente(nuevaEdad);
+
+        nodoBuscar->persona.edad=nuevaEdad;
+
+
+         printf("Datos modificados con exito en el arbol.\n");
+
+return arbol;
+
+}
+nodoArbol* buscarDniMenor(nodoArbol* arbol)
+{
+    while (arbol->izq != NULL) {
+        arbol = arbol->izq;
+    }
+    return arbol;
+}
+nodoArbol* eliminarNodo(nodoArbol* arbol, int dni)
+{
+    ///ESTA FUNCION LIBERA EL NODO EN EL ARBOL
+    if (arbol == NULL) {
+        return arbol;
+    }
+
+
+    if (dni < arbol->persona.dni) {
+        arbol->izq = eliminarNodo(arbol->izq, dni);
+    } else if (dni > arbol->persona.dni) {
+        arbol->der = eliminarNodo(arbol->der, dni);
+    } else {
+
+        /// nodo sin hijos o 1 solo hijo
+        if (arbol->izq == NULL) {
+            nodoArbol* temp = arbol->der;
+            free(arbol);
+            return temp;
+        } else if (arbol->der == NULL) {
+            nodoArbol* temp = arbol->izq;
+            free(arbol);
+            return temp;
+        }
+
+        ///nodo con dos hijos
+        nodoArbol* temp = buscarDniMenor(arbol->der);
+        arbol->persona = temp->persona;
+        arbol->der = eliminarNodo(arbol->der, temp->persona.dni);
+    }
+
+    return arbol;
+}
+void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) {
+    FILE* archi = fopen(archivoIngresos, "ab");
+
+    if (archi != NULL) {
+        cargarNodosDelArbolRecursivo(arbol, archi);
+        fclose(archi);
+    } else {
+        printf("Error al abrir el archivo %s\n", archivoIngresos);
+    }
+}
+
+void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo) {
+    if (arbol != NULL) {
+        fwrite(&(arbol->persona), sizeof(pacientes), 1, archivo);
+
+        cargarNodosDelArbolRecursivo(arbol->izq, archivo);
+        cargarNodosDelArbolRecursivo(arbol->der, archivo);
+    }
+}
 

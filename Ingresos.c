@@ -207,9 +207,9 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
     return nuevo;
 }
 ///agregamos al principio de la lista los nodos creados en la funcion anterior
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[])
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[],int dni)
 {
-        ingresos ingresito=crearIngresos(ingresito,archivoIngresos, ingresito.dniPaciente);
+        ingresos ingresito=crearIngresos(ingresito,archivoIngresos, dni);
 
         nodoListaIngresos*nuevoNodo=inicListaIngresos();
         nuevoNodo=crearNodoListaIngresos(ingresito);
@@ -233,16 +233,23 @@ nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
                 printf("LA PERSONA BUSCADA NO EXISTE...\n");
                 return arbol;
             }
-            aux->lista=agregarPrincipio(aux->lista,archivoIngresos);
+            aux->lista=agregarPrincipio(aux->lista,archivoIngresos,dni);
 
           return arbol;
 }
 
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]){
-        FILE*archi=fopen(archivoIngresos,"wb");
-        ingresos ingresito;
+
+        FILE*archi=fopen(archivoIngresos,"ab");
+
         if(archi){
 
+        guardarListasDelArbolRecursivo(arbol, archi);
+
+        fclose(archi);
+
+        }else{
+            printf("ERROR AL ABRIR EL ARCHIVO...\n");
         }
 }
 
@@ -265,10 +272,13 @@ void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo){
     }
 }
 
+
 ///con esto pasamos todos los registros del archivo a la lista de listas..
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni)
 {
     ///REVISAR
+
+
     ingresos ingreso;
     FILE *archi=fopen(archivoIngresos, "rb");
     if(archi!=NULL)
@@ -276,7 +286,7 @@ nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngr
         while(fread(&ingreso, sizeof(ingreso), 1, archi)>0)
         {
             if(ingreso.eliminado!=0 && dni==ingreso.dniPaciente){///si es distinto de 0 es agregado a la lista, sino no se agrega.
-                lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista);
+                lista=agregarPrincipio(crearNodoListaIngresos(ingreso), lista,dni);
             }
         }
         fclose(archi);
