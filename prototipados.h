@@ -131,6 +131,7 @@ void menuAdminEmpleados(empleados_laboratorio arreglo[], int validosEmpleados, c
 void modificarEmpleadoMenu(int dni, empleados_laboratorio arreglo[], int validosEmpleados, const char archivoEmpleados[]);
 void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEmpleados[], int validosEmpleados, nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes, char archivoIngresos[]);
 void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol);
+void menuPaciente(char archivo[], int dni, nodoArbol*arbol);
 
 ///prototipados librería ingresoUsuario
 int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[]);

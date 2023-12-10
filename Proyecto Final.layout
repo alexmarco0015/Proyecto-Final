@@ -2,44 +2,24 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="ingresoUsuario.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.c" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2362" topLine="66" />
-		</Cursor>
-	</File>
-	<File name="pracXingresos.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5344" topLine="160" />
-		</Cursor>
-	</File>
-	<File name="Menues.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="15943" topLine="395" />
-		</Cursor>
-	</File>
-	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="402" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="CrearUsuario.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="16829" topLine="470" />
-		</Cursor>
-	</File>
-	<File name="pacientes.c" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="22428" topLine="738" />
+			<Cursor1 position="893" topLine="18" />
 		</Cursor>
 	</File>
 	<File name="Ingresos.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8772" topLine="271" />
+			<Cursor1 position="9846" topLine="339" />
 		</Cursor>
 	</File>
-	<File name="estructuraCompuesta.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="pracXingresos.c" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1101" topLine="22" />
+			<Cursor1 position="3705" topLine="131" />
+		</Cursor>
+	</File>
+	<File name="Menues.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="19911" topLine="514" />
 		</Cursor>
 	</File>
 	<File name="practicas.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -49,7 +29,27 @@
 	</File>
 	<File name="prototipados.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3535" topLine="85" />
+			<Cursor1 position="5694" topLine="121" />
+		</Cursor>
+	</File>
+	<File name="estructuraCompuesta.c" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1101" topLine="22" />
+		</Cursor>
+	</File>
+	<File name="CrearUsuario.c" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="16829" topLine="470" />
+		</Cursor>
+	</File>
+	<File name="pacientes.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="12232" topLine="417" />
+		</Cursor>
+	</File>
+	<File name="ingresoUsuario.c" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2362" topLine="66" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

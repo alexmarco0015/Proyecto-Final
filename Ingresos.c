@@ -338,7 +338,6 @@ void modificarMatricula(int nroIngreso, nodoListaIngresos*lista){
         printf("Pasando a modificar la matricula del profesional solicitante..\n");
         lista->ingreso.matriculaProfesional=matriculaSolicitante(lista->ingreso.matriculaProfesional);
     }
-
 }
 
 void modificarFechaIngreso(int nroIngreso, nodoListaIngresos*lista)

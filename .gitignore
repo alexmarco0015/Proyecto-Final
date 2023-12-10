@@ -52,3 +52,4 @@ Mkfile.old
 dkms.conf
 Proyecto Final.layout
 *.layout
+*.o
