@@ -31,7 +31,6 @@ void leer_arch_practicas(practicas arreglo[], int* validos)
         }
 
     (*validos)=contador;
-
 }
 
 
