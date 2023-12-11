@@ -201,10 +201,13 @@ void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbo
     {
         while(fread(&dato, sizeof(pracXingreso), 1, buffer)>0)
         {
-            nodoPractXingreso*nuevoNodo=inicListapracXingresos();
-            nuevoNodo=crearNodoListaPracXingresos(dato);
+//            nodoPractXingreso*nuevoNodo=inicListapracXingresos();
+//            nuevoNodo=crearNodoListaPracXingresos(dato);
             nodoListaIngresos*lista=buscarListaPracXingresoEnArbol(arbol, dato.nroIngreso);
-            insertarListaPracXingresoEnIngresos(lista, nuevoNodo);
+            if(lista!=NULL){
+
+            insertarListaPracXingresoEnIngresos(lista->lista, lista);
+            }
         }
 
 
@@ -214,5 +217,39 @@ void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbo
         printf("Error al abrir el archivo..\n\n");
         system("pause");
         system("cls");
+    }
+}
+void pasarListaPXIToArchi(nodoArbol*arbol, char archivoPXI[]){
+        FILE*archi=fopen(archivoPXI,"wb");
+
+        if(archi){
+                guardarListasDelArbolRecursivo2(arbol,archi);
+        fclose(archi);
+
+        }else{
+            printf("ERROR AL ABRIR\n");
+        }
+}
+
+void guardarListasDelArbolRecursivo2(nodoArbol *arbol, FILE *archivo) {
+    if (arbol != NULL) {
+        guardarListaPractXingresoEnArchivoRecursivo(arbol->lista, archivo);
+
+        guardarListasDelArbolRecursivo2(arbol->izq, archivo);
+        guardarListasDelArbolRecursivo2(arbol->der, archivo);
+    }
+}
+
+void guardarListaPractXingresoEnArchivoRecursivo(nodoListaIngresos *lista, FILE *archivo) {
+    while (lista != NULL) {
+        guardarListaPractXingreso(lista->lista, archivo);
+        lista = lista->siguiente;
+    }
+}
+
+void guardarListaPractXingreso(nodoPractXingreso *lista, FILE *archivo) {
+    while (lista != NULL) {
+        fwrite(&(lista->ingreso), sizeof(pracXingreso), 1, archivo);
+        lista = lista->siguiente;
     }
 }

@@ -765,7 +765,7 @@ nodoArbol* eliminarNodo(nodoArbol* arbol, int dni)
     return arbol;
 }
 void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) {
-    FILE* archi = fopen(archivoIngresos, "ab");
+    FILE* archi = fopen(archivoIngresos, "wb");
 
     if (archi != NULL) {
         cargarNodosDelArbolRecursivo(arbol, archi);

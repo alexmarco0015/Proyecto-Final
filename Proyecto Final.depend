@@ -3,14 +3,15 @@
 	<stdio.h>
 	<stdlib.h>
 
-1701954642 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
+1702251980 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
 	<stdio.h>
 	<stdlib.h>
+	<string.h>
 	"prototipados.h"
 
-1701960783 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
+1702251722 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
 
-1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
+1702237030 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -53,7 +54,7 @@
 	<string.h>
 	"prototipados.h"
 
-1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\crearusuario.c
+1702230715 source:c:\users\valen\onedrive\documentos\github\proyecto-final\crearusuario.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
@@ -65,11 +66,12 @@
 	<string.h>
 	"prototipados.h"
 
-1701953406 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
+1702228224 source:c:\users\valen\onedrive\documentos\github\proyecto-final\menues.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
+	"pracXingresos.h"
 
 1701399896 source:c:\users\alex\documents\github\proyecto-final\ingresos.c
 	<stdio.h>
@@ -126,11 +128,12 @@
 	<string.h>
 	"prototipados.h"
 
-1701954642 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
+1702258768 source:c:\users\valen\onedrive\documentos\github\proyecto-final\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
+	"pracXingresos.h"
 
 1701954652 source:c:\users\valen\onedrive\documentos\github\proyecto-final\practicas.c
 	<stdio.h>
@@ -138,29 +141,31 @@
 	<string.h>
 	"prototipados.h"
 
-1701959536 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
+1702235648 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
+	"pracXingresos.h"
 
 1701408588 source:c:\users\alex\documents\github\proyecto-final\estructuracompuesta.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
 
-1701901275 source:c:\users\valen\onedrive\documentos\github\proyecto-final\estructuracompuesta.c
+1702228224 source:c:\users\valen\onedrive\documentos\github\proyecto-final\estructuracompuesta.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
+	"pracXingresos.h"
 
-1702230431 source:c:\users\alex\documents\github\proyecto-finalnuevo\crearusuario.c
+1702229822 source:c:\users\alex\documents\github\proyecto-finalnuevo\crearusuario.c
 	<stdlib.h>
 	<stdio.h>
 	<string.h>
 	"prototipados.h"
 
-1702233111 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
+1702230351 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
 
 1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresousuario.c
 	<stdio.h>
@@ -168,26 +173,14 @@
 	<string.h>
 	"prototipados.h"
 
-1701975603 ated upstream
-
-1702230423 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+1702229323 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 	"pracXingresos.h"
 
-1702233161 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"prototipados.h"
-
-1702227283 shed changes
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"prototipados.h"
+1702230298 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -199,18 +192,12 @@
 	"prototipados.h"
 	"pracXingresos.h"
 
-1702233481 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
+1702228929 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 	"pracXingresos.h"
-
-1702233071 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"prototipados.h"
 
 1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\practicas.c
 	<stdio.h>
@@ -225,6 +212,15 @@
 	"prototipados.h"
 	"pracXingresos.h"
 
+1702229323 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"prototipados.h"
+
 1702228899 c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.h
+	"prototipados.h"
+
+1702228224 c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.h
 	"prototipados.h"
 

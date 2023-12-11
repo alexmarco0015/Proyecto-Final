@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
-#include "pracXingresos.h"
 
 const char archivoEmpleados[]="empleados.bin";
 
@@ -16,27 +15,37 @@ int main()
     empleados_laboratorio arregloEmpleados[100];
     int validosEmpleados=0, validosPacientes=0;
     int opcion=-1;
-    nodoArbol * arbol=inicArbol();
     pacientes arregloPacientes[100];
-    pacientes persona=cargaPaciente(arbol);
-    arbol=insertarNodoPaciente(arbol, persona);
-    arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
-    ///cuando queramos agregarlo a un arbol más completo, hay que hacer una funcion de busqueda de ingresos
-    ///lo añado de esta manera para que
-    arbol->lista=agregarListaPracticas(arbol->lista);
+    nodoArbol * arbol=inicArbol();
+//    pacientes persona=cargaPaciente(arbol);
+//    arbol=insertarNodoPaciente(arbol, persona);
+//    arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
+//    arbol->lista=agregarListaPracticas(arbol->lista);
+//    pasarArbolAlArchivo(arbol,archivoPacientes);
+//    pasarListaToArchi(arbol,archivoIngresos);
 
+   // pasarListaPXIToArchi(arbol,archivoPractXingresos);
+
+    arbol=pasarArchiToArbol(arbol,archivoPacientes);
+    arbol=archivoIngresosToArbol(archivoIngresos,arbol);
+   // arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);
     mostrarArbol(arbol);
     mostrarListaIngresos(arbol->lista);
+    //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
+   // arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
+    ///cuando queramos agregarlo a un arbol más completo, hay que hacer una funcion de busqueda de ingresos
+    ///lo añado de esta manera para que
+   // arbol->lista=agregarListaPracticas(arbol->lista);
+   // mostrarListaIngresos(arbol->lista);
     ///luego habría que probar si funciona con una más completa, no solo mostrando uno por uno
-    arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
+    //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
 
-//  int dniNuevo=47316171;
-//    char nuevaDireccion[40];
-//    arbol= modificarDniArbol(dniNuevo,persona.dni,arbol);
+
 //    arbol=eliminarNodo(arbol,persona.dni);
-//    mostrarArbol(arbol);
-//    //mostrarListaIngresos(arbol->lista);
-//
+   //mostrarArbol(arbol);
+
+    //mostrarListaIngresos(arbol->lista);
+
 //   do{
 //        printf("                    Laboratorio Central - Hospital de ninios\n");
 //        printf("                    1-Registrarse\n");
@@ -45,6 +54,7 @@ int main()
 //        printf("Ingrese la opcion a elegir.. ");
 //        fflush(stdin);
 //        scanf("%d", &opcion);
+//        arbol=pasarArchiToArbol(arbol, archivoPacientes);
 //
 //        switch(opcion)
 //        {
@@ -99,5 +109,5 @@ int main()
 //        }
 //    } while(opcion!=0);
 //
-//    return 0;
+    return 0;
 }
