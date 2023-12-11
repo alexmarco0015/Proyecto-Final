@@ -53,3 +53,6 @@ dkms.conf
 Proyecto Final.layout
 *.layout
 *.o
+*.o
+*.depend
+*.layout

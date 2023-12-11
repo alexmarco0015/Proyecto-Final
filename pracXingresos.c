@@ -192,7 +192,7 @@ nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngres
     return NULL;  // Lista de ingresos no encontrada
 }
 ///se agregan todas las practicas del archivo al arbol de listas de listas..
-void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol)
+nodoArbol * archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol)
 {
     FILE * buffer=fopen(archivopracXingr, "rb");
     pracXingreso dato;
@@ -201,8 +201,7 @@ void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbo
     {
         while(fread(&dato, sizeof(pracXingreso), 1, buffer)>0)
         {
-//            nodoPractXingreso*nuevoNodo=inicListapracXingresos();
-//            nuevoNodo=crearNodoListaPracXingresos(dato);
+            nodoPractXingreso * nuevoNodo=crearNodoListaPracXingresos(dato);
             nodoListaIngresos*lista=buscarListaPracXingresoEnArbol(arbol, dato.nroIngreso);
             if(lista!=NULL){
 
@@ -218,7 +217,10 @@ void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbo
         system("pause");
         system("cls");
     }
+
+    return arbol;
 }
+
 void pasarListaPXIToArchi(nodoArbol*arbol, char archivoPXI[]){
         FILE*archi=fopen(archivoPXI,"wb");
 

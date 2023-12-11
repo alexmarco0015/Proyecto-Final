@@ -28,7 +28,7 @@ int main()
 
     arbol=pasarArchiToArbol(arbol,archivoPacientes);
     arbol=archivoIngresosToArbol(archivoIngresos,arbol);
-   // arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);
+    arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);
     mostrarArbol(arbol);
     mostrarListaIngresos(arbol->lista);
     //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
