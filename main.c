@@ -15,24 +15,35 @@ int main()
     empleados_laboratorio arregloEmpleados[100];
     int validosEmpleados=0, validosPacientes=0;
     int opcion=-1;
-    nodoArbol * arbol=inicArbol();
     pacientes arregloPacientes[100];
-    pacientes persona=cargaPaciente(arbol);
-    arbol=insertarNodoPaciente(arbol, persona);
+    nodoArbol * arbol=inicArbol();
+//    pacientes persona=cargaPaciente(arbol);
+//    arbol=insertarNodoPaciente(arbol, persona);
+//    arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
+//    arbol->lista=agregarListaPracticas(arbol->lista);
+//    pasarArbolAlArchivo(arbol,archivoPacientes);
+//    pasarListaToArchi(arbol,archivoIngresos);
+
+   // pasarListaPXIToArchi(arbol,archivoPractXingresos);
+
+    arbol=pasarArchiToArbol(arbol,archivoPacientes);
+    arbol=archivoIngresosToArbol(archivoIngresos,arbol);
+   // arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);
+    mostrarArbol(arbol);
+    mostrarListaIngresos(arbol->lista);
+    //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
    // arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
     ///cuando queramos agregarlo a un arbol más completo, hay que hacer una funcion de busqueda de ingresos
     ///lo añado de esta manera para que
    // arbol->lista=agregarListaPracticas(arbol->lista);
-    mostrarArbol(arbol);
    // mostrarListaIngresos(arbol->lista);
     ///luego habría que probar si funciona con una más completa, no solo mostrando uno por uno
     //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
 
-  int dniNuevo=47316171;
-    char nuevaDireccion[40];
-    arbol= modificarDniArbol(dniNuevo,persona.dni,arbol);
-    arbol=eliminarNodo(arbol,persona.dni);
-    mostrarArbol(arbol);
+
+//    arbol=eliminarNodo(arbol,persona.dni);
+   //mostrarArbol(arbol);
+
     //mostrarListaIngresos(arbol->lista);
 
 //   do{

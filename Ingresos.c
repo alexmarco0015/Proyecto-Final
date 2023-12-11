@@ -251,8 +251,25 @@ void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista)
     }
 
 }
+
+nodoListaIngresos *agregarAlista(nodoListaIngresos *lista, ingresos nuevoIngreso)
+ {
+///CREE ESTA FUNCION PARA AGREGAR SIN PEDIR DATOS. ES PARA ARCHIVOS
+    nodoListaIngresos *nuevoNodo = crearNodoListaIngresos(nuevoIngreso);
+
+
+    if (lista == NULL) {
+        return nuevoNodo;
+    }
+
+
+    nuevoNodo->siguiente = lista;
+    lista = nuevoNodo;
+
+    return lista;
+}
 ///pasamos el archivo de ingresos al arbol de pacientes y les insertamos todos los ingresos de cada paciente.
-void archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol)
+nodoArbol* archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol)
 {
     FILE*buffer=fopen(archivoIngresos, "rb");
     ingresos ingresito;
@@ -261,10 +278,17 @@ void archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol)
     {
         while(fread(&ingresito, sizeof(ingresos), 1, buffer)>0)
         {
-            nodoListaIngresos*nuevoNodo=inicListaIngresos();
-            nuevoNodo=crearNodoListaIngresos(ingresito);
-            insertarNodoEnArbol(arbol, nuevoNodo);
+//            nodoListaIngresos*nuevoNodo=inicListaIngresos();
+//            nuevoNodo=crearNodoListaIngresos(ingresito);
+//            insertarNodoEnArbol(arbol, nuevoNodo);
+
+            nodoArbol *nodoPaciente = buscarPorDNI(arbol, ingresito.dniPaciente);
+        ///BUSCO EL PACIENTE Y CARGO EL INGRESO EN SU NODO
+            if (nodoPaciente != NULL)
+            {
+                nodoPaciente->lista = agregarAlista(nodoPaciente->lista, ingresito);
         }
+    }
         fclose(buffer);
     }
     else{
@@ -272,6 +296,7 @@ void archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol)
         system("pause");
         system("cls");
     }
+    return arbol;
 }
 
 nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
@@ -291,7 +316,11 @@ void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]){
         FILE*archi=fopen(archivoIngresos,"wb");
         ingresos ingresito;
         if(archi){
+                guardarListasDelArbolRecursivo(arbol,archi);
+        fclose(archi);
 
+        }else{
+            printf("ERROR AL ABRIR\n");
         }
 }
 
@@ -304,7 +333,7 @@ void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo) {
         guardarListasDelArbolRecursivo(arbol->der, archivo);
     }
 }
-void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo){
+void guardarListaEnArchivoRecursivo(nodoListaIngresos *lista, FILE*archivo){
 
     while (lista != NULL) {
 

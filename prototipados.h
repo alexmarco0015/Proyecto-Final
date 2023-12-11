@@ -166,7 +166,8 @@ void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo);
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]);
 nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]);
 void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista);
-void archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol);
+nodoArbol* archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol);
+nodoListaIngresos *agregarAlista(nodoListaIngresos *lista, ingresos nuevoIngreso);
 
 ///prototipados pracXingresos.c:
 
