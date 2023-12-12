@@ -3,6 +3,9 @@
 #include <string.h>
 #include "prototipados.h"
 #include "pracXingresos.h"
+#include "ingresos.h"
+#include "pacientes.h"
+
 ///el usuario inserta el tipo de resultado que ha generado dicha practica
 void crearResultado(char resultado[])
 {
@@ -167,15 +170,8 @@ void bajaPracticaxIngreso(int nroPract, nodoPractXingreso * lista){
 ///insertamos la practica en el ultimo lugar de la lista, si no existe la lista, se inserta al inicio.
 nodoPractXingreso * insertarListaPracXingresoEnIngresos(nodoPractXingreso * lista, nodoPractXingreso *nuevoNodo) {
 
-        if(lista==NULL)
-        {
-            lista=nuevoNodo;
-        }
-        else
-        {
-            nuevoNodo->siguiente=lista;
-            lista=nuevoNodo;
-        }
+    nuevoNodo->siguiente = lista;
+    lista = nuevoNodo;
 
     return lista;
 }
@@ -202,10 +198,10 @@ nodoArbol * archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol
         while(fread(&dato, sizeof(pracXingreso), 1, buffer)>0)
         {
             nodoPractXingreso * nuevoNodo=crearNodoListaPracXingresos(dato);
-            nodoListaIngresos*lista=buscarListaPracXingresoEnArbol(arbol, dato.nroIngreso);
+            nodoPractXingreso * lista=buscarListaPracXingresoEnArbol(arbol, dato.nroIngreso);
             if(lista!=NULL){
 
-            insertarListaPracXingresoEnIngresos(lista->lista, lista);
+            lista=insertarListaPracXingresoEnIngresos(lista, nuevoNodo);
             }
         }
 
@@ -253,5 +249,23 @@ void guardarListaPractXingreso(nodoPractXingreso *lista, FILE *archivo) {
     while (lista != NULL) {
         fwrite(&(lista->ingreso), sizeof(pracXingreso), 1, archivo);
         lista = lista->siguiente;
+    }
+}
+
+void mostrarArchivoPracticas(char archivopracticas[]) {
+    FILE *buffer = fopen(archivopracticas, "rb");
+ pracXingreso dato;
+
+    if (buffer) {
+
+        while (fread(&dato, sizeof(pracXingreso), 1, buffer) > 0) {
+
+           muestraPracXingreso(dato);
+            printf("---------------------------------\n");
+        }
+
+        fclose(buffer);
+    } else {
+        printf("Error al abrir el archivo de ingresos.\n");
     }
 }

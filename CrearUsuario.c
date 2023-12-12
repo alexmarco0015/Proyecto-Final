@@ -3,6 +3,7 @@
 #include <string.h>
 #define digitosDNI 999
 #include "prototipados.h"
+#include "pacientes.h"
 
 ///sacamos el nombre de usuario como puntero a través de un arreglo de tipo string para luego usarlo en el crear usuario
 void nombreUsuario(char usuario[], int tamanio)

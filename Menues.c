@@ -3,7 +3,8 @@
 #include <string.h>
 #include "prototipados.h"
 #include "pracXingresos.h"
-
+#include "Menues.h"
+#include "ingresos.h"
 
 ///funciones:
 void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes)
@@ -415,7 +416,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
 }
 
 ///menú para modificaciones del archivo de pracXingresos.
-void menuModPracticasxIngreso(char archivo[],int nroIngreso){
+void menuModPracticasxIngreso(char archivo[],int nroIngreso, nodoArbol * arbol){
   int opcion=1000;
     char seguro='n';
     do{

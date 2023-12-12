@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
+#include "pacientes.h"
 
 ///valida la edad del paciente, devuelve 1 si es valido, 0 si es invalido
 int validarEdad(int edad)

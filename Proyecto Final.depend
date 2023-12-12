@@ -165,7 +165,7 @@
 	<string.h>
 	"prototipados.h"
 
-1702318422 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
+1702341839 c:\users\alex\documents\github\proyecto-finalnuevo\prototipados.h
 
 1702055004 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresousuario.c
 	<stdio.h>
@@ -173,31 +173,37 @@
 	<string.h>
 	"prototipados.h"
 
-1702230423 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
+1702340926 source:c:\users\alex\documents\github\proyecto-finalnuevo\menues.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 	"pracXingresos.h"
+	"Menues.h"
+	"ingresos.h"
 
-1702318422 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
+1702341074 source:c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
+	"pacientes.h"
 
-1702228929 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
+1702341839 source:c:\users\alex\documents\github\proyecto-finalnuevo\estructuracompuesta.c
 	<stdio.h>
 	<stdlib.h>
 	"prototipados.h"
 	"pracXingresos.h"
+	"pacientes.h"
+	"ingresos.h"
 
-1702318421 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
+1702340914 source:c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 	"pracXingresos.h"
+	"ingresos.h"
 
 1702239096 source:c:\users\alex\documents\github\proyecto-finalnuevo\practicas.c
 	<stdio.h>
@@ -205,22 +211,32 @@
 	<string.h>
 	"prototipados.h"
 
-1702322306 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
+1702341179 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
 	"pracXingresos.h"
+	"ingresos.h"
+	"pacientes.h"
 
-1702322306 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
+1702341074 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
+	"pracXingresos.h"
+	"Menues.h"
+	"pacientes.h"
 
-1702322317 c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.h
-	"prototipados.h"
+1702340825 c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.h
 
 1702228224 c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.h
 	"prototipados.h"
+
+1702340817 c:\users\alex\documents\github\proyecto-finalnuevo\menues.h
+
+1702340914 c:\users\alex\documents\github\proyecto-finalnuevo\ingresos.h
+
+1702341003 c:\users\alex\documents\github\proyecto-finalnuevo\pacientes.h
 

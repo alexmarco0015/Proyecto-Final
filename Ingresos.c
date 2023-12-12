@@ -3,6 +3,8 @@
 #include <string.h>
 #include "prototipados.h"
 #include "pracXingresos.h"
+#include "ingresos.h"
+
 ///pasamos todos los registros de tipo ingreso a un arreglo de ingresos
 int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
 {
@@ -227,30 +229,30 @@ nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos
     return lista;
 }
 ///buscamos por todo el arbol donde se encuentra el paciente con el dni del nodoIngresos, si no se encuentra, devuelve que no se encontró en el arbol.
-void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista)
-{
-    nodoArbol* nodoPaciente=buscarPorDNI(arbol, nodoLista->ingreso.dniPaciente);
-
-    if (nodoPaciente != NULL) {
-        // Encontramos el nodo del paciente, ahora adjuntamos la lista de ingresos
-        if(nodoPaciente->lista!=NULL)
-        {
-            nodoLista->siguiente = nodoPaciente->lista;
-            nodoPaciente->lista = nodoLista;
-        }
-        else{
-            nodoPaciente->lista=nodoLista;
-        }
-
-        printf("Lista de ingresos insertada correctamente para el paciente con DNI %d.\n", nodoLista->ingreso.dniPaciente);
-    } else {
-        printf("No se encontro el paciente con DNI %d en el arbol.\n", nodoLista->ingreso.dniPaciente);
-        printf("Sera eliminado del archivo al terminar el programa....\n\n");
-        system("pause");
-        system("cls");
-    }
-
-}
+//void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista)
+//{
+//    nodoArbol* nodoPaciente=buscarPorDNI(arbol, nodoLista->ingreso.dniPaciente);
+//
+//    if (nodoPaciente != NULL) {
+//        // Encontramos el nodo del paciente, ahora adjuntamos la lista de ingresos
+//        if(nodoPaciente->lista!=NULL)
+//        {
+//            nodoLista->siguiente = nodoPaciente->lista;
+//            nodoPaciente->lista = nodoLista;
+//        }
+//        else{
+//            nodoPaciente->lista=nodoLista;
+//        }
+//
+//        printf("Lista de ingresos insertada correctamente para el paciente con DNI %d.\n", nodoLista->ingreso.dniPaciente);
+//    } else {
+//        printf("No se encontro el paciente con DNI %d en el arbol.\n", nodoLista->ingreso.dniPaciente);
+//        printf("Sera eliminado del archivo al terminar el programa....\n\n");
+//        system("pause");
+//        system("cls");
+//    }
+//
+//}
 
 nodoListaIngresos *agregarAlista(nodoListaIngresos *lista, ingresos nuevoIngreso)
  {
