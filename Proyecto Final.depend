@@ -3,13 +3,14 @@
 	<stdio.h>
 	<stdlib.h>
 
-1702251980 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
+1702341239 source:c:\users\valen\onedrive\documentos\github\proyecto-final\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"prototipados.h"
+	"pracXingresos.h"
 
-1702251722 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
+1702340545 c:\users\valen\onedrive\documentos\github\proyecto-final\prototipados.h
 
 1702237030 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pacientes.c
 	<stdio.h>
@@ -141,7 +142,7 @@
 	<string.h>
 	"prototipados.h"
 
-1702235648 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
+1702340895 source:c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -234,7 +235,7 @@
 
 1702399596 c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.h
 
-1702228224 c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.h
+1702341042 c:\users\valen\onedrive\documentos\github\proyecto-final\pracxingresos.h
 	"prototipados.h"
 
 1702340817 c:\users\alex\documents\github\proyecto-finalnuevo\menues.h
