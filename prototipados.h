@@ -70,22 +70,22 @@ typedef struct{
 ///prototipados de librería "crearUsuario":
 void nombreUsuario(char usuario[], int tamanio);
 void contraseniaUsuario(char contrasenia[], int tamanio);
-int dniUsuario(int dni);
 void nombreYapellidoUsuario(char nombre[], int tamanio);
 int crearPerfil(int perfil);
 empleados_laboratorio crearCuenta(empleados_laboratorio usuario);
 void crearusuario(const char archivo[], empleados_laboratorio arreglo[], int validos);
 int plasmarEnArreglo(const char archivo[], empleados_laboratorio arreglo[], int validos);
-int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos);
+int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int validos);
 void modDni(const char archivo[], int dni, int dniNuevo);
 void modApeYnombre(const char archivo[], int dni);
 void modUsername(const char archivo[], int dni);
 void modContrasenia(const char archivo[], int dni);
 void modTipoPerfil(const char archivo[], int dni);
 void darDeBajaEmpleado(const char archivoEmpleados[], int dni);
-void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], int validosEmpleados, int dni);
 void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validosEmpleados, int dni);
+void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], int validosEmpleados, int dni);
+void ordenarEmpleadosPorName(empleados_laboratorio arreglo[], int tamano);
 
 ///prototipados librería ingresoUsuario
 int cargarArregloUsuarios(const char archivo[], empleados_laboratorio arreglo[]);

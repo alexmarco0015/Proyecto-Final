@@ -306,6 +306,12 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
                 system("pause");
                 system("cls");
                 break;
+            case 5:
+                system("cls");
+
+                system("pause");
+                system("cls");
+                break;
             case 0:
                 system("cls");
                 printf("\nHa seleccionado salir del Menu..\n volviendo al Menu principal\n");
@@ -327,9 +333,10 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
     int opcion=-1;
     int dni=-1;
     int flag=-1;
+    int flag2=-1;
     int contador=0;
     int ingresito;
-    ingresos persona;
+    int numeroIngreso=0;
     do{
         printf("                    Menu Laboratorio\n");
         printf("                    1-Cargar Resultados\n");
@@ -355,7 +362,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                     printf("Ingrese el dni del paciente:\n");
                     fflush(stdin);
                     scanf("%d", &dni);
-                    flag=buscaPaciente(archivoPaciente, dni);
+                    flag=existeEnElArbol(arbol, dni);
                     if(flag==0){
                         system("cls");
                         printf("Ingreso un dni incorrecto, vuelva a ingresar..\n\n");
@@ -364,13 +371,31 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                         contador++;
                     }
                 }while(flag!=1);
+                contador=0;
+                do{
+                    if(contador==3)
+                    {
+                        printf("Ha ingresado incorrectamente el dni 3 veces, volviendo al menu..\n");
+                        break;
+                    }
+                    printf("Ahora ingrese el ingreso que busca del usuario\n");
+                    fflush(stdin);
+
+
+                    if(flag==0){
+                        system("cls");
+                        printf("Ingreso un dni incorrecto, vuelva a ingresar..\n\n");
+                        system("pause");
+                        system("cls");
+                        contador++;
+                    }
+                }while(flag!=1);
+
                 if(contador!=3)
                 {
-                    persona=crearIngresos(persona, archivoIngresos, dni);
 
-                    //arbol=cargarIngresoenArbol(arbol, dni, )
-
-                    //cargaPractica(archivoPractXingresos, persona.nroIngreso);
+                    arbol=cargarIngresoenArbol(arbol, dni);
+                    arbol=agregarPracticaAlArbol(arbol, numeroIngreso, dni);
                 }
 
                 system("pause");
@@ -418,7 +443,8 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
 }
 
 ///menú para modificaciones del archivo de pracXingresos.
-void menuModPracticasxIngreso(char archivo[],int nroIngreso, nodoArbol * arbol){
+void menuModPracticasxIngreso(char archivo[],int nroIngreso, nodoArbol * arbol)
+{
   int opcion=1000;
     char seguro='n';
     do{
@@ -470,7 +496,8 @@ void menuModPracticasxIngreso(char archivo[],int nroIngreso, nodoArbol * arbol){
     }while(opcion!=0);
 }
 ///menu de modificaciones de ingresos..
-void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol){
+void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol)
+{
     int opcion=1000;
     char seguro='n';
     do{
@@ -523,7 +550,8 @@ void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol){
     }while(opcion!=3);
 }
 ///menu de modificaciones pacientes..
-void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
+void menuPaciente(char archivo[], int dni, nodoArbol*arbol)
+{
     ///PEDIR DNI CUANDO SE LLAME A ESTE MENU
     int opcion=1000;
     int verificado;

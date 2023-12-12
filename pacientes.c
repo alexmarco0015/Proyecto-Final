@@ -228,12 +228,13 @@ pacientes cargaPaciente(nodoArbol*arbol)
 
 }
 ///inicializamos un arbol
-nodoArbol*inicArbol(){
-
+nodoArbol*inicArbol()
+{
     return NULL;
 }
 ///creamos un nodo de tipo arbol, con ayuda de los registros PACIENTE
-nodoArbol*crearNodo(pacientes registro){
+nodoArbol*crearNodo(pacientes registro)
+{
 
     nodoArbol *nuevo=(nodoArbol*)malloc(sizeof(nodoArbol));
 
@@ -253,7 +254,8 @@ nodoArbol*crearNodo(pacientes registro){
 
 }
 ///insertamos el nodo previamente creado en el arbol
-nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes persona){
+nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes persona)
+{
 
     if(arbolPaciente==NULL){
 
@@ -272,7 +274,8 @@ nodoArbol *insertarNodoPaciente(nodoArbol* arbolPaciente, pacientes persona){
 return arbolPaciente;
 }
 ///leemos el archivo y este lo pasa al arbol, inserta dato a dato.
-nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
+nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[])
+{
 
     FILE *archi=fopen(archivo, "rb");
 
@@ -293,7 +296,8 @@ nodoArbol*pasarArchiToArbol(nodoArbol *arbol, char archivo[]){
     return arbol;
 }
 
-void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]){
+void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[])
+{
 
         FILE*archi=fopen(archivo,"wb");
 
@@ -306,7 +310,8 @@ void pasarArbolAlArchivo(nodoArbol*arbol, char archivo[]){
 
 }
 
-void escribirEnElArchi(FILE*archi, nodoArbol*arbol){
+void escribirEnElArchi(FILE*archi, nodoArbol*arbol)
+{
     if(arbol){
         fwrite(&arbol->persona,sizeof(pacientes),1,archi);
         escribirEnElArchi(archi,arbol->izq);
@@ -316,7 +321,8 @@ void escribirEnElArchi(FILE*archi, nodoArbol*arbol){
 
 }
 ///funcion que permite mostrar el arbol de pacientes.
-void mostrarArbol(nodoArbol*arbol){
+void mostrarArbol(nodoArbol*arbol)
+{
 
     if(arbol){
 
@@ -329,7 +335,8 @@ void mostrarArbol(nodoArbol*arbol){
 }
 
 ///CAMBIAR Y ORDENAR POR NOMBRE
-void ordenarPacientesPorName(pacientes arreglo[], int tamano) {
+void ordenarPacientesPorName(pacientes arreglo[], int tamano)
+{
     int i, j;
     pacientes temp;
 
@@ -346,7 +353,8 @@ void ordenarPacientesPorName(pacientes arreglo[], int tamano) {
     }
 }
 ///funcion que muestra el arreglo de tipo pacientes.
-void mostrarArreglo(pacientes arreglo[], int val) {
+void mostrarArreglo(pacientes arreglo[], int val)
+{
 
     for (int i = 0; i < val; i++) {
             if(arreglo[i].eliminado==0){
@@ -362,7 +370,8 @@ void mostrarArreglo(pacientes arreglo[], int val) {
     }
 }
 ///corrobora si un nodo existe en el arbol a través del DNI, si existe devuelve 1, sino 0
-int existeEnElArbol(nodoArbol*raiz, int dni){
+int existeEnElArbol(nodoArbol*raiz, int dni)
+{
 
     if (raiz == NULL) {
         return 0;
@@ -379,7 +388,8 @@ int existeEnElArbol(nodoArbol*raiz, int dni){
     return existeEnElArbol(raiz->der, dni);
 }
 ///busca por el arbol a través del dni, si existe, devuelve el nodo del arbol donde se encuentre el dni
-nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
+nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni)
+{
  if (raiz == NULL) {
         return NULL; // Árbol vacío o final de la rama
     }
@@ -395,7 +405,8 @@ nodoArbol*buscarPorDNI(nodoArbol*raiz, int dni){
     }
 }
 ///con esta funcion podemos mostrar un nodo del arbol o de un arreglo o lista
-void mostrarNodo(pacientes persona){
+void mostrarNodo(pacientes persona)
+{
 
         printf("\n");
         printf("                    DNI: %i \n",persona.dni);
@@ -407,7 +418,8 @@ void mostrarNodo(pacientes persona){
 
 }
 ///pasamos el archivo de pacientes a un arreglo de pacientes
-int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[]){
+int pasarArchivoToArreglo(char archivo[], int dim, pacientes arreglo[])
+{
 
     FILE*archi=fopen(archivo, "rb");
 
@@ -565,7 +577,8 @@ void modificarPacienteDni(char archivo[], int dni, int dniNuevo)
     }
 }
 
-void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
+void bajaPaciente(char archivo[], nodoArbol*arbol, int dni)
+{
 ///ESTA FUNCION MODIFICA EL INT ELIMINADO EN EL ARCHIVO.
    FILE*archi=fopen(archivo, "rb");
    pacientes persona;
@@ -606,26 +619,6 @@ void bajaPaciente(char archivo[], nodoArbol*arbol, int dni){
    }
 }
 
-///funciones de arboles de listas:
-
-
-//nodoArbol * altaPaciente(nodoArbol * arbol, pacientes persona, ingresos ingreso, pracXingreso practica)
-//{
-//    nodoArbol * aux=buscarPorDNI(arbol, persona.dni);
-//    nodoListaIngresos * nuevoNodo=inicListaIngresos();
-//
-//    if(aux==NULL)
-//    {
-//        arbol=insertarNodoPaciente(arbol, persona);
-//        aux=buscarPorDNI(arbol, persona.dni);
-//    }
-//
-//    nuevoNodo=crearNodoListaIngresos(ingreso);
-//    aux->lista=agregarPrincipio(nuevoNodo,aux->lista);
-//
-//    return arbol;
-//}
-
 void modificarDNIlista(nodoListaIngresos * lista, int dniNuevo)
 {
     while(lista){
@@ -634,7 +627,8 @@ void modificarDNIlista(nodoListaIngresos * lista, int dniNuevo)
         lista=lista->siguiente;
     }
 }
-nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol){
+nodoArbol*modificarDniArbol(int dniNuevo, int dniActual, nodoArbol*arbol)
+{
 
         nodoArbol*nodoBuscar=buscarPorDNI(arbol, dniActual);
 
@@ -765,7 +759,8 @@ nodoArbol* eliminarNodo(nodoArbol* arbol, int dni)
 
     return arbol;
 }
-void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) {
+void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[])
+{
     FILE* archi = fopen(archivoIngresos, "wb");
 
     if (archi != NULL) {
@@ -776,7 +771,8 @@ void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]) {
     }
 }
 
-void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo) {
+void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo)
+{
     if (arbol != NULL) {
         fwrite(&(arbol->persona), sizeof(pacientes), 1, archivo);
 

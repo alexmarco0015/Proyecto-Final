@@ -58,32 +58,6 @@ void contraseniaUsuario(char contrasenia[], int tamanio)
 
 }
 
-///la funcion retorna el dni que inserte el usuario:
-//int dniUsuario(int dni)
-//{
-//    do{
-//        printf("Ingrese su dni:\n");
-//        fflush(stdin);
-//        scanf("%d", &dni);
-//
-//        if(dni>99999999){
-//            system("cls");
-//            printf("Ha seleccionado una cantidad de digitos demasiado alta..\n");
-//            system("pause");
-//            system("cls");
-//        }
-//        if(dni<){
-//            system("cls");
-//            printf("Ha ingresado un dni invalido\n");
-//            system("pause");
-//            system("cls");
-//        }
-//
-//    }while(dni>digitosDNI || dni<1);
-//
-//    return dni;
-//}
-
 ///recopilamos el nombre y apellido como puntero a traves de la funcion
 void nombreYapellidoUsuario(char nombre[], int tamanio)
 {
@@ -105,7 +79,7 @@ void nombreYapellidoUsuario(char nombre[], int tamanio)
             }
         }while(seguro!='s' && seguro!='S');
 }
-///que elija entre las 3 posibles opciones, no puede elegir otra que no sea esas 3
+///que elija entre las 2 posibles opciones, no puede elegir otra que no sea esas 2
 int crearPerfil(int perfil)
 {
     do{
@@ -237,14 +211,8 @@ int verificarEmpleado(int dniEmpleado, empleados_laboratorio arreglo[], int vali
     return flag;
 }
 
-///funciones de modificación:
+///FUNCIONES DE MODIFICACION:
 
-//modificar dni  ***Admin
-//modificar apell y nombre  ***Admin
-//modificar usuario   ***Admin y Usuario
-//modificar contraseña  ***Admin y Usuario
-//modificar perfil.   ****Admin
-//modificar si se elimina o no(dar de baja)
 void modDni(const char archivo[], int dni, int dniNuevo)
 {
     FILE *buffer=fopen(archivo, "r+b");
