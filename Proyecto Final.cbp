@@ -40,18 +40,21 @@
 		<Unit filename="Menues.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="Menues.h" />
 		<Unit filename="estructuraCompuesta.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="ingresoUsuario.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="ingresos.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pacientes.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pacientes.h" />
 		<Unit filename="pracXingresos.c">
 			<Option compilerVar="CC" />
 		</Unit>

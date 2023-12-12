@@ -8,8 +8,6 @@
 
 const char archivoEmpleados[]="empleados.bin";
 
-
-
 int main()
 {
     char archivoPractXingresos[]="PracXingresos.bin";

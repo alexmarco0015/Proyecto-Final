@@ -4,6 +4,7 @@
 #include "prototipados.h"
 #include "pracXingresos.h"
 #include "ingresos.h"
+#include "pacientes.h"
 
 ///pasamos todos los registros de tipo ingreso a un arreglo de ingresos
 int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
@@ -31,30 +32,24 @@ int pasarArchiaArreglo(char archivo[], ingresos arreglo[], int validos)
     return validos;
 }
 ///con esta funcion nos encargamos de automatizar la cantidad de ingresos en toda la clinica
-int ultimoIngreso(char archivoIngresos[], int dni)
+void recorroListaYcuento(nodoListaIngresos * lista, int *i)
 {
-    FILE * buffer=fopen(archivoIngresos, "rb");
-
-    int i=0;
-    ingresos paciente;
-
-    if(buffer)
+    if(lista)
     {
-        while(fread(&paciente, sizeof(ingresos), 1, buffer)>0)
-        {
-                i++;
-        }
-        fclose(buffer);
+        *i=*i+1;
+        recorroListaYcuento(lista->siguiente, i);
     }
-    else{
-        system("cls");
-        printf("Error al abrir el archivo..\n\n");
-        system("pause");
-        system("cls");
-    }
-    return i+1;
 }
-///funcion en la que el usuario se encarga de ingresar la fecha, tal cual se le indica en el printf
+void ultIngreso(nodoArbol * arbol, int *i)
+{
+    if(arbol)
+    {
+        recorroListaYcuento(arbol->lista, i);
+        ultIngreso(arbol->izq, i);
+        ultIngreso(arbol->der, i);
+    }
+}
+
 ///funcion en la que el usuario se encarga de ingresar la fecha, tal cual se le indica en el printf
 void fechaIngreso(char fecha[10])
 {
@@ -154,9 +149,9 @@ int anio(int anioMes)
     return anioMes;
 }
 ///función para prototipar la carga de un ingreso al archivo..
-ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni)
+ingresos crearIngresos(ingresos ingresoPaciente, nodoArbol * arbol, int dni)
 {
-
+    int i=0;
     printf("Ingrese la fecha de INGRESO del paciente..\n");
     fechaIngreso(ingresoPaciente.fechaIngreso);
     printf("Ingrese la fecha de RETIRO del paciente..\n");
@@ -164,7 +159,8 @@ ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni
     ingresoPaciente.matriculaProfesional=matriculaSolicitante(ingresoPaciente.matriculaProfesional);
     ingresoPaciente.eliminado=0;
     ingresoPaciente.dniPaciente=dni;
-    ingresoPaciente.nroIngreso=ultimoIngreso(archivoIngresos, dni);
+    ultIngreso(arbol, &i);
+    ingresoPaciente.nroIngreso=i;
     return ingresoPaciente;
 }
 
@@ -210,9 +206,9 @@ nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso){
     return nuevo;
 }
 ///agregamos al principio de la lista los nodos creados en la funcion anterior
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[], int dni)
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,nodoArbol * arbol, int dni)
 {
-        ingresos ingresito=crearIngresos(ingresito,archivoIngresos, dni);
+        ingresos ingresito=crearIngresos(ingresito,arbol, dni);
 
         nodoListaIngresos*nuevoNodo=inicListaIngresos();
         nuevoNodo=crearNodoListaIngresos(ingresito);
@@ -301,7 +297,7 @@ nodoArbol* archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol)
     return arbol;
 }
 
-nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
+nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni){
 
             nodoArbol*aux=buscarPorDNI(arbol, dni);
 
@@ -309,7 +305,7 @@ nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]){
                 printf("LA PERSONA BUSCADA NO EXISTE...\n");
                 return arbol;
             }
-            aux->lista=agregarPrincipio(aux->lista,archivoIngresos, dni);
+            aux->lista=agregarPrincipio(aux->lista,arbol, dni);
 
           return arbol;
 }

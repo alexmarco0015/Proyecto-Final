@@ -82,14 +82,14 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
     return lista;
 }
 ///agregamos una practica al arbol si es que no existe se inserta, sino la agrega al principio.
-nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]){
+nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito){
 
            nodoArbol*aux=inicArbol();
            aux->lista=buscarIngresoArbol(arbol,ingresito.nroIngreso);
 
             if(aux->lista==NULL){
 
-                arbol=cargarIngresoenArbol(arbol,ingresito.dniPaciente,archivoIngresos);
+                arbol=cargarIngresoenArbol(arbol,ingresito.dniPaciente);
                 aux->lista=buscarIngresoArbol(arbol, ingresito.nroIngreso);
 
             }

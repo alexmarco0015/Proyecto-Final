@@ -7,7 +7,7 @@ pracXingreso crearPractica(int nroIngreso, int nropract);
 nodoPractXingreso * inicListapracXingresos();
 nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso);
 nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, nodoPractXingreso * lista);
-nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]);
+nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito);
 void muestraPracXingreso(pracXingreso dato);
 void modificarResultadoPractica(int nroPract, nodoPractXingreso*lista);
 int pedirNum();

@@ -5,6 +5,7 @@
 #include "pracXingresos.h"
 #include "Menues.h"
 #include "ingresos.h"
+#include "pacientes.h"
 
 ///funciones:
 void menuADMIN(empleados_laboratorio arregloEmpleados[], int validosEmpleados, const char archivoEmpleados[], char archivoPacientes[], char archivoPractXingresos[], char archivoIngresos[], nodoArbol * arbol, pacientes arregloPacientes[], int validosPacientes)
@@ -250,21 +251,22 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
         fflush(stdin);
         scanf("%d", &opcion);
 
+
+
         switch(opcion)
         {
             case 1:
                 system("cls");
                 printf("                    Mostrando Pacientes:\n");
-
-              //  recorrerYmostrarEstructuraCompuestaInOrder(arbol);
-
+                ordenarPacientesPorName(arregloPacientes, validosPacientes);
+                mostrarArreglo(arregloPacientes, validosPacientes);
                 system("pause");
                 system("cls");
                 break;
             case 2:
                 system("cls");
-                //cargaPaciente(archivoPacientes);
-
+                pacientes persona=cargaPaciente(arbol);
+                arbol=insertarNodoPaciente(arbol, persona);
                 system("pause");
                 system("cls");
                 break;
@@ -290,7 +292,7 @@ void menuAdministrativo(char archivoPacientes[], empleados_laboratorio arregloEm
                 }while(verificacion!=1);
 
                 if(contador<4){
-                    ///menuPaciente(archivoPacientes, dni, arbol);
+                    menuPaciente(archivoPacientes, dni, arbol);
                 }
                 system("pause");
                 system("cls");
@@ -366,7 +368,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
                 {
                     persona=crearIngresos(persona, archivoIngresos, dni);
 
-                    //cargaIngreso(archivoIngresos, archivoPaciente, persona);
+                    //arbol=cargarIngresoenArbol(arbol, dni, )
 
                     //cargaPractica(archivoPractXingresos, persona.nroIngreso);
                 }

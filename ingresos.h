@@ -10,11 +10,11 @@ int anio(int anioMes);
 void fechaIngreso(char fecha[]);
 void fechaIngreso(char fecha[10]);
 int matriculaSolicitante(int matri);
-ingresos crearIngresos(ingresos ingresoPaciente, char archivoIngresos[], int dni);
+ingresos crearIngresos(ingresos ingresoPaciente, nodoArbol * arbol, int dni);
 void cargaIngreso(char archivoIngresos[], char archivoPacientes[], ingresos ingresito);
 nodoListaIngresos * inicListaIngresos();
 nodoListaIngresos * crearNodoListaIngresos(ingresos ingreso);
-nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,char archivoIngresos[], int dni);
+nodoListaIngresos* agregarPrincipio(nodoListaIngresos*lista,nodoArbol * arbol, int dni);
 nodoListaIngresos * pasarArchiAlista(nodoListaIngresos * lista, char archivoIngresos[], int dni);
 void muestraIngreso(ingresos dato);
 void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol);
@@ -25,9 +25,10 @@ void mostrarIngresosPorPaciente(nodoArbol*arbol, char archivoIngresos[]);
 void guardarListaEnArchivoRecursivo(nodoListaIngresos*lista, FILE*archivo);
 void guardarListasDelArbolRecursivo(nodoArbol *arbol, FILE *archivo);
 void pasarListaToArchi(nodoArbol*arbol, char archivoIngresos[]);
-nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni,char archivoIngresos[]);
+nodoArbol*cargarIngresoenArbol(nodoArbol*arbol, int dni);
 void insertarNodoEnArbol(nodoArbol*arbol, nodoListaIngresos*nodoLista);
 nodoArbol* archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol);
 nodoListaIngresos *agregarAlista(nodoListaIngresos *lista, ingresos nuevoIngreso);
-
+void recorroListaYcuento(nodoListaIngresos * lista, int *i);
+void ultIngreso(nodoArbol * arbol, int *i);
 #endif // INGRESOS_H_INCLUDED
