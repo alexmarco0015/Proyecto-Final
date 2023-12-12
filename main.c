@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "prototipados.h"
+#include "pracXingresos.h"
 
 const char archivoEmpleados[]="empleados.bin";
 
@@ -23,15 +24,15 @@ int main()
 //    arbol->lista=agregarListaPracticas(arbol->lista);
 //    pasarArbolAlArchivo(arbol,archivoPacientes);
 //    pasarListaToArchi(arbol,archivoIngresos);
-
-   // pasarListaPXIToArchi(arbol,archivoPractXingresos);
+//    pasarListaPXIToArchi(arbol,archivoPractXingresos);
 
     arbol=pasarArchiToArbol(arbol,archivoPacientes);
     arbol=archivoIngresosToArbol(archivoIngresos,arbol);
-   // arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);
+    archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);
+
     mostrarArbol(arbol);
     mostrarListaIngresos(arbol->lista);
-    //arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
+    arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista);
    // arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
     ///cuando queramos agregarlo a un arbol más completo, hay que hacer una funcion de busqueda de ingresos
     ///lo añado de esta manera para que

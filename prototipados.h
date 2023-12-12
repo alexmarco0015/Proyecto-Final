@@ -170,7 +170,7 @@ nodoArbol* archivoIngresosToArbol(char archivoIngresos[], nodoArbol * arbol);
 nodoListaIngresos *agregarAlista(nodoListaIngresos *lista, ingresos nuevoIngreso);
 
 ///prototipados pracXingresos.c:
-
+nodoPractXingreso*agregarppioparaArchi(nodoPractXingreso*lista, pracXingreso dato);
 
 ///prototipados estructuraCompuesta.c:
 nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso);
@@ -192,7 +192,7 @@ void mostrarListaIngresos(nodoListaIngresos*lista);
 void mostrarArchivoIngresosConPracticas(char archivoIngresos[], char archivopracticas[]);
 nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso);
 nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, ingresos ingresito,char archivoIngresos[]);
-nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso);
+
 
 
 

@@ -16,6 +16,6 @@ int pedirNum();
 void modificarNrodePracticaxIngreso(int nroPract, nodoPractXingreso*lista);
 void bajaPracticaxIngreso(int nroPract, nodoPractXingreso * lista);
 nodoPractXingreso * insertarListaPracXingresoEnIngresos(nodoPractXingreso * lista, nodoPractXingreso *nuevoNodo);
-void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol);
+nodoArbol*archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol);
 nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngreso);
 #endif // PRACXINGRESOS_H_INCLUDED

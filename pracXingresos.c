@@ -191,33 +191,44 @@ nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngres
 
     return NULL;  // Lista de ingresos no encontrada
 }
-///se agregan todas las practicas del archivo al arbol de listas de listas..
-void archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol)
+nodoPractXingreso*agregarppioparaArchi(nodoPractXingreso*lista, pracXingreso dato)
 {
-    FILE * buffer=fopen(archivopracXingr, "rb");
+    nodoPractXingreso*nuevo=crearNodoListaPracXingresos(dato);
+
+    if (lista == NULL) {
+        return nuevo;
+    }
+
+
+    nuevo->siguiente = lista;
+    lista = nuevo;
+
+    return lista;
+}
+///se agregan todas las practicas del archivo al arbol de listas de listas..
+nodoArbol* archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol *arbol) {
+    FILE *buffer = fopen(archivopracXingr, "rb");
     pracXingreso dato;
 
-    if(buffer)
-    {
-        while(fread(&dato, sizeof(pracXingreso), 1, buffer)>0)
-        {
-//            nodoPractXingreso*nuevoNodo=inicListapracXingresos();
-//            nuevoNodo=crearNodoListaPracXingresos(dato);
-            nodoListaIngresos*lista=buscarListaPracXingresoEnArbol(arbol, dato.nroIngreso);
-            if(lista!=NULL){
+    if (buffer) {
+        while (fread(&dato, sizeof(pracXingreso), 1, buffer) > 0) {
 
-            insertarListaPracXingresoEnIngresos(lista->lista, lista);
+            nodoListaIngresos *listaIngresos =buscarIngreso(arbol->lista, dato.nroIngreso);
+
+            if (listaIngresos != NULL) {
+
+                listaIngresos->lista = agregarppioparaArchi(listaIngresos->lista, dato);
+            } else {
+                printf("No se encontró la lista de ingresos para el nroIngreso %d en el árbol.\n", dato.nroIngreso);
             }
         }
 
-
         fclose(buffer);
+    } else {
+        printf("Error al abrir el archivo de prácticas por ingreso.\n");
     }
-    else{
-        printf("Error al abrir el archivo..\n\n");
-        system("pause");
-        system("cls");
-    }
+
+    return arbol;
 }
 void pasarListaPXIToArchi(nodoArbol*arbol, char archivoPXI[]){
         FILE*archi=fopen(archivoPXI,"wb");
