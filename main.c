@@ -5,6 +5,7 @@
 #include "pracXingresos.h"
 #include "Menues.h"
 #include "pacientes.h"
+#include "ingresos.h"
 
 const char archivoEmpleados[]="empleados.bin";
 
@@ -18,35 +19,19 @@ int main()
     int opcion=-1;
     pacientes arregloPacientes[100];
     nodoArbol * arbol=inicArbol();
-//    pacientes persona=cargaPaciente(arbol);
-//    arbol=insertarNodoPaciente(arbol, persona);
-//    arbol=cargarIngresoenArbol(arbol,persona.dni,archivoIngresos);
-//    arbol->lista=agregarListaPracticas(arbol->lista);
-//    pasarArbolAlArchivo(arbol,archivoPacientes);
-//    pasarListaToArchi(arbol,archivoIngresos);
 
-   // pasarListaPXIToArchi(arbol,archivoPractXingresos);
-
-    arbol=pasarArchiToArbol(arbol,archivoPacientes);
-    arbol=archivoIngresosToArbol(archivoIngresos,arbol);
-    //arbol->lista=agregarListaPracticas(arbol->lista);   //eliminar
-   // pasarListaPXIToArchi(arbol,archivoPractXingresos);  //eliminar
-    arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos,arbol);   //arreglar
-    mostrarArbol(arbol);
-    mostrarListaIngresos(arbol->lista);
-    arbol->lista->lista=recorrerYmostrarListaPrac(arbol->lista->lista); //arreglar
-
-    //mostrarArchivoPracticas(archivoPractXingresos);  // eliminar
+    arbol=pasarArchiToArbol(arbol, archivoPacientes);
+    arbol=archivoIngresosToArbol(archivoIngresos, arbol);
+    arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos, arbol);
 
    do{
         printf("                    Laboratorio Central - Hospital de ninios\n");
         printf("                    1-Registrarse\n");
         printf("                    2-Ingresar\n");
         printf("                    0-Salir del Programa\n");
-        printf("Ingrese la opcion a elegir.. ");
+        printf("Ingrese la opcion a elegir.. \n");
         fflush(stdin);
         scanf("%d", &opcion);
-        arbol=pasarArchiToArbol(arbol, archivoPacientes);
 
         switch(opcion)
         {
@@ -100,6 +85,10 @@ int main()
                 break;
         }
     } while(opcion!=0);
+
+    pasarArbolAlArchivo(arbol, archivoPacientes);
+    pasarListaToArchi(arbol, archivoIngresos);
+    pasarListaPXIToArchi(arbol, archivoPractXingresos);
 
     return 0;
 }

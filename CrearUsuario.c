@@ -186,7 +186,13 @@ void mostrarArregloEmpleados(empleados_laboratorio arreglo[], int validos)
         printf("                    -----------------------------------\n");
         printf("                    nombre de usuario: %s\n", arreglo[i].usuario);
         printf("                    contrasenia: %s\n", arreglo[i].contrasenia);
-        printf("                    perfil: |%d| 1=administrativo 2=laboratorio\n", arreglo[i].perfil);
+        if(arreglo[i].perfil==1){
+            printf("                    perfil: administrativo\n");
+        }
+        if(arreglo[i].perfil==2)
+        {
+            printf("                    perfil: laboratorio\n");
+        }
         printf("                    nombre y apellido: %s\n", arreglo[i].apeYnombre);
         printf("                    dni: %d\n", arreglo[i].dni);
         i++;
@@ -422,10 +428,22 @@ void chequearEmpleadoAdmin(empleados_laboratorio arregloEmpleados[], int validos
             printf("       ---------------------------------------\n");
             printf("       nombre de usuario: %s\n", arregloEmpleados[i].usuario);
             printf("       contrasenia: %s\n", arregloEmpleados[i].contrasenia);
-            printf("       perfil: |%d| 1=administrativo 2=laboratorio\n", arregloEmpleados[i].perfil);
+            if(arregloEmpleados[i].perfil==1){
+            printf("                    perfil: administrativo\n");
+            }
+            if(arregloEmpleados[i].perfil==2)
+            {
+                printf("                    perfil: laboratorio\n");
+            }
             printf("       nombre y apellido: %s\n", arregloEmpleados[i].apeYnombre);
             printf("       dni: %d\n", arregloEmpleados[i].dni);
-            printf("       ALTA DEL SISTEMA :%d (1:Fuera de servicio | 0:En servicio)", arregloEmpleados[i].eliminado);
+            if(arregloEmpleados[i].eliminado==0)
+            {
+                printf("       Estado de servicio:  EN SERVICIO\n");
+            }
+            else{
+                printf("       Estado de servicio: FUERA DE SERVICIO\n");
+            }
             printf("       ------------------------------------------\n");
             break;
         }
@@ -447,7 +465,13 @@ void chequearEmpleadoAdministrativo(empleados_laboratorio arregloEmpleados[], in
             printf("       ---------------------------------------\n");
             printf("       nombre de usuario: %s\n", arregloEmpleados[i].usuario);
             printf("       contrasenia: %s\n", arregloEmpleados[i].contrasenia);
-            printf("       perfil: |%d| 1=administrativo 2=laboratorio\n", arregloEmpleados[i].perfil);
+            if(arregloEmpleados[i].perfil==1){
+            printf("                    perfil: administrativo\n");
+            }
+            if(arregloEmpleados[i].perfil==2)
+            {
+                printf("                    perfil: laboratorio\n");
+            }
             printf("       contrasenia: ");
             for (int j = 0; j < sizeof(arregloEmpleados[i].contrasenia) - 1 && arregloEmpleados[i].contrasenia[j] != '\0'; j++) {
             printf("*");

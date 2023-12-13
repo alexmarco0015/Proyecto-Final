@@ -334,12 +334,10 @@ void muestraIngreso(ingresos dato)
 
 void modificarMatricula(int nroIngreso, nodoListaIngresos*lista)
 {
-
     while(lista!=NULL && nroIngreso !=lista->ingreso.nroIngreso)
     {
         lista=lista->siguiente;
     }
-
     if(lista)
     {
         printf("Pasando a modificar la matricula del profesional solicitante..\n");
@@ -353,7 +351,6 @@ void modificarFechaIngreso(int nroIngreso, nodoListaIngresos*lista)
     {
         lista=lista->siguiente;
     }
-
     if(lista)
     {
         printf("Pasando a modificar la fecha de ingreso..\n");
@@ -366,7 +363,6 @@ void modificarFechaRetiro(int nroIngreso, nodoListaIngresos*lista)
     {
         lista=lista->siguiente;
     }
-
     if(lista)
     {
         printf("Pasando a modificar la fecha de ingreso..\n");
@@ -400,12 +396,9 @@ void eliminarIngreso(int numIngreso, char archivo[])
                 break;
                 }
             }
-
-
         fclose(buffer);
     }
     else{
         printf("Error al abrir el archivo..\n");
     }
 }
-

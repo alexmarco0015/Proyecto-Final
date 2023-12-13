@@ -202,27 +202,17 @@ pacientes cargaPaciente(nodoArbol*arbol)
 {
     pacientes persona;
 
-    char cont='s';
-
-        while(cont=='s')
-        {
-
             persona.dni=dniPaciente(persona.dni);
 
             if(buscarPorDNI(arbol,persona.dni))
             {
                 printf("El paciente ya existe en el sistema...\n");
-                break;
+                persona.dni=-1;
+                return persona;
             }
             persona=crearPaciente(persona);
             persona.eliminado=0;
 
-
-            printf("¿Desea ingresar otro paciente? (s/n): ");
-            fflush(stdin);
-            scanf(" %c", &cont);
-            system("cls");
-        }
 
         return persona;
 
@@ -780,4 +770,35 @@ void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo)
         cargarNodosDelArbolRecursivo(arbol->der, archivo);
     }
 }
+nodoArbol* modificarDireccionArbol(nodoArbol*  arbol, int dni, char nuevaDireccion[])
+{
+     nodoArbol* nodoBuscar=buscarPorDNI(arbol, dni);
+        int tamanio=sizeof(char)*40;
 
+        if(nodoBuscar==NULL){
+            printf("LA PERSONA NO SE ENCUENTRA EN EL SISTEMA!!!\n");
+            return arbol;
+        }
+        direccionPaciente(nuevaDireccion,tamanio);
+
+        strcpy(nodoBuscar->persona.direccion, nuevaDireccion);
+
+
+         printf("Datos modificados con exito en el arbol.\n");
+
+return arbol;
+
+}
+
+void recorrer_arbol_y_almacenar(nodoArbol* nodo, pacientes arregloPacientes[], int* indice)
+{
+
+    if (nodo != NULL) {
+
+        arregloPacientes[*indice] = nodo->persona;
+        (*indice)++;
+
+        recorrer_arbol_y_almacenar(nodo->izq, arregloPacientes, indice);
+        recorrer_arbol_y_almacenar(nodo->der, arregloPacientes, indice);
+    }
+}

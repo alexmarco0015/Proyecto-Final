@@ -3,6 +3,8 @@
 #include <string.h>
 #include "prototipados.h"
 #include "pracXingresos.h"
+#include "pacientes.h"
+#include "ingresos.h"
 ///el usuario inserta el tipo de resultado que ha generado dicha practica
 void crearResultado(char resultado[])
 {
@@ -82,10 +84,13 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
 nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, int nroIngreso, int dni){
 
            nodoArbol*aux=inicArbol();
+           printf("1\n");
            aux->lista=buscarIngresoArbol(arbol,nroIngreso);
+           printf("2\n");
 
             if(aux->lista==NULL){
-
+                printf("El ingreso que usted busca no se encuentra, procederemos a agregar uno..\n");
+                system("pause");
                 arbol=cargarIngresoenArbol(arbol,dni);
                 aux->lista=buscarIngresoArbol(arbol, nroIngreso);
 
@@ -179,6 +184,7 @@ nodoPractXingreso * insertarListaPracXingresoEnIngresos(nodoPractXingreso * list
 
     return lista;
 }
+
 nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngreso) {
 
     // Buscar la lista de ingresos correspondiente en el árbol
@@ -263,4 +269,21 @@ void guardarListaPractXingreso(nodoPractXingreso *lista, FILE *archivo) {
         fwrite(&(lista->ingreso), sizeof(pracXingreso), 1, archivo);
         lista = lista->siguiente;
     }
+}
+int estaLaPract(int practiquita,nodoPractXingreso * lista)
+{
+    int flag=0;
+    nodoPractXingreso * aux=lista;
+
+    while(aux)
+    {
+        if(practiquita==aux->ingreso.nroPractica)
+        {
+            flag=1;
+            break;
+        }
+        aux=aux->siguiente;
+    }
+
+    return flag;
 }

@@ -39,6 +39,6 @@ nodoArbol* buscarDniMenor(nodoArbol* arbol);
 nodoArbol* eliminarNodo(nodoArbol* arbol, int dni);
 void cargarArbolAArchivo(nodoArbol* arbol, char archivoIngresos[]);
 void cargarNodosDelArbolRecursivo(nodoArbol* arbol, FILE* archivo);
-
-
+nodoArbol* modificarDireccionArbol(nodoArbol*  arbol, int dni, char nuevaDireccion[]);
+void recorrer_arbol_y_almacenar(nodoArbol* nodo, pacientes arregloPacientes[], int* indice);
 #endif // PACIENTES_H_INCLUDED

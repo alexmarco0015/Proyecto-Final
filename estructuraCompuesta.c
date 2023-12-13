@@ -21,6 +21,41 @@ nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso)
     return NULL;
 }
 
+int  existeIngreso(nodoListaIngresos * lista, int ingreso)
+{
+    nodoListaIngresos * aux=lista;
+
+    while(aux!=NULL)
+    {
+        if(aux->ingreso.nroIngreso==ingreso)
+        {
+            return 1;
+        }
+        aux=aux->siguiente;
+    }
+
+    return 0;
+}
+int existeIngresoArbol(nodoArbol*arbol, int nroIngreso)
+{
+    if (arbol == NULL) {
+        return 0;
+    }
+
+    int encontrado = existeIngreso(arbol->lista, nroIngreso);
+
+    if (encontrado != 0) {
+        return encontrado;
+    }
+    if(arbol->izq!=NULL)
+    {
+        return existeEnElArbol(arbol->izq, nroIngreso);
+
+    }
+    else{
+        return existeEnElArbol(arbol->der, nroIngreso);
+    }
+}
 
 nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista)
 {
@@ -45,12 +80,9 @@ nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista)
 
 nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso)
 {
-    if (arbol == NULL) {
-        return NULL;
-    }
 
     nodoListaIngresos* encontrado = buscarIngreso(arbol->lista, nroIngreso);
-
+    printf("3");
     if (encontrado != NULL) {
         return encontrado;
     }
@@ -61,6 +93,10 @@ nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso)
     }
     else{
         return buscarIngresoArbol(arbol->der, nroIngreso);
+    }
+
+    if (arbol == NULL) {
+        return NULL;
     }
 }
 

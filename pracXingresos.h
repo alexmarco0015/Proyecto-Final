@@ -17,4 +17,9 @@ void bajaPracticaxIngreso(int nroPract, nodoPractXingreso * lista);
 nodoPractXingreso * insertarListaPracXingresoEnIngresos(nodoPractXingreso * lista, nodoPractXingreso *nuevoNodo);
 nodoArbol*archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol * arbol);
 nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngreso);
+int estaLaPract(int practiquita,nodoPractXingreso * lista);
+void guardarListasDelArbolRecursivo2(nodoArbol *arbol, FILE *archivo);
+void guardarListaPractXingreso(nodoPractXingreso *lista, FILE *archivo);
+void guardarListaPractXingresoEnArchivoRecursivo(nodoListaIngresos *lista, FILE *archivo);
+void pasarListaPXIToArchi(nodoArbol*arbol, char archivoPXI[]);
 #endif // PRACXINGRESOS_H_INCLUDED

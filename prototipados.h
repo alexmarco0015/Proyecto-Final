@@ -103,8 +103,8 @@ nodoPractXingreso * recorrerYmostrarListaPrac(nodoPractXingreso * lista);
 nodoListaIngresos * recorrerYmostrarListaIngresos(nodoListaIngresos * lista);
 nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista);
 void inOrderSinPracticas(nodoArbol * arbol);
-
-
+int  existeIngreso(nodoListaIngresos * lista, int ingreso);
+int existeIngresoArbol(nodoArbol*arbol, int nroIngreso);
 
 
 ///Prototipados practicas:
