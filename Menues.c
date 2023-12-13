@@ -339,7 +339,7 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
     int opcion=-1;
     int dni=-1;
     int flag=-1;
-    int flag2=-1;
+    int contador2=0;
     int contador=0;
     char seguro='n';
     int ingresito=0;
@@ -382,14 +382,43 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
 
                 if(contador!=3)
                 {
-                    printf("Ingrese el ingreso que usted está buscando..\n");
+                    printf("El ingreso que busca, existe?\n");
                     fflush(stdin);
-                    scanf("%d", &ingresito);
-
-
-                    arbol=agregarPracticaAlArbol(arbol, ingresito, dni);
+                    scanf("%c", &seguro);
+                    if(seguro=='s')
+                    {
+                        do{
+                            if(contador2==3)
+                            {
+                                printf("Demasiados errores al buscar ingreso..\n");
+                                break;
+                            }
+                            printf("Ingrese el ingreso que usted está buscando..\n");
+                            fflush(stdin);
+                            scanf("%d", &ingresito);
+                            nodoArbol*auxarbol=buscarPorDNI(arbol, dni);
+                            nodoListaIngresos*aux=buscarIngreso(auxarbol->lista, ingresito);
+                            contador2++;
+                            if(aux==NULL)
+                            {
+                                flag=0;
+                                printf("Ingreso un ingreso que no existe..\n");
+                            }
+                            else{
+                                flag=1;
+                            }
+                        }while(contador2!=3 && flag==0);
+                        if(contador2!=3)
+                        {
+                            arbol=agregarPracticaAlArbol(arbol, ingresito);
+                        }
+                    }
+                    else{
+                        arbol=cargarIngresoenArbol(arbol, dni);
+                        ultIngreso(arbol, &numeroIngreso);
+                        arbol=agregarPracticaAlArbol(arbol, numeroIngreso);
+                    }
                 }
-
                 system("pause");
                 system("cls");
                 break;

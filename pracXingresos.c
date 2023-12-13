@@ -60,6 +60,7 @@ nodoPractXingreso * crearNodoListaPracXingresos(pracXingreso ingreso){
     nuevo->ingreso.nroIngreso=ingreso.nroIngreso;
     strcpy(nuevo->ingreso.resultado, ingreso.resultado);
     nuevo->ingreso.nroPractica=ingreso.nroPractica;
+    nuevo->ingreso.eliminado=ingreso.eliminado;
 
     nuevo->siguiente=NULL;
 
@@ -81,22 +82,18 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
     return lista;
 }
 ///agregamos una practica al arbol si es que no existe se inserta, sino la agrega al principio.
-nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, int nroIngreso, int dni){
+nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, int nroIngreso){
+        nodoListaIngresos*aux=buscarIngresoArbol(arbol, nroIngreso);
 
-           nodoArbol *aux=buscarPorDNI(arbol, dni);
-           aux->lista=buscarIngresoArbol(arbol,nroIngreso);
-
-            if(aux->lista==NULL){
-                printf("El ingreso que usted busca no se encuentra, procederemos a agregar uno..\n");
-                system("pause");
-                arbol=cargarIngresoenArbol(arbol,dni);
-                aux->lista=buscarIngresoArbol(arbol, nroIngreso);
-
-            }
-
-            aux->lista=agregarListaPracticas(aux->lista);
-
-            return arbol;
+        if(aux!=NULL)
+        {
+            int i=0;
+            ultPract(arbol, &i);
+            pracXingreso nuevaPractica=crearPractica(nroIngreso, i);
+            nodoPractXingreso *nuevoNodo=crearNodoListaPracXingresos(nuevaPractica);
+            aux->lista=agregarPrincipioPracXingresos(nuevoNodo, aux->lista);
+        }
+        return arbol;
 }
 
 
@@ -195,18 +192,17 @@ nodoPractXingreso* buscarListaPracXingresoEnArbol(nodoArbol *raiz, int nroIngres
 
     return NULL;  // Lista de ingresos no encontrada
 }
-nodoPractXingreso*agregarppioparaArchi(nodoPractXingreso*lista, pracXingreso dato)
+nodoPractXingreso*agregarppioparaArchi(nodoPractXingreso*lista, nodoPractXingreso*nuevoNodo)
 {
-    nodoPractXingreso*nuevo=crearNodoListaPracXingresos(dato);
-
-    if (lista == NULL) {
-        return nuevo;
+    if(lista==NULL)
+    {
+        lista=nuevoNodo;
     }
-
-
-    nuevo->siguiente = lista;
-    lista = nuevo;
-
+    else
+    {
+        nuevoNodo->siguiente=lista;
+        lista=nuevoNodo;
+    }
     return lista;
 }
 ///se agregan todas las practicas del archivo al arbol de listas de listas..
@@ -217,11 +213,11 @@ nodoArbol* archivoPracXingresoIngresoToArbol(char archivopracXingr[], nodoArbol 
     if (buffer) {
         while (fread(&dato, sizeof(pracXingreso), 1, buffer) > 0) {
 
-            nodoListaIngresos *listaIngresos =buscarIngreso(arbol->lista, dato.nroIngreso);
+            nodoListaIngresos *listaIngresos =buscarIngresoArbol(arbol, dato.nroIngreso);
 
             if (listaIngresos != NULL) {
-
-                listaIngresos->lista = agregarppioparaArchi(listaIngresos->lista, dato);
+                nodoPractXingreso*nuevoNodo=crearNodoListaPracXingresos(dato);
+                listaIngresos->lista = agregarppioparaArchi(listaIngresos->lista, nuevoNodo);
             } else {
                 printf("No se encontró la lista de ingresos para el nroIngreso %d en el árbol.\n", dato.nroIngreso);
             }
@@ -284,4 +280,29 @@ int estaLaPract(int practiquita,nodoPractXingreso * lista)
     }
 
     return flag;
+}
+void recorroListaYcuentoPract(nodoPractXingreso * lista, int *i)
+{
+    if(lista)
+    {
+        *i=*i+1;
+        recorroListaYcuentoPract(lista->siguiente, i);
+    }
+}
+void recorroListaIngrYcuentoPract(nodoListaIngresos * lista, int *i)
+{
+    if(lista)
+    {
+        recorroListaYcuentoPract(lista->lista, i);
+        recorroListaIngrYcuentoPract(lista->siguiente, i);
+    }
+}
+void ultPract(nodoArbol * arbol, int *i)
+{
+    if(arbol)
+    {
+        recorroListaIngrYcuentoPract(arbol->lista, i);
+        ultPract(arbol->izq, i);
+        ultPract(arbol->der, i);
+    }
 }

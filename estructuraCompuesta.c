@@ -57,24 +57,13 @@ int existeIngresoArbol(nodoArbol*arbol, int nroIngreso)
     }
 }
 
-nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista)
+nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, nodoArbol *arbol)
 {
-    nodoPractXingreso * auxPract=lista->lista;
     int nro=0;
-    nro=nroPractica(auxPract);
+    ultPract(arbol, &nro);
     pracXingreso dato=crearPractica(lista->ingreso.nroIngreso, nro);
-
-    nodoPractXingreso * nuevoNodo = inicListapracXingresos();
-    nuevoNodo=crearNodoListaPracXingresos(dato);
-
-//    if (aux == NULL) {
-//        aux = crearNodoListaIngresos(aux->ingreso);
-//        aux->siguiente = lista;
-//        lista = aux;
-//    }
-
+    nodoPractXingreso * nuevoNodo = crearNodoListaPracXingresos(dato);
     lista->lista = agregarPrincipioPracXingresos(nuevoNodo, lista->lista);
-
     return lista;
 }
 
@@ -96,8 +85,6 @@ nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso)
     }
 
     return buscarIngresoArbol(arbol->der, nroIngreso);
-
-
 }
 
 void mostrarListaIngresos(nodoListaIngresos*lista)
@@ -113,48 +100,35 @@ void mostrarListaIngresos(nodoListaIngresos*lista)
     }
 }
 
-nodoPractXingreso * recorrerYmostrarListaPrac(nodoPractXingreso * lista)
+void recorrerYmostrarListaPrac(nodoPractXingreso * lista)
 {
-    nodoPractXingreso * aux=lista;
-
-    while(aux)
+    if(lista)
     {
-        muestraPracXingreso(aux->ingreso);
-        aux=aux->siguiente;
+        muestraPracXingreso(lista->ingreso);
+        recorrerYmostrarListaPrac(lista->siguiente);
     }
-
-    return lista;
 }
 
-nodoListaIngresos * recorrerYmostrarListaIngresos(nodoListaIngresos * lista)
+void recorrerYmostrarListaIngresos(nodoListaIngresos * lista)
 {
-    nodoListaIngresos * aux=lista;
-
-    while(aux)
+    if(lista)
     {
-        muestraIngreso(aux->ingreso);
-        aux->lista=recorrerYmostrarListaPrac(aux->lista);
-        aux=aux->siguiente;
+        muestraIngreso(lista->ingreso);
+        recorrerYmostrarListaPrac(lista->lista);
+        recorrerYmostrarListaIngresos(lista->siguiente);
     }
-
-    return lista;
 }
 
 
 
-nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista)
+void recorrerYmostrarsinPracticas(nodoListaIngresos * lista)
 {
-    nodoListaIngresos * aux=lista;
-
-    while(aux!=NULL)
-    {
+    if(lista){
         printf("----------------\n");
-        muestraIngreso(aux->ingreso);
+        muestraIngreso(lista->ingreso);
         printf("------------------\n");
-        aux=aux->siguiente;
+        recorrerYmostrarsinPracticas(lista->siguiente);
     }
-
-    return lista;
 }
 
 void inOrderSinPracticas(nodoArbol * arbol)
@@ -167,10 +141,27 @@ void inOrderSinPracticas(nodoArbol * arbol)
             printf("\n=============================\n");
             mostrarNodo(arbol->persona);
             if (arbol->lista != NULL) {
-                arbol->lista = recorrerYmostrarsinPracticas(arbol->lista->siguiente);
+                recorrerYmostrarsinPracticas(arbol->lista);
             }
             printf("\n=============================\n");
         }
         inOrderSinPracticas(arbol->der);
+    }
+}
+
+void inOrden(nodoArbol *arbol)
+{
+    if(arbol)
+    {
+        inOrden(arbol->izq);
+        if(arbol->persona.eliminado==0){
+            printf("\n=============================\n");
+            mostrarNodo(arbol->persona);
+            if (arbol->lista != NULL) {
+                recorrerYmostrarListaIngresos(arbol->lista);
+            }
+            printf("\n=============================\n");
+        }
+        inOrden(arbol->der);
     }
 }

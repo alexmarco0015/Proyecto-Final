@@ -160,7 +160,7 @@ ingresos crearIngresos(ingresos ingresoPaciente, nodoArbol * arbol, int dni)
     ingresoPaciente.eliminado=0;
     ingresoPaciente.dniPaciente=dni;
     ultIngreso(arbol, &i);
-    ingresoPaciente.nroIngreso=i;
+    ingresoPaciente.nroIngreso=i+1;
     return ingresoPaciente;
 }
 

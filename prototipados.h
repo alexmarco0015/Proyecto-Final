@@ -96,16 +96,16 @@ int ingresoPerfil(empleados_laboratorio arreglo[], int validos,const char archiv
 
 ///prototipados estructuraCompuesta.c:
 nodoListaIngresos * buscarIngreso(nodoListaIngresos * lista, int ingreso);
-nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista);
+nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista, nodoArbol *arbol);
 nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso);
 void mostrarListaIngresos(nodoListaIngresos*lista);
-nodoPractXingreso * recorrerYmostrarListaPrac(nodoPractXingreso * lista);
-nodoListaIngresos * recorrerYmostrarListaIngresos(nodoListaIngresos * lista);
-nodoListaIngresos * recorrerYmostrarsinPracticas(nodoListaIngresos * lista);
+void recorrerYmostrarListaPrac(nodoPractXingreso * lista);
+void recorrerYmostrarListaIngresos(nodoListaIngresos * lista);
+void recorrerYmostrarsinPracticas(nodoListaIngresos * lista);
 void inOrderSinPracticas(nodoArbol * arbol);
 int  existeIngreso(nodoListaIngresos * lista, int ingreso);
 int existeIngresoArbol(nodoArbol*arbol, int nroIngreso);
-
+void inOrden(nodoArbol *arbol);
 
 ///Prototipados practicas:
 

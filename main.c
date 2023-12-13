@@ -20,9 +20,12 @@ int main()
     pacientes arregloPacientes[100];
     nodoArbol * arbol=inicArbol();
 
+    int i=0;
     arbol=pasarArchiToArbol(arbol, archivoPacientes);
     arbol=archivoIngresosToArbol(archivoIngresos, arbol);
     arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos, arbol);
+
+    inOrden(arbol);
 
    do{
         printf("                    Laboratorio Central - Hospital de ninios\n");
