@@ -25,8 +25,6 @@ int main()
     arbol=archivoIngresosToArbol(archivoIngresos, arbol);
     arbol=archivoPracXingresoIngresoToArbol(archivoPractXingresos, arbol);
 
-    inOrden(arbol);
-
    do{
         printf("                    Laboratorio Central - Hospital de ninios\n");
         printf("                    1-Registrarse\n");

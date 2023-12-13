@@ -215,7 +215,7 @@
 	<string.h>
 	"prototipados.h"
 
-1702449172 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
+1702451608 source:c:\users\alex\documents\github\proyecto-finalnuevo\pracxingresos.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -224,7 +224,7 @@
 	"pacientes.h"
 	"ingresos.h"
 
-1702450450 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
+1702452900 source:c:\users\alex\documents\github\proyecto-finalnuevo\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

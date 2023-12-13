@@ -491,7 +491,6 @@ void menuLaboratorio(char archivoPaciente[], char archivoPractXingresos[], char 
 void menuModPracticasxIngreso(char archivo[],int numeroPrac, nodoArbol * arbol, int nroIngreso)
 {
     int opcion=1000;
-    char seguro='n';
     nodoListaIngresos*aux;
     do{
         printf("Menu de modificaciones de una practica\n");
@@ -499,7 +498,6 @@ void menuModPracticasxIngreso(char archivo[],int numeroPrac, nodoArbol * arbol, 
         printf("Elija una opcion.. ");
         fflush(stdin);
         scanf("%d", &opcion);
-        seguro='n';
         switch(opcion)
         {
             case 1:
@@ -588,10 +586,9 @@ void modificarIngresoMenu(int ingreso,char archivo[], nodoArbol*arbol)
 }
 ///menu de modificaciones pacientes..
 void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
-    ///PEDIR DNI CUANDO SE LLAME A ESTE MENU
+
     int opcion=1000;
     int verificado;
-    char seguro='n';
     char nuevoName[40];
     char nuevoTelefono[40];
     char nuevaDireccion[40];
@@ -605,44 +602,46 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
         printf("                    4-Modificar direccion\n");
         printf("                    5-Telefono\n");
         printf("                    0-salir del menu\n");
-
         printf("datos del paciente: \n");
         nodoArbol * aux=buscarPorDNI(arbol, dni);
         mostrarNodo(aux->persona);
-        printf("Elija una opcion.. \n");
+        printf("\nElija una opcion.. \n");
         fflush(stdin);
         scanf("%d", &opcion);
-        seguro='n';
 
         switch(opcion){
             case 1:
                 system("cls");
-                   arbol=modificarDniArbol(dniNuevo,dni,arbol);
-                    printf("Volviendo al menu...");
+                arbol=modificarDniArbol(dniNuevo,dni,arbol);
+                printf("Volviendo al menu...");
                 system("pause");
                 system("cls");
             break;
             case 2:
                 system("cls");
                 arbol=modificarNombreYApellidoArbol(arbol,dni,nuevoName);
+                printf("Volviendo al menu...");
                 system("pause");
                 system("cls");
                 break;
             case 3:
                 system("cls");
                 arbol=modificarEdadArbol(arbol,dni,edadNuevo);
+                printf("Volviendo al menu...");
                 system("pause");
                 system("cls");
             break;
             case 4:
                 system("cls");
                 arbol=modificarDireccionArbol(arbol,dni,nuevaDireccion);
+                printf("Volviendo al menu...");
                 system("pause");
                 system("cls");
                 break;
             case 5:
                 system("cls");
                 arbol=modificarTelefonoArbol(arbol,dni,nuevoTelefono);
+                printf("Volviendo al menu...");
                 system("pause");
                 system("cls");
                 break;
@@ -659,5 +658,5 @@ void menuPaciente(char archivo[], int dni, nodoArbol*arbol){
                 system("cls");
                 break;
             }
-    }while(seguro!='n');
+    }while(opcion!=0);
 }
