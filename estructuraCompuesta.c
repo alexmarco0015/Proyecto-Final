@@ -81,8 +81,11 @@ nodoListaIngresos * agregarListaPracticas(nodoListaIngresos* lista)
 nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso)
 {
 
+    if (arbol == NULL) {
+        return NULL;
+    }
     nodoListaIngresos* encontrado = buscarIngreso(arbol->lista, nroIngreso);
-    printf("3");
+
     if (encontrado != NULL) {
         return encontrado;
     }
@@ -91,13 +94,10 @@ nodoListaIngresos*buscarIngresoArbol(nodoArbol*arbol, int nroIngreso)
         return buscarIngresoArbol(arbol->izq, nroIngreso);
 
     }
-    else{
-        return buscarIngresoArbol(arbol->der, nroIngreso);
-    }
 
-    if (arbol == NULL) {
-        return NULL;
-    }
+    return buscarIngresoArbol(arbol->der, nroIngreso);
+
+
 }
 
 void mostrarListaIngresos(nodoListaIngresos*lista)

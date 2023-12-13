@@ -83,10 +83,8 @@ nodoPractXingreso* agregarPrincipioPracXingresos(nodoPractXingreso * nuevoNodo, 
 ///agregamos una practica al arbol si es que no existe se inserta, sino la agrega al principio.
 nodoArbol*agregarPracticaAlArbol(nodoArbol*arbol, int nroIngreso, int dni){
 
-           nodoArbol*aux=inicArbol();
-           printf("1\n");
+           nodoArbol *aux=buscarPorDNI(arbol, dni);
            aux->lista=buscarIngresoArbol(arbol,nroIngreso);
-           printf("2\n");
 
             if(aux->lista==NULL){
                 printf("El ingreso que usted busca no se encuentra, procederemos a agregar uno..\n");
